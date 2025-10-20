@@ -1,59 +1,57 @@
 <template>
-  <div class="container">
-    <div>
-      <Logo />
-      <h1 class="title">nuxtjs</h1>
-      <div class="links">
-        <a
-          href="https://nuxtjs.org/"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="button--green"
-        >
-          Documentation
-        </a>
-        <a
-          href="https://github.com/nuxt/nuxt.js"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="button--grey"
-        >
-          GitHub
-        </a>
-      </div>
-    </div>
+  <div class="min-h-screen">
+    <AppHeader />
+    
+    <main>
+      <HeroSection />
+      <SkillsSection />
+      <WorkExperienceSection />
+      <SoftwareSection />
+      <!-- Add more sections as needed:
+        <EducationSection />
+        <ResearchSection />
+        <LanguagesSection />
+        <ScholarshipsSection />
+        <VolunteeringSection />
+        <MilestonesSection />
+        <CodingSection />
+        <PracticalSkillsSection />
+      -->
+    </main>
+    
+    <AppFooter />
   </div>
 </template>
 
-<style>
-.container {
-  margin: 0 auto;
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-}
+<script setup>
+import HeroSection from '~/components/sections/HeroSection.vue';
+import SkillsSection from '~/components/sections/SkillsSection.vue';
+import AppFooter from '~/components/layout/AppFooter.vue';
+import AppHeader from '~/components/layout/AppHeader.vue';
+import SoftwareSection from '~/components/sections/SoftwareSection.vue';
+import WorkExperienceSection from '~/components/sections/WorkExperienceSection.vue';
+import { onMounted } from 'vue'
+import { gsap } from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
-.title {
-  font-family: "Quicksand", "Source Sans Pro", -apple-system, BlinkMacSystemFont,
-    "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  display: block;
-  font-weight: 300;
-  font-size: 100px;
-  color: #35495e;
-  letter-spacing: 1px;
-}
+// Set up page metadata
+useHead({
+  title: 'Jan Mayer - Portfolio',
+  meta: [
+    { name: 'description', content: 'Personal portfolio and resume of Jan Mayer' }
+  ],
+  link: [
+    { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+  ]
+})
 
-.subtitle {
-  font-weight: 300;
-  font-size: 42px;
-  color: #526488;
-  word-spacing: 5px;
-  padding-bottom: 15px;
-}
-
-.links {
-  padding-top: 15px;
-}
-</style>
+onMounted(() => {
+  // Register ScrollTrigger plugin
+  gsap.registerPlugin(ScrollTrigger)
+  
+  // Smooth scroll setup
+  ScrollTrigger.config({
+    autoRefreshEvents: 'visibilitychange,DOMContentLoaded,load'
+  })
+})
+</script>

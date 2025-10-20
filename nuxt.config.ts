@@ -1,3 +1,5 @@
+import tailwindcss from "@tailwindcss/vite";
+
 export default defineNuxtConfig({
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
@@ -11,10 +13,22 @@ export default defineNuxtConfig({
       { hid: "description", name: "description", content: "" },
     ],
     link: [{ rel: "icon", type: "image/x-icon", href: "/favicon.ico" }],
+    pageTransition: { name: 'page', mode: 'out-in' }
   },
 
+
   // Global CSS: https://go.nuxtjs.dev/config-css
-  css: [],
+  css: ["~/assets/css/main.css"],
+
+  gsap: {
+    extraPlugins: {
+      scrollTrigger: true,
+      scrollTo: true,
+    },
+    extraEases: {
+      expoScaleEase: true,
+    }
+  },
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [],
@@ -29,7 +43,7 @@ export default defineNuxtConfig({
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
-  modules: [],
+  modules: ["v-gsap-nuxt"],
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {},
@@ -40,4 +54,9 @@ export default defineNuxtConfig({
   },
 
   compatibilityDate: "2025-02-28",
+  vite: {
+    plugins: [
+      tailwindcss(),
+    ],
+  },
 });
