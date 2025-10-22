@@ -1,19 +1,78 @@
 <template>
-    <section class="section-padding min-h-screen flex items-center justify-between relative">
-      <div class="max-w-2xl" ref="titleRef">
-        <h1 class="text-4xl md:text-6xl lg:text-7xl font-serif mb-4">
-          <span class="text-gray-300">This is</span><br>
-          <span class="text-primary">{{ name }}</span>
+    <section class="section-padding min-h-screen flex items-center justify-between relative overflow-hidden">
+      <!-- Background Effects -->
+      <div class="absolute inset-0 -z-10">
+        <!-- Gradient Orbs -->
+        <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/10 rounded-full blur-3xl animate-pulse"></div>
+        <div class="absolute bottom-1/4 right-1/4 w-80 h-80 bg-blue-500/10 rounded-full blur-3xl animate-pulse" style="animation-delay: 1s;"></div>
+        
+        <!-- Floating Particles -->
+        <div 
+          v-for="i in 20" 
+          :key="i"
+          class="absolute w-1 h-1 bg-primary/30 rounded-full animate-float"
+          :style="{
+            left: Math.random() * 100 + '%',
+            top: Math.random() * 100 + '%',
+            animationDelay: Math.random() * 3 + 's',
+            animationDuration: (3 + Math.random() * 4) + 's'
+          }"
+        ></div>
+      </div>
+
+      <!-- Main Content -->
+      <div class="max-w-2xl relative z-10" ref="titleRef">
+        <!-- Subtitle with typewriter effect -->
+        <div class="mb-4" ref="subtitleRef">
+          <span class="text-lg md:text-xl text-gray-400 font-mono">Full-Stack Developer</span>
+        </div>
+        
+        <h1 class="text-4xl md:text-6xl lg:text-7xl font-serif mb-6">
+          <span class="text-gray-300 block mb-2" ref="introText">This is</span>
+          <span class="text-primary relative inline-block" ref="nameText">
+            {{ name }}
+            <!-- Underline effect -->
+            <div class="absolute -bottom-2 left-0 w-full h-1 bg-gradient-to-r from-primary to-transparent opacity-60" ref="underlineRef"></div>
+          </span>
         </h1>
+        
+        <!-- Description with fade-in effect -->
+        <div class="mb-8" ref="descriptionRef">
+          <p class="text-lg text-gray-400 leading-relaxed max-w-lg">
+            Crafting digital experiences with modern web technologies and creative solutions.
+          </p>
+        </div>
+        
+        <!-- CTA Buttons
+        <div class="flex gap-4" ref="buttonsRef">
+          <button class="px-6 py-3 bg-primary text-dark-300 font-medium rounded-lg hover:bg-primary/90 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-primary/25">
+            View My Work
+          </button>
+          <button class="px-6 py-3 border border-primary text-primary font-medium rounded-lg hover:bg-primary hover:text-dark-300 transition-all duration-300 hover:scale-105">
+            Get In Touch
+          </button>
+        </div> -->
       </div>
       
-      <div class="hidden md:block" ref="imageRef">
-        <div class="w-48 h-48 lg:w-64 lg:h-64 rounded-full overflow-hidden border-4 border-primary/20">
-          <img 
-            :src="profileImage" 
-            :alt="name"
-            class="w-full h-full object-cover"
-          />
+      <!-- Profile Image with enhanced effects -->
+      <div class="hidden md:block relative z-10" ref="imageRef">
+        <div class="relative">
+          <!-- Glow effect -->
+          <div class="absolute inset-0 w-48 h-48 lg:w-64 lg:h-64 rounded-full bg-primary/20 blur-xl scale-110"></div>
+          
+          <!-- Main image container -->
+          <div class="w-48 h-48 lg:w-64 lg:h-64 rounded-full overflow-hidden border-4 border-primary/30 relative group">
+            <img 
+              :src="profileImage" 
+              :alt="name"
+              class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+            />
+            
+            <!-- Overlay gradient -->
+            <div class="absolute inset-0 bg-gradient-to-t from-primary/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+          </div>
+          
+          <!-- Floating elements around image -->
         </div>
       </div>
     </section>
@@ -36,21 +95,150 @@
   
   const titleRef = ref(null)
   const imageRef = ref(null)
+  const subtitleRef = ref(null)
+  const introText = ref(null)
+  const nameText = ref(null)
+  const underlineRef = ref(null)
+  const descriptionRef = ref(null)
+  const buttonsRef = ref(null)
   
   onMounted(() => {
-    gsap.from(titleRef.value, {
+    // Create timeline for coordinated animations
+    const tl = gsap.timeline()
+    
+    // Set initial states
+    gsap.set([subtitleRef.value, introText.value, nameText.value, descriptionRef.value, buttonsRef.value], {
       opacity: 0,
-      y: 50,
-      duration: 1,
-      ease: 'power3.out'
+      y: 30
     })
     
-    gsap.from(imageRef.value, {
+    gsap.set(underlineRef.value, {
+      scaleX: 0,
+      transformOrigin: 'left center'
+    })
+    
+    gsap.set(imageRef.value, {
       opacity: 0,
       scale: 0.8,
-      duration: 1,
-      delay: 0.3,
+      rotation: 5
+    })
+    
+    // Animate elements in sequence
+    tl.to(subtitleRef.value, {
+      opacity: 1,
+      y: 0,
+      duration: 0.8,
       ease: 'power3.out'
+    })
+    .to(introText.value, {
+      opacity: 1,
+      y: 0,
+      duration: 0.8,
+      ease: 'power3.out'
+    }, '-=0.4')
+    .to(nameText.value, {
+      opacity: 1,
+      y: 0,
+      duration: 0.8,
+      ease: 'power3.out'
+    }, '-=0.4')
+    .to(underlineRef.value, {
+      scaleX: 1,
+      duration: 0.8,
+      ease: 'power3.out'
+    }, '-=0.4')
+    .to(descriptionRef.value, {
+      opacity: 1,
+      y: 0,
+      duration: 0.8,
+      ease: 'power3.out'
+    }, '-=0.2')
+    .to(buttonsRef.value, {
+      opacity: 1,
+      y: 0,
+      duration: 0.8,
+      ease: 'power3.out'
+    }, '-=0.2')
+    .to(imageRef.value, {
+      opacity: 1,
+      scale: 1,
+      rotation: 0,
+      duration: 1.2,
+      ease: 'elastic.out(1, 0.3)'
+    }, '-=0.6')
+    
+    // Add hover effects for buttons
+    const buttons = buttonsRef.value?.querySelectorAll('button')
+    buttons?.forEach(button => {
+      button.addEventListener('mouseenter', () => {
+        gsap.to(button, {
+          scale: 1.05,
+          duration: 0.3,
+          ease: 'power2.out'
+        })
+      })
+      
+      button.addEventListener('mouseleave', () => {
+        gsap.to(button, {
+          scale: 1,
+          duration: 0.3,
+          ease: 'power2.out'
+        })
+      })
+    })
+    
+    // Add continuous subtle animation to floating particles
+    gsap.to('.animate-float', {
+      y: -20,
+      duration: 3,
+      ease: 'sine.inOut',
+      repeat: -1,
+      yoyo: true,
+      stagger: 0.1
     })
   })
   </script>
+  
+  <style scoped>
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-20px);
+    }
+  }
+  
+  .animate-float {
+    animation: float 3s ease-in-out infinite;
+  }
+  
+  /* Custom gradient text effect */
+  .text-primary {
+    background: linear-gradient(135deg, #D4A574 0%, #F4D03F 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  
+  /* Enhanced button hover effects */
+  button {
+    position: relative;
+    overflow: hidden;
+  }
+  
+  button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    transition: left 0.5s;
+  }
+  
+  button:hover::before {
+    left: 100%;
+  }
+  </style>

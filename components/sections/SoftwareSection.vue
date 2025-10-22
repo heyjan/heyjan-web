@@ -35,7 +35,8 @@
     Container, 
     Box, 
     Cloud, 
-    Database 
+    Database,
+    CloudUpload
   } from 'lucide-vue-next'
   import SectionTitle from '~/components/ui/SectionTitle.vue'
   import SkillRating from '~/components/ui/SkillRating.vue'
@@ -47,6 +48,7 @@
     { name: 'VS Code / Cursor', rating: 5, icon: Code },
     { name: 'Git', rating: 4, icon: GitBranch },
     { name: 'Docker', rating: 4, icon: Container },
+    { name: 'Azure', rating: 4, icon: CloudUpload },
     { name: 'AWS', rating: 3, icon: Cloud },
     { name: 'MySQL', rating: 4, icon: Database },
   ])

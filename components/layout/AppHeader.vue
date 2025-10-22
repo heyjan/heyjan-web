@@ -70,10 +70,9 @@
   const menuOpen = ref(false)
   
   const socials = [
-    { name: 'LinkedIn', url: '#', icon: Linkedin },
-    { name: 'GitHub', url: '#', icon: Github },
-    { name: 'Twitter', url: '#', icon: Twitter },
-    { name: 'Email', url: '#', icon: Mail },
+    { name: 'LinkedIn', url: 'https://www.linkedin.com/in/jan-mayer-a8b7b4176/', icon: Linkedin },
+    { name: 'GitHub', url: 'https://github.com/heyjan', icon: Github },
+    { name: 'Email', url: 'mailto:jan@heyjan.de', icon: Mail },
   ]
   
   const menuItems = [

@@ -34,7 +34,7 @@
   const workExperience = ref([
     {
       title: 'Self-employed',
-      company: 'Self-Employment',
+      company: 'heyjan',
       period: '2017 - present',
       description: [
         'Developed and maintained web applications',
@@ -51,7 +51,7 @@
         'Built scalable web applications',
         'Implemented CI/CD pipelines'
       ],
-      tags: ['PHP', 'Docker', 'AWS', 'MySQL', ],
+      tags: ['PHP', 'Docker', 'AWS', 'Azure', 'MySQL', ],
       icon: Building2
     },
     // Add more work experience items
