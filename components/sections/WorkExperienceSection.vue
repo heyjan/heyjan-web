@@ -33,7 +33,7 @@
   
   const workExperience = ref([
     {
-      title: 'Self-employed',
+      title: 'Self-employed Developer',
       company: 'heyjan',
       period: '2017 - present',
       description: [

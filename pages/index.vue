@@ -7,6 +7,7 @@
       <SkillsSection />
       <WorkExperienceSection />
       <SoftwareSection />
+      <ContactSection />
       <!-- Add more sections as needed:
         <EducationSection />
         <ResearchSection />
@@ -30,6 +31,7 @@ import AppFooter from '~/components/layout/AppFooter.vue';
 import AppHeader from '~/components/layout/AppHeader.vue';
 import SoftwareSection from '~/components/sections/SoftwareSection.vue';
 import WorkExperienceSection from '~/components/sections/WorkExperienceSection.vue';
+import ContactSection from '~/components/sections/ContactSection.vue';
 import { onMounted } from 'vue'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
