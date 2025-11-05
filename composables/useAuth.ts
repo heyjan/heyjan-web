@@ -7,7 +7,7 @@ export const useAuth = () => {
   const user = useState('auth.user', () => null)
   const isAuthenticated = useState('auth.isAuthenticated', () => false)
   const isLoading = useState('auth.isLoading', () => false)
-  const error = useState('auth.error', (): null)
+  const error = useState<null>('auth.error', () => null)
 
   /**
    * Register a new account
