@@ -16,11 +16,11 @@ function getPool(): mysql.Pool {
   }
 
   const config = {
-    host: process.env.RAILWAY_DB_HOST || 'localhost',
+    host: process.env.MYSQLHOST || 'localhost',
     port: parseInt(process.env.RAILWAY_DB_PORT || '3306'),
-    user: process.env.RAILWAY_DB_USER || 'root',
-    password: process.env.RAILWAY_DB_PASSWORD || '',
-    database: process.env.RAILWAY_DB_NAME || 'railway',
+    user: process.env.MYSQLUSER || 'root',
+    password: process.env.MYSQL_ROOT_PASSWORD || '',
+    database: process.env.MYSQL_DATABASE || 'railway',
     waitForConnections: true,
     connectionLimit: 10,
     queueLimit: 0
