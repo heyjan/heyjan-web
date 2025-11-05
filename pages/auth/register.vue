@@ -1,95 +1,99 @@
 <template>
-  <div class="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 flex items-center justify-center p-4">
-    <!-- Background animated gradient -->
-    <div class="absolute inset-0 overflow-hidden pointer-events-none">
-      <div class="absolute top-0 left-1/4 w-96 h-96 bg-purple-500/20 rounded-full mix-blend-multiply filter blur-3xl animate-pulse"></div>
-      <div class="absolute bottom-0 right-1/4 w-96 h-96 bg-blue-500/20 rounded-full mix-blend-multiply filter blur-3xl animate-pulse" style="animation-delay: 2s;"></div>
+  <div class="min-h-screen bg-dark-300 flex items-center justify-center p-4 relative overflow-hidden">
+    <!-- Background Effects -->
+    <div class="absolute inset-0 -z-10 overflow-hidden">
+      <!-- Gradient Orbs -->
+      <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/5 rounded-full blur-3xl animate-pulse"></div>
+      <div class="absolute bottom-1/4 right-1/4 w-80 h-80 bg-primary/5 rounded-full blur-3xl animate-pulse" style="animation-delay: 1s;"></div>
+      
+      <!-- Divider line -->
+      <div class="absolute top-1/3 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/20 to-transparent"></div>
     </div>
 
     <!-- Register form container -->
     <div class="relative z-10 w-full max-w-md">
-      <div class="bg-slate-800/50 backdrop-blur-xl border border-slate-700/50 rounded-2xl p-8 shadow-2xl">
+      <div class="bg-dark-100/40 backdrop-blur-xl border border-primary/10 rounded-lg p-8">
         <!-- Header -->
         <div class="text-center mb-8">
-          <h1 class="text-3xl font-bold text-white mb-2">Create Account</h1>
-          <p class="text-slate-400">Join our exclusive tools platform</p>
+          <h1 class="text-4xl font-serif text-primary mb-2">Create Account</h1>
+          <p class="text-gray-400 text-sm">Join our exclusive tools platform</p>
         </div>
 
         <!-- Form -->
         <form @submit.prevent="handleRegister" class="space-y-4">
           <!-- Name Input -->
           <div>
-            <label for="name" class="block text-sm font-medium text-slate-300 mb-2">Full Name</label>
+            <label for="name" class="block text-sm font-medium text-gray-300 mb-2">Full Name</label>
             <input
               id="name"
               v-model="name"
               type="text"
               required
               placeholder="John Doe"
-              class="w-full px-4 py-3 bg-slate-700/50 border border-slate-600/50 rounded-lg text-white placeholder-slate-500 focus:outline-none focus:border-blue-500/50 focus:ring-1 focus:ring-blue-500/50 transition"
+              class="w-full px-4 py-3 bg-dark-200/50 border border-primary/20 rounded-lg text-gray-200 placeholder-gray-500 focus:outline-none focus:border-primary/50 focus:ring-1 focus:ring-primary/30 transition"
               :disabled="isLoading"
             />
           </div>
 
           <!-- Email Input -->
           <div>
-            <label for="email" class="block text-sm font-medium text-slate-300 mb-2">Email</label>
+            <label for="email" class="block text-sm font-medium text-gray-300 mb-2">Email</label>
             <input
               id="email"
               v-model="email"
               type="email"
               required
               placeholder="you@example.com"
-              class="w-full px-4 py-3 bg-slate-700/50 border border-slate-600/50 rounded-lg text-white placeholder-slate-500 focus:outline-none focus:border-blue-500/50 focus:ring-1 focus:ring-blue-500/50 transition"
+              class="w-full px-4 py-3 bg-dark-200/50 border border-primary/20 rounded-lg text-gray-200 placeholder-gray-500 focus:outline-none focus:border-primary/50 focus:ring-1 focus:ring-primary/30 transition"
               :disabled="isLoading"
             />
           </div>
 
           <!-- Password Input -->
           <div>
-            <label for="password" class="block text-sm font-medium text-slate-300 mb-2">Password</label>
+            <label for="password" class="block text-sm font-medium text-gray-300 mb-2">Password</label>
             <input
               id="password"
               v-model="password"
               type="password"
               required
               placeholder="••••••••"
-              class="w-full px-4 py-3 bg-slate-700/50 border border-slate-600/50 rounded-lg text-white placeholder-slate-500 focus:outline-none focus:border-blue-500/50 focus:ring-1 focus:ring-blue-500/50 transition"
+              class="w-full px-4 py-3 bg-dark-200/50 border border-primary/20 rounded-lg text-gray-200 placeholder-gray-500 focus:outline-none focus:border-primary/50 focus:ring-1 focus:ring-primary/30 transition"
               :disabled="isLoading"
             />
-            <p class="text-xs text-slate-400 mt-1">Must be at least 8 characters</p>
+            <p class="text-xs text-gray-400 mt-1">Must be at least 8 characters</p>
           </div>
 
           <!-- Registration Token Input -->
           <div>
-            <label for="token" class="block text-sm font-medium text-slate-300 mb-2">Registration Token</label>
+            <label for="token" class="block text-sm font-medium text-gray-300 mb-2">Registration Token</label>
             <input
               id="token"
               v-model="token"
               type="password"
               required
               placeholder="Enter token"
-              class="w-full px-4 py-3 bg-slate-700/50 border border-slate-600/50 rounded-lg text-white placeholder-slate-500 focus:outline-none focus:border-blue-500/50 focus:ring-1 focus:ring-blue-500/50 transition"
+              class="w-full px-4 py-3 bg-dark-200/50 border border-primary/20 rounded-lg text-gray-200 placeholder-gray-500 focus:outline-none focus:border-primary/50 focus:ring-1 focus:ring-primary/30 transition"
               :disabled="isLoading"
             />
-            <p class="text-xs text-slate-400 mt-1">Required to create an account</p>
+            <p class="text-xs text-gray-400 mt-1">Required to create an account</p>
           </div>
 
           <!-- Error Message -->
-          <div v-if="errorMessage" class="p-3 bg-red-500/20 border border-red-500/30 rounded-lg">
+          <div v-if="errorMessage" class="p-3 bg-red-500/10 border border-red-500/30 rounded-lg">
             <p class="text-red-300 text-sm">{{ errorMessage }}</p>
           </div>
 
           <!-- Success Message -->
-          <div v-if="successMessage" class="p-3 bg-green-500/20 border border-green-500/30 rounded-lg">
-            <p class="text-green-300 text-sm">{{ successMessage }}</p>
+          <div v-if="successMessage" class="p-3 bg-primary/10 border border-primary/30 rounded-lg">
+            <p class="text-primary text-sm">{{ successMessage }}</p>
           </div>
 
           <!-- Submit Button -->
           <button
             type="submit"
             :disabled="isLoading"
-            class="w-full mt-6 py-3 bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white font-semibold rounded-lg transition duration-200 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+            class="w-full mt-6 py-3 bg-primary hover:bg-primary/90 text-dark-300 font-semibold rounded-lg transition duration-200 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
           >
             <span v-if="!isLoading">Create Account</span>
             <span v-else class="flex items-center gap-2">
@@ -104,7 +108,7 @@
 
         <!-- Login Link -->
         <div class="text-center mt-6">
-          <p class="text-slate-400">Already have an account? <NuxtLink to="/auth/login" class="text-blue-400 hover:text-blue-300 font-semibold">Sign in here</NuxtLink></p>
+          <p class="text-gray-400 text-sm">Already have an account? <NuxtLink to="/auth/login" class="text-primary hover:text-primary/80 font-semibold">Sign in here</NuxtLink></p>
         </div>
       </div>
     </div>
