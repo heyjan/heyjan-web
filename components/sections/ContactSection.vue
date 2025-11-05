@@ -8,14 +8,14 @@
       
       <!-- Floating Particles -->
       <div 
-        v-for="i in 15" 
-        :key="i"
+        v-for="particle in particles" 
+        :key="`particle-${particle.id}`"
         class="absolute w-1 h-1 bg-primary/30 rounded-full animate-float"
         :style="{
-          left: Math.random() * 100 + '%',
-          top: Math.random() * 100 + '%',
-          animationDelay: Math.random() * 3 + 's',
-          animationDuration: (3 + Math.random() * 4) + 's'
+          left: particle.left + '%',
+          top: particle.top + '%',
+          animationDelay: particle.delay + 's',
+          animationDuration: particle.duration + 's'
         }"
       ></div>
     </div>
@@ -187,6 +187,9 @@ const buttonRef = ref(null)
 const successRef = ref(null)
 const errorRef = ref(null)
 
+// Particles for background animation
+const particles = ref([])
+
 // Validation
 const validateForm = () => {
   let isValid = true
@@ -234,7 +237,6 @@ const handleSubmit = async () => {
   successMessage.value = ''
 
   try {
-    // Simulate API call (replace with actual endpoint)
     const response = await fetch('/api/contact', {
       method: 'POST',
       headers: {
@@ -249,7 +251,6 @@ const handleSubmit = async () => {
 
     successMessage.value = 'Thank you! Your message has been sent successfully.'
     
-    // Animate success message
     if (successRef.value) {
       gsap.from(successRef.value, {
         opacity: 0,
@@ -259,13 +260,11 @@ const handleSubmit = async () => {
       })
     }
 
-    // Reset form
     form.name = ''
     form.email = ''
     form.subject = ''
     form.message = ''
 
-    // Hide success message after 5 seconds
     setTimeout(() => {
       gsap.to(successRef.value, {
         opacity: 0,
@@ -280,7 +279,6 @@ const handleSubmit = async () => {
   } catch (error) {
     generalError.value = error.message || 'An error occurred. Please try again.'
     
-    // Animate error message
     if (errorRef.value) {
       gsap.from(errorRef.value, {
         opacity: 0,
@@ -295,6 +293,17 @@ const handleSubmit = async () => {
 }
 
 onMounted(() => {
+  // Generate 15 random particles
+  for (let i = 0; i < 15; i++) {
+    particles.value.push({
+      id: i,
+      left: Math.random() * 100,
+      top: Math.random() * 100,
+      delay: Math.random() * 3,
+      duration: 3 + Math.random() * 4
+    })
+  }
+
   // Create timeline for coordinated animations
   const tl = gsap.timeline()
 

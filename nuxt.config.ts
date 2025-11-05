@@ -13,9 +13,7 @@ export default defineNuxtConfig({
       { hid: "description", name: "description", content: "" },
     ],
     link: [{ rel: "icon", type: "image/x-icon", href: "/favicon.ico" }],
-    pageTransition: { name: 'page', mode: 'out-in' }
   },
-
 
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: ["~/assets/css/main.css"],

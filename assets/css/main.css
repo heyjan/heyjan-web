@@ -31,3 +31,19 @@
       @apply h-px bg-gradient-to-r from-transparent via-gray-700 to-transparent my-12;
     }
   }
+
+/* Page Transitions */
+.page-enter-active,
+.page-leave-active {
+  transition: all 0.3s ease;
+}
+
+.page-enter-from {
+  opacity: 0;
+  transform: translateX(30px);
+}
+
+.page-leave-to {
+  opacity: 0;
+  transform: translateX(-30px);
+}

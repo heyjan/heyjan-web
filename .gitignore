@@ -91,3 +91,7 @@ sw.*
 *.swp
 
 .output
+
+# Documentation - Keep locally only
+*.md
+!README.md

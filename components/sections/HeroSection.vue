@@ -8,14 +8,14 @@
         
         <!-- Floating Particles -->
         <div 
-          v-for="i in 20" 
-          :key="i"
+          v-for="particle in particles" 
+          :key="`hero-particle-${particle.id}`"
           class="absolute w-1 h-1 bg-primary/30 rounded-full animate-float"
           :style="{
-            left: Math.random() * 100 + '%',
-            top: Math.random() * 100 + '%',
-            animationDelay: Math.random() * 3 + 's',
-            animationDuration: (3 + Math.random() * 4) + 's'
+            left: particle.left + '%',
+            top: particle.top + '%',
+            animationDelay: particle.delay + 's',
+            animationDuration: particle.duration + 's'
           }"
         ></div>
       </div>
@@ -101,8 +101,20 @@
   const underlineRef = ref(null)
   const descriptionRef = ref(null)
   const buttonsRef = ref(null)
+  const particles = ref([])
   
   onMounted(() => {
+    // Generate 20 random particles for background
+    for (let i = 0; i < 20; i++) {
+      particles.value.push({
+        id: i,
+        left: Math.random() * 100,
+        top: Math.random() * 100,
+        delay: Math.random() * 3,
+        duration: 3 + Math.random() * 4
+      })
+    }
+
     // Create timeline for coordinated animations
     const tl = gsap.timeline()
     
@@ -185,16 +197,6 @@
           ease: 'power2.out'
         })
       })
-    })
-    
-    // Add continuous subtle animation to floating particles
-    gsap.to('.animate-float', {
-      y: -20,
-      duration: 3,
-      ease: 'sine.inOut',
-      repeat: -1,
-      yoyo: true,
-      stagger: 0.1
     })
   })
   </script>

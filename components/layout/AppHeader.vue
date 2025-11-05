@@ -50,7 +50,7 @@
                 v-for="item in menuItems" 
                 :key="item.name"
                 :href="item.href"
-                @click="scrollToSection(item.href)"
+                @click.prevent="handleNavClick(item.href)"
                 class="block text-2xl font-serif text-white hover:text-primary transition-colors"
               >
                 {{ item.name }}
@@ -81,17 +81,28 @@
     { name: 'Education', href: '#education' },
     { name: 'Skills', href: '#skills' },
     { name: 'Contact', href: '#contact' },
+    { name: 'Test', href: '/test' },
   ]
   
   const toggleMenu = () => {
     menuOpen.value = !menuOpen.value
   }
   
-  const scrollToSection = (href) => {
+  const handleNavClick = (href) => {
     menuOpen.value = false
-    const element = document.querySelector(href)
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' })
+    
+    // For anchor links, scroll to the section
+    if (href.startsWith('#')) {
+      const element = document.querySelector(href)
+      if (element) {
+        // Use a small delay to let menu close first
+        setTimeout(() => {
+          element.scrollIntoView({ behavior: 'smooth' })
+        }, 200)
+      }
+    } else {
+      // For page routes, use navigateTo for proper Nuxt navigation
+      navigateTo(href)
     }
   }
   
