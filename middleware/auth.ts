@@ -10,10 +10,10 @@ export default defineNuxtRouteMiddleware(async (to, from) => {
   }
 
   // Check authentication status
-  const { isAuthenticated, checkAuth } = useAuth()
+  const { isAuthenticated, isInitialized, checkAuth } = useAuth()
 
-  // Only check if not already authenticated
-  if (!isAuthenticated.value) {
+  // Wait for initialization if not done yet
+  if (!isInitialized.value) {
     await checkAuth()
   }
 

@@ -1,13 +1,16 @@
 /**
  * Authentication Composable
  * Manages authentication state and operations
+ * Persists session across page refreshes
  */
 
 export const useAuth = () => {
+  // Use useState with persisted state keys for SSR/hydration
   const user = useState('auth.user', () => null)
   const isAuthenticated = useState('auth.isAuthenticated', () => false)
   const isLoading = useState('auth.isLoading', () => false)
   const error = useState<null>('auth.error', () => null)
+  const isInitialized = useState('auth.isInitialized', () => false)
 
   /**
    * Register a new account
@@ -103,6 +106,7 @@ export const useAuth = () => {
       isAuthenticated.value = false
     } finally {
       isLoading.value = false
+      isInitialized.value = true
     }
   }
 
@@ -111,6 +115,7 @@ export const useAuth = () => {
     isAuthenticated,
     isLoading,
     error,
+    isInitialized,
     register,
     login,
     logout,
