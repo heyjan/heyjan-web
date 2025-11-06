@@ -186,7 +186,6 @@
 
 <script setup lang="ts">
 import { ref, computed, onMounted } from 'vue'
-import { $fetch } from '#app'
 import {
   Dumbbell,
   CheckCircle2,
