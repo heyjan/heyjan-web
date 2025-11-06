@@ -185,7 +185,8 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed } from 'vue'
+import { ref, computed, onMounted } from 'vue'
+import { $fetch } from '#app'
 import {
   Dumbbell,
   CheckCircle2,
@@ -274,11 +275,10 @@ const handleCheckIn = async () => {
     // Add check-in locally
     checkIns.value.add(dateKey)
     
-    // TODO: Send to API
-    // await $fetch('/api/gym/checkin', {
-    //   method: 'POST',
-    //   body: { checkinDate: dateKey, sessionType: 'bjj' }
-    // })
+    await $fetch('/api/gym/checkin', {
+      method: 'POST',
+      body: { checkinDate: dateKey, sessionType: 'bjj' }
+    })
     
     showCheckInSuccess.value = true
     setTimeout(() => {
@@ -299,24 +299,50 @@ const handleDayClick = (day: number) => {
 /**
  * Add session for selected day
  */
-const addSessionForDay = () => {
+const addSessionForDay = async () => {
   if (selectedDay.value === null) return
   
   const date = new Date(selectedDate.value.getFullYear(), selectedDate.value.getMonth(), selectedDay.value)
-  checkIns.value.add(formatDateKey(date))
+  const dateKey = formatDateKey(date)
+  checkIns.value.add(dateKey)
   
-  // TODO: Send to API
+  try {
+    await $fetch('/api/gym/checkin', {
+      method: 'POST',
+      body: { checkinDate: dateKey, sessionType: 'bjj' }
+    })
+  } catch (error) {
+    console.error('Error adding session:', error)
+    checkIns.value.delete(dateKey)
+  }
+  
   selectedDay.value = null
 }
 
 /**
  * Remove check-in for day
  */
-const removeCheckIn = (day: number) => {
+const removeCheckIn = async (day: number) => {
   const date = new Date(selectedDate.value.getFullYear(), selectedDate.value.getMonth(), day)
-  checkIns.value.delete(formatDateKey(date))
+  const dateKey = formatDateKey(date)
+  checkIns.value.delete(dateKey)
   
-  // TODO: Send to API
+  try {
+    // Find check-in ID from API
+    const response = await $fetch('/api/gym/checkins', {
+      query: {
+        year: selectedDate.value.getFullYear(),
+        month: selectedDate.value.getMonth() + 1
+      }
+    })
+    const checkin = response.checkins.find((c: any) => c.checkin_date === dateKey)
+    if (checkin?.id) {
+      await $fetch(`/api/gym/checkin/${checkin.id}`, { method: 'DELETE' })
+    }
+  } catch (error) {
+    console.error('Error removing check-in:', error)
+    checkIns.value.add(dateKey)
+  }
 }
 
 /**
@@ -341,17 +367,18 @@ const toggleMonthPicker = () => {
   console.log('Month picker clicked')
 }
 
-// Load check-ins from API on mount
+/**
+ * Load check-ins from API on mount
+ */
 onMounted(async () => {
   try {
-    // TODO: Fetch check-ins from API
-    // const response = await $fetch('/api/gym/checkins', {
-    //   query: {
-    //     year: selectedDate.value.getFullYear(),
-    //     month: selectedDate.value.getMonth() + 1
-    //   }
-    // })
-    // checkIns.value = new Set(response.map(c => c.checkin_date))
+    const response = await $fetch('/api/gym/checkins', {
+      query: {
+        year: selectedDate.value.getFullYear(),
+        month: selectedDate.value.getMonth() + 1
+      }
+    })
+    checkIns.value = new Set(response.checkins.map((c: any) => c.checkin_date))
   } catch (error) {
     console.error('Error loading check-ins:', error)
   }
