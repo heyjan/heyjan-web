@@ -52,6 +52,14 @@ export default defineNuxtConfig({
   },
 
   compatibilityDate: "2025-02-28",
+
+  // Hybrid rendering: SEO for homepage, SPA-style for auth/app
+  routeRules: {
+    "/": { prerender: true },        // homepage: fully prerendered for SEO
+    "/auth/**": { ssr: false },      // auth flows: client-side only
+    "/app/**": { ssr: false },       // app dashboard & tools: client-side only
+  },
+
   vite: {
     plugins: [
       tailwindcss(),
