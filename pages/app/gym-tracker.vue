@@ -340,7 +340,9 @@ const removeCheckIn = async (day: number) => {
       }
     })
     
-    const checkin = response.checkins?.find((c: any) => c.checkin_date === dateKey)
+    const checkin = response.checkins?.find(
+      (c: any) => String(c.checkin_date).slice(0, 10) === dateKey
+    )
     if (checkin?.id) {
       await $fetch(`/api/gym/checkin/${checkin.id}`, { method: 'DELETE' })
       
@@ -387,7 +389,11 @@ const loadCheckIns = async () => {
     })
     
     if (response.checkins && Array.isArray(response.checkins)) {
-      checkIns.value = new Set(response.checkins.map((c: any) => c.checkin_date))
+      // Backend returns ISO timestamps (e.g. 2025-11-08T00:00:00.000Z)
+      // Normalize to YYYY-MM-DD so it matches formatDateKey
+      checkIns.value = new Set(
+        response.checkins.map((c: any) => String(c.checkin_date).slice(0, 10))
+      )
     }
   } catch (error) {
     console.error('Error loading check-ins:', error)

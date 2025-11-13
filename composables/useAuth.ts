@@ -88,13 +88,24 @@ export const useAuth = () => {
 
   /**
    * Check if user is authenticated
+   * Uses request headers on the server so cookies are forwarded correctly (Nuxt 4 data fetching best practice)
    */
   const checkAuth = async () => {
     try {
       isLoading.value = true
-      const response = await $fetch('/api/auth/check')
-      
-      if (response.authenticated) {
+
+      let response: any
+
+      // On server, explicitly forward the cookie header so /api/auth/check sees the session
+      if (process.server) {
+        const headers = useRequestHeaders(['cookie'])
+        response = await $fetch('/api/auth/check', { headers })
+      } else {
+        // On client, browser automatically sends cookies for same-origin requests
+        response = await $fetch('/api/auth/check')
+      }
+
+      if (response?.authenticated) {
         user.value = response.user
         isAuthenticated.value = true
       } else {
