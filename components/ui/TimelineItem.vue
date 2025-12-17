@@ -57,7 +57,7 @@
       default: () => []
     },
     icon: {
-      type: [Object, String],
+      type: [Object, String, Function],
       default: null
     },
     isLast: {

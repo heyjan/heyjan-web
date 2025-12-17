@@ -80,6 +80,7 @@
     { name: 'Experience', href: '#experience' },
     { name: 'Education', href: '#education' },
     { name: 'Skills', href: '#skills' },
+    { name: 'Blog', href: '/blog' },
     { name: 'Contact', href: '#contact' },
     { name: 'Test', href: '/test' },
   ]

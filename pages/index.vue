@@ -38,9 +38,11 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
 // Set up page metadata
 useHead({
-  title: 'Jan Mayer - Portfolio',
+  title: 'Jan Mayer | AI Solution Architect & Azure AI Specialist',
   meta: [
-    { name: 'description', content: 'Personal portfolio and resume of Jan Mayer' }
+    { name: 'description', content: 'AI Solution Architect at LIQUI MOLY specializing in Azure AI Foundry and enterprise AI solutions. Self-taught developer building production-ready AI systems.' }
+
+
   ],
   link: [
     { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }

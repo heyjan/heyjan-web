@@ -24,7 +24,7 @@
       <div class="max-w-2xl relative z-10" ref="titleRef">
         <!-- Subtitle with typewriter effect -->
         <div class="mb-4" ref="subtitleRef">
-          <span class="text-lg md:text-xl text-gray-400 font-mono">Full-Stack Developer</span>
+          <span class="text-lg md:text-xl text-gray-400 font-mono">Full-Stack Developer / AI Solution Architect</span>
         </div>
         
         <h1 class="text-4xl md:text-6xl lg:text-7xl font-serif mb-6">
@@ -39,7 +39,7 @@
         <!-- Description with fade-in effect -->
         <div class="mb-8" ref="descriptionRef">
           <p class="text-lg text-gray-400 leading-relaxed max-w-lg">
-            Crafting digital experiences with modern web technologies and creative solutions.
+            Building enterprise AI solutions that transform business operations with modern web technologies and creative solutions.
           </p>
         </div>
         

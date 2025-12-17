@@ -33,7 +33,7 @@
   
   const workExperience = ref([
     {
-      title: 'Self-employed Developer',
+      title: 'Self-employed Developer & AI Consultant',
       company: 'heyjan',
       period: '2017 - present',
       description: [
@@ -44,14 +44,16 @@
       icon: User
     },
     {
-      title: 'Full-Stack Web Developer',
+      title: 'Full-Stack Web Developer & AI Specialist',
       company: 'LIQUI MOLY',
       period: '2024 - present',
       description: [
+        'Designing RAG systems for internal knowledge management',
+        'Leading AI transformation initiatives and proof-of-concepts',
         'Built scalable web applications',
         'Implemented CI/CD pipelines'
       ],
-      tags: ['PHP', 'Docker', 'AWS', 'Azure', 'MySQL', ],
+      tags: ['Azure AI Foundry', 'Docker', 'Python', 'Azure', 'PHP', ],
       icon: Building2
     },
     // Add more work experience items

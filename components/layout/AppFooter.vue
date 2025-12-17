@@ -2,6 +2,7 @@
     <footer class="section-padding bg-dark-300 border-t border-gray-800">
       <div class="max-w-5xl mx-auto">
         <div class="text-center mb-8">
+          <p class="text-gray-500 text-sm mb-4">AI Solution Architect | Available for consulting</p>
           <p class="text-gray-500 text-sm mb-4">Made with ❤️ by {{ name }}</p>
           <p class="text-gray-600 text-xs">© {{ currentYear }} All rights reserved</p>
         </div>

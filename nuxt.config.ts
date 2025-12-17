@@ -41,7 +41,21 @@ export default defineNuxtConfig({
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
-  modules: ["v-gsap-nuxt"],
+  modules: ["v-gsap-nuxt", "@nuxt/content"],
+
+  // Nuxt Content configuration
+  content: {
+    highlight: {
+      theme: 'github-dark',
+      preload: ['javascript', 'typescript', 'vue', 'bash', 'json']
+    },
+    markdown: {
+      toc: {
+        depth: 3,
+        searchDepth: 3
+      }
+    }
+  },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {},
@@ -56,6 +70,8 @@ export default defineNuxtConfig({
   // Hybrid rendering: SEO for homepage, SPA-style for auth/app
   routeRules: {
     "/": { prerender: true },        // homepage: fully prerendered for SEO
+    "/blog": { prerender: true },    // blog listing: prerendered for SEO
+    "/blog/**": { prerender: true }, // blog articles: prerendered for SEO
     "/auth/**": { ssr: false },      // auth flows: client-side only
     "/app/**": { ssr: false },       // app dashboard & tools: client-side only
   },
