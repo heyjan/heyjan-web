@@ -4,6 +4,7 @@
     
     <main>
       <HeroSection />
+      <AIAndCloudSection />
       <SkillsSection />
       <WorkExperienceSection />
       <SoftwareSection />
@@ -26,6 +27,7 @@
 
 <script setup>
 import HeroSection from '~/components/sections/HeroSection.vue';
+import AIAndCloudSection from '~/components/sections/AIAndCloudSection.vue';
 import SkillsSection from '~/components/sections/SkillsSection.vue';
 import AppFooter from '~/components/layout/AppFooter.vue';
 import AppHeader from '~/components/layout/AppHeader.vue';

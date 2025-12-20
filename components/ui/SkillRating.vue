@@ -1,5 +1,5 @@
 <template>
-    <div class="flex gap-1">
+    <div class="flex flex-row gap-1 flex-shrink-0">
       <div 
         v-for="i in 5" 
         :key="i"
