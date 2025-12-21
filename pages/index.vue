@@ -38,17 +38,19 @@ import { onMounted } from 'vue'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
-// Set up page metadata
-useHead({
+// Set up page metadata with SEO
+useSeoMeta({
   title: 'Jan Mayer | AI Solution Architect & Azure AI Specialist',
-  meta: [
-    { name: 'description', content: 'AI Solution Architect at LIQUI MOLY specializing in Azure AI Foundry and enterprise AI solutions. Self-taught developer building production-ready AI systems.' }
-
-
-  ],
-  link: [
-    { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
-  ]
+  description: 'AI Solution Architect at LIQUI MOLY specializing in Azure AI Foundry and enterprise AI solutions. Self-taught developer building production-ready AI systems.',
+  ogTitle: 'Jan Mayer | AI Solution Architect & Azure AI Specialist',
+  ogDescription: 'AI Solution Architect at LIQUI MOLY specializing in Azure AI Foundry and enterprise AI solutions. Self-taught developer building production-ready AI systems.',
+  ogImage: 'https://heyjan.de/images/profile.jpg',
+  ogUrl: 'https://heyjan.de',
+  ogType: 'website',
+  twitterCard: 'summary_large_image',
+  twitterTitle: 'Jan Mayer | AI Solution Architect & Azure AI Specialist',
+  twitterDescription: 'AI Solution Architect at LIQUI MOLY specializing in Azure AI Foundry and enterprise AI solutions.',
+  twitterImage: 'https://heyjan.de/images/profile.jpg',
 })
 
 onMounted(() => {

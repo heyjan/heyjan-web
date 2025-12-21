@@ -1,18 +1,20 @@
 import tailwindcss from "@tailwindcss/vite";
 
 export default defineNuxtConfig({
+  // SEO Configuration
+  site: {
+    url: 'https://heyjan.de',
+    name: 'Jan Mayer | AI Solution Architect & Azure AI Specialist',
+    description: 'AI Solution Architect at LIQUI MOLY specializing in Azure AI Foundry and enterprise AI solutions. Self-taught developer building production-ready AI systems.',
+    defaultLocale: 'en',
+  },
+
   // Global page headers: https://nuxt.com/docs/api/configuration/nuxt-config#app
   app: {
     head: {
-      title: "nuxtjs",
       htmlAttrs: {
         lang: "en",
       },
-      meta: [
-        { charset: "utf-8" },
-        { name: "viewport", content: "width=device-width, initial-scale=1" },
-        { name: "description", content: "" },
-      ],
       link: [{ rel: "icon", type: "image/x-icon", href: "/favicon.ico" }],
       script: [{ src: "https://analytics.ahrefs.com/analytics.js", async: true, 'data-key': "kK9WahAIZ2+5ycKldReAYA" }],
     },
@@ -35,7 +37,14 @@ export default defineNuxtConfig({
   components: true,
 
   // Modules: https://nuxt.com/docs/guide/directory-structure/modules
-  modules: ["v-gsap-nuxt", "@nuxt/content"],
+  modules: ["v-gsap-nuxt", "@nuxt/content", "@nuxtjs/seo"],
+
+  // Sitemap configuration
+  sitemap: {
+    // Disable automatic content integration to avoid manifest errors
+    // Routes will be automatically discovered from routeRules
+    sources: [],
+  },
 
   // Nuxt Content configuration
   content: {
