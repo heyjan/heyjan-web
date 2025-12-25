@@ -26,6 +26,13 @@
           >
             Impressum
           </NuxtLink>
+          <NuxtLink 
+            to="/datenschutz" 
+            class="text-gray-500 hover:text-primary transition-colors text-xs"
+            aria-label="Datenschutzerklärung"
+          >
+            Datenschutz
+          </NuxtLink>
         </div>
       </div>
     </footer>

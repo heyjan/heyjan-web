@@ -66,6 +66,7 @@ export default defineNuxtConfig({
     "/blog": { prerender: true },    // blog listing: prerendered for SEO
     "/blog/**": { prerender: true }, // blog articles: prerendered for SEO
     "/impressum": { prerender: true }, // Impressum: prerendered for SEO
+    "/datenschutz": { prerender: true }, // Datenschutzerklärung: prerendered for SEO
     "/auth/**": { ssr: false },      // auth flows: client-side only
     "/app/**": { ssr: false },       // app dashboard & tools: client-side only
   },
