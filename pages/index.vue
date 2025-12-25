@@ -40,15 +40,15 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
 // Set up page metadata with SEO
 useSeoMeta({
-  title: 'Jan Mayer | AI Solution Architect & Azure AI Specialist',
+  title: 'Jan Mayer – Full-Stack Developer & AI Specialist | Ulm',
   description: 'AI Solution Architect at LIQUI MOLY specializing in Azure AI Foundry and enterprise AI solutions. Self-taught developer building production-ready AI systems.',
-  ogTitle: 'Jan Mayer | AI Solution Architect & Azure AI Specialist',
+  ogTitle: 'Jan Mayer – Full-Stack Developer & AI Specialist | Ulm',
   ogDescription: 'AI Solution Architect at LIQUI MOLY specializing in Azure AI Foundry and enterprise AI solutions. Self-taught developer building production-ready AI systems.',
   ogImage: 'https://heyjan.de/images/profile.jpg',
   ogUrl: 'https://heyjan.de',
   ogType: 'website',
   twitterCard: 'summary_large_image',
-  twitterTitle: 'Jan Mayer | AI Solution Architect & Azure AI Specialist',
+  twitterTitle: 'Jan Mayer – Full-Stack Developer & AI Specialist | Ulm',
   twitterDescription: 'AI Solution Architect at LIQUI MOLY specializing in Azure AI Foundry and enterprise AI solutions.',
   twitterImage: 'https://heyjan.de/images/profile.jpg',
 })
