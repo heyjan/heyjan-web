@@ -4,7 +4,7 @@ export default defineNuxtConfig({
   // SEO Configuration
   site: {
     url: 'https://heyjan.de',
-    name: 'Jan Mayer – Full-Stack Developer & AI Specialist | Ulm',
+    name: 'Jan Mayer',
     description: 'AI Solution Architect at LIQUI MOLY specializing in Azure AI Foundry and enterprise AI solutions. Self-taught developer building production-ready AI systems.',
     defaultLocale: 'en',
   },
