@@ -65,12 +65,14 @@
   <script setup>
   import { ref, onMounted, onUnmounted } from 'vue'
   import { Linkedin, Github, Twitter, Mail } from 'lucide-vue-next'
+  import XingIcon from '~/components/icons/XingIcon.vue'
   
   const scrolled = ref(false)
   const menuOpen = ref(false)
   
   const socials = [
     { name: 'LinkedIn', url: 'https://www.linkedin.com/in/jan-mayer-a8b7b4176/', icon: Linkedin },
+    { name: 'XING', url: 'https://www.xing.com/profile/Jan_Mayer029508/web_profiles', icon: XingIcon },
     { name: 'GitHub', url: 'https://github.com/heyjan', icon: Github },
     { name: 'Email', url: 'mailto:jan@heyjan.de', icon: Mail },
   ]
