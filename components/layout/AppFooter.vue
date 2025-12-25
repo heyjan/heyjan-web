@@ -4,10 +4,10 @@
         <div class="text-center mb-8">
           <p class="text-gray-500 text-sm mb-4">AI Solution Architect | Available for consulting</p>
           <p class="text-gray-500 text-sm mb-4">Made with ❤️ by {{ name }}</p>
-          <p class="text-gray-600 text-xs">© {{ currentYear }} All rights reserved</p>
+          <p class="text-gray-600 text-xs mb-4">© {{ currentYear }} All rights reserved</p>
         </div>
         
-        <div class="flex justify-center gap-4">
+        <div class="flex justify-center items-center gap-4">
           <a 
             v-for="social in socials" 
             :key="social.name"
@@ -19,6 +19,13 @@
           >
             <component :is="social.icon" class="w-5 h-5 text-white" />
           </a>
+          <NuxtLink 
+            to="/impressum" 
+            class="text-gray-500 hover:text-primary transition-colors text-xs"
+            aria-label="Impressum"
+          >
+            Impressum
+          </NuxtLink>
         </div>
       </div>
     </footer>

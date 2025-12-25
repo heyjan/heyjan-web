@@ -39,13 +39,6 @@ export default defineNuxtConfig({
   // Modules: https://nuxt.com/docs/guide/directory-structure/modules
   modules: ["v-gsap-nuxt", "@nuxt/content", "@nuxtjs/seo"],
 
-  // Sitemap configuration
-  sitemap: {
-    // Disable automatic content integration to avoid manifest errors
-    // Routes will be automatically discovered from routeRules
-    sources: [],
-  },
-
   // Nuxt Content configuration
   content: {
     highlight: {
@@ -72,8 +65,13 @@ export default defineNuxtConfig({
     "/": { prerender: true },        // homepage: fully prerendered for SEO
     "/blog": { prerender: true },    // blog listing: prerendered for SEO
     "/blog/**": { prerender: true }, // blog articles: prerendered for SEO
+    "/impressum": { prerender: true }, // Impressum: prerendered for SEO
     "/auth/**": { ssr: false },      // auth flows: client-side only
     "/app/**": { ssr: false },       // app dashboard & tools: client-side only
+  },
+
+  sitemap: {
+    exclude: ['/app/**', '/auth/**'],
   },
 
   vite: {
