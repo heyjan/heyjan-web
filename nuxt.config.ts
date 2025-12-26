@@ -5,16 +5,27 @@ export default defineNuxtConfig({
   site: {
     url: 'https://heyjan.de',
     name: 'Jan Mayer',
-    description: 'AI Solution Architect at LIQUI MOLY specializing in Azure AI Foundry and enterprise AI solutions. Self-taught developer building production-ready AI systems.',
-    defaultLocale: 'en',
   },
 
   // Global page headers: https://nuxt.com/docs/api/configuration/nuxt-config#app
   app: {
     head: {
       htmlAttrs: {
-        lang: "en",
+          lang: 'en'
       },
+      titleTemplate: (title) =>
+          title
+              ? `${title} · Jan Mayer`
+              : 'Jan Mayer · AI Solution Architect & Consultant',
+      meta: [
+          { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+          { name: 'robots', content: 'index, follow' },
+          {
+              name: 'description',
+              content:
+                  'Jan Mayer is an AI Solution Architect and Full-Stack Developer based in Ulm, Germany, specializing in enterprise AI, Azure AI Foundry, and RAG architectures.'
+          }
+      ],
       link: [{ rel: "icon", type: "image/x-icon", href: "/favicon.ico" }],
       script: [{ src: "https://analytics.ahrefs.com/analytics.js", async: true, 'data-key': "kK9WahAIZ2+5ycKldReAYA" }],
     },
@@ -38,6 +49,10 @@ export default defineNuxtConfig({
 
   // Modules: https://nuxt.com/docs/guide/directory-structure/modules
   modules: ["v-gsap-nuxt", "@nuxt/content", "@nuxtjs/seo"],
+
+  seo: {
+    redirectToCanonicalSiteUrl: true
+  },
 
   // Nuxt Content configuration
   content: {
@@ -72,7 +87,27 @@ export default defineNuxtConfig({
   },
 
   sitemap: {
+    autoLastmod: true,
     exclude: ['/app/**', '/auth/**'],
+  },
+
+  robots: {
+    index: true,
+    follow: true,
+    sitemap: 'https://heyjan.de/sitemap.xml',
+    rules: {
+      userAgent: '*',
+      allow: '/',
+      disallow: '/app/**, /auth/**',
+      contentUsage: {
+        'bots': 'y',
+        'train-ai': 'n'
+      },
+      contentSignal: {
+        'ai-train': 'no',
+        'search': 'yes'
+      }
+    },
   },
 
   vite: {
