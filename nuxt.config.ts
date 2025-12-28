@@ -32,7 +32,10 @@ export default defineNuxtConfig({
       ],
       script: [
         { src: "https://analytics.ahrefs.com/analytics.js", async: true, 'data-key': "kK9WahAIZ2+5ycKldReAYA" },
-        { src: "https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit", defer: true }
+        { 
+          src: "https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit&onload=onTurnstileLoad", 
+          defer: true 
+        }
       ],
     },
   },

@@ -149,7 +149,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, reactive } from 'vue'
+import { ref, onMounted, reactive, nextTick } from 'vue'
 import { gsap } from 'gsap'
 import { Mail, MessageSquare, Phone } from 'lucide-vue-next'
 
@@ -358,7 +358,6 @@ onMounted(() => {
 
     const windowWithTurnstile = window as typeof window & {
       turnstile?: {
-        ready: (callback: () => void) => void
         render: (container: string, options: {
           sitekey: string
           theme: string
@@ -388,31 +387,56 @@ onMounted(() => {
       return
     }
 
-    turnstile.ready(() => {
-      turnstileWidgetId.value = turnstile.render('#turnstile-widget', {
-        sitekey: siteKey,
-        theme: 'auto',
-        size: 'normal',
-        callback: (token: string) => {
-          turnstileToken.value = token
-          errors.turnstile = ''
-          turnstileReady.value = true
-        },
-        'error-callback': () => {
-          turnstileToken.value = ''
-          errors.turnstile = 'Verification failed. Please try again.'
-          turnstileReady.value = false
-        },
-        'expired-callback': () => {
-          turnstileToken.value = ''
-          errors.turnstile = 'Verification expired. Please verify again.'
-          turnstileReady.value = false
-        }
-      })
+    // Check if container exists
+    const container = document.getElementById('turnstile-widget')
+    if (!container) {
+      // Wait for container to be available
+      setTimeout(initTurnstile, 100)
+      return
+    }
+
+    // Render widget directly (script is loaded via onload callback)
+    turnstileWidgetId.value = turnstile.render('#turnstile-widget', {
+      sitekey: siteKey,
+      theme: 'auto',
+      size: 'normal',
+      callback: (token: string) => {
+        turnstileToken.value = token
+        errors.turnstile = ''
+        turnstileReady.value = true
+      },
+      'error-callback': () => {
+        turnstileToken.value = ''
+        errors.turnstile = 'Verification failed. Please try again.'
+        turnstileReady.value = false
+      },
+      'expired-callback': () => {
+        turnstileToken.value = ''
+        errors.turnstile = 'Verification expired. Please verify again.'
+        turnstileReady.value = false
+      }
     })
   }
 
-  initTurnstile()
+  // Global callback function called when Turnstile script loads
+  if (typeof window !== 'undefined') {
+    (window as any).onTurnstileLoad = () => {
+      // Script is loaded, initialize widget when DOM is ready
+      nextTick(() => {
+        initTurnstile()
+      })
+    }
+  }
+
+  // Fallback: also try to initialize on mount in case onload callback didn't fire
+  nextTick(() => {
+    // Small delay to ensure script has time to load
+    setTimeout(() => {
+      if (!turnstileWidgetId.value) {
+        initTurnstile()
+      }
+    }, 500)
+  })
 
   // Create timeline for coordinated animations
   const tl = gsap.timeline()
