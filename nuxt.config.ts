@@ -26,8 +26,14 @@ export default defineNuxtConfig({
                   'Jan Mayer is an AI Solution Architect and Full-Stack Developer based in Ulm, Germany, specializing in enterprise AI, Azure AI Foundry, and RAG architectures.'
           }
       ],
-      link: [{ rel: "icon", type: "image/x-icon", href: "/favicon.ico" }],
-      script: [{ src: "https://analytics.ahrefs.com/analytics.js", async: true, 'data-key': "kK9WahAIZ2+5ycKldReAYA" }],
+      link: [
+        { rel: "icon", type: "image/x-icon", href: "/favicon.ico" },
+        { rel: "preconnect", href: "https://challenges.cloudflare.com" }
+      ],
+      script: [
+        { src: "https://analytics.ahrefs.com/analytics.js", async: true, 'data-key': "kK9WahAIZ2+5ycKldReAYA" },
+        { src: "https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit", defer: true }
+      ],
     },
   },
 
@@ -114,5 +120,14 @@ export default defineNuxtConfig({
     plugins: [
       tailwindcss(),
     ],
+  },
+
+  runtimeConfig: {
+    // Private keys (server-side only)
+    turnstileSecretKey: process.env.TURNSTILE_SECRET_KEY,
+    // Public keys (exposed to client)
+    public: {
+      turnstileSiteKey: process.env.TURNSTILE_SITE_KEY || ''
+    }
   },
 });

@@ -55,19 +55,71 @@ function escapeHtml(text: string): string {
   return text.replace(/[&<>"']/g, (m) => map[m])
 }
 
+/**
+ * Validate Turnstile token with Cloudflare Siteverify API
+ */
+async function validateTurnstileToken(token: string, secretKey: string): Promise<boolean> {
+  if (!token || !secretKey) {
+    return false
+  }
+
+  try {
+    const response = await fetch('https://challenges.cloudflare.com/turnstile/v0/siteverify', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        secret: secretKey,
+        response: token
+      })
+    })
+
+    const data = await response.json()
+    return data.success === true
+  } catch (error) {
+    console.error('Turnstile validation error:', error)
+    return false
+  }
+}
+
 export default defineEventHandler(async (event) => {
   try {
     // Get request body
     const body = await readBody(event)
 
     // Validate required fields
-    const { name, email, subject, message } = body
+    const { name, email, subject, message, 'cf-turnstile-response': turnstileToken } = body
 
     if (!name || !email || !subject || !message) {
       throw createError({
         statusCode: 400,
         statusMessage: 'Missing required fields'
       })
+    }
+
+    // Validate Turnstile token
+    const config = useRuntimeConfig()
+    const turnstileSecretKey = config.turnstileSecretKey
+
+    if (!turnstileSecretKey) {
+      console.warn('TURNSTILE_SECRET_KEY not configured - skipping validation')
+    } else {
+      if (!turnstileToken) {
+        throw createError({
+          statusCode: 400,
+          statusMessage: 'Verification challenge required'
+        })
+      }
+
+      const isValidToken = await validateTurnstileToken(turnstileToken, turnstileSecretKey)
+      
+      if (!isValidToken) {
+        throw createError({
+          statusCode: 400,
+          statusMessage: 'Verification failed. Please try again.'
+        })
+      }
     }
 
     // Validate email format

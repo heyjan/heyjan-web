@@ -22,9 +22,14 @@
 
     <div class="max-w-4xl w-full mx-auto relative z-10">
       <!-- Section Title -->
-      <div class="mb-12 text-center" ref="titleRef">
-        <h2 class="text-4xl md:text-5xl font-serif text-white mb-4">Get In Touch</h2>
-        <p class="text-gray-400 text-lg">Let's discuss your project or just say hello</p>
+      <div class="mb-12" ref="titleRef">
+        <div class="flex justify-center mb-8">
+          <div class="flex items-center gap-3">
+            <h2 class="text-2xl md:text-3xl font-serif text-white">Get In Touch</h2>
+          </div>
+        </div>
+        <div class="h-px bg-gradient-to-r from-transparent via-primary to-transparent mb-4 max-w-md mx-auto"></div>
+        <p class="text-gray-400 text-lg mt-4 text-center">Let's discuss your project or just say hello</p>
       </div>
 
       <div class="grid md:grid-cols-2 gap-8 mb-12">
@@ -33,7 +38,7 @@
           v-for="(info, index) in contactInfo" 
           :key="index"
           class="contact-card p-6 rounded-lg border border-gray-800 hover:border-primary/50 transition-all duration-300"
-          :ref="el => infoCardsRef[index] = el"
+          :ref="(el: any) => { if (el) infoCardsRef[index] = el }"
         >
             <a :href="info.link" target="_blank">
           <component :is="info.icon" class="w-8 h-8 text-primary mb-4" />
@@ -90,7 +95,7 @@
         </div>
 
         <!-- Message Field -->
-        <div class="form-group mb-8" ref="messageFieldRef">
+        <div class="form-group mb-6" ref="messageFieldRef">
           <label for="message" class="block text-white font-medium mb-2">Message</label>
           <textarea
             id="message"
@@ -102,6 +107,12 @@
           ></textarea>
           <p v-if="errors.message" class="text-red-400 text-sm mt-1">{{ errors.message }}</p>
         </div>
+
+        <!-- Turnstile Widget -->
+        <div class="form-group mb-6 flex justify-center" ref="turnstileRef">
+          <div id="turnstile-widget"></div>
+        </div>
+        <p v-if="errors.turnstile" class="text-red-400 text-sm mt-1 mb-2 text-center">{{ errors.turnstile }}</p>
 
         <!-- Submit Button -->
         <div ref="buttonRef">
@@ -137,7 +148,7 @@
   </section>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { ref, onMounted, reactive } from 'vue'
 import { gsap } from 'gsap'
 import { Mail, MessageSquare, Phone } from 'lucide-vue-next'
@@ -153,12 +164,16 @@ const errors = reactive({
   name: '',
   email: '',
   subject: '',
-  message: ''
+  message: '',
+  turnstile: ''
 })
 
 const isSubmitting = ref(false)
 const successMessage = ref('')
 const generalError = ref('')
+const turnstileToken = ref<string>('')
+const turnstileWidgetId = ref<string | null>(null)
+const turnstileReady = ref<boolean>(false)
 
 // Contact info with icons
 const contactInfo = [
@@ -176,19 +191,27 @@ const contactInfo = [
 ]
 
 // Refs for animations
-const titleRef = ref(null)
-const infoCardsRef = ref([])
-const formRef = ref(null)
-const nameFieldRef = ref(null)
-const emailFieldRef = ref(null)
-const subjectFieldRef = ref(null)
-const messageFieldRef = ref(null)
-const buttonRef = ref(null)
-const successRef = ref(null)
-const errorRef = ref(null)
+const titleRef = ref<HTMLElement | null>(null)
+const infoCardsRef = ref<(HTMLElement | null)[]>([])
+const formRef = ref<HTMLElement | null>(null)
+const nameFieldRef = ref<HTMLElement | null>(null)
+const emailFieldRef = ref<HTMLElement | null>(null)
+const subjectFieldRef = ref<HTMLElement | null>(null)
+const messageFieldRef = ref<HTMLElement | null>(null)
+const turnstileRef = ref<HTMLElement | null>(null)
+const buttonRef = ref<HTMLElement | null>(null)
+const successRef = ref<HTMLElement | null>(null)
+const errorRef = ref<HTMLElement | null>(null)
 
 // Particles for background animation
-const particles = ref([])
+interface Particle {
+  id: number
+  left: number
+  top: number
+  delay: number
+  duration: number
+}
+const particles = ref<Particle[]>([])
 
 // Validation
 const validateForm = () => {
@@ -223,6 +246,13 @@ const validateForm = () => {
     errors.message = ''
   }
 
+  if (!turnstileToken.value) {
+    errors.turnstile = 'Please complete the verification challenge'
+    isValid = false
+  } else {
+    errors.turnstile = ''
+  }
+
   return isValid
 }
 
@@ -242,7 +272,10 @@ const handleSubmit = async () => {
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(form)
+      body: JSON.stringify({
+        ...form,
+        'cf-turnstile-response': turnstileToken.value
+      })
     })
 
     if (!response.ok) {
@@ -264,6 +297,19 @@ const handleSubmit = async () => {
     form.email = ''
     form.subject = ''
     form.message = ''
+    turnstileToken.value = ''
+    
+    // Reset Turnstile widget
+    if (turnstileWidgetId.value && typeof window !== 'undefined') {
+      const windowWithTurnstile = window as typeof window & {
+        turnstile?: {
+          reset: (widgetId: string) => void
+        }
+      }
+      if (windowWithTurnstile.turnstile) {
+        windowWithTurnstile.turnstile.reset(turnstileWidgetId.value)
+      }
+    }
 
     setTimeout(() => {
       gsap.to(successRef.value, {
@@ -277,7 +323,7 @@ const handleSubmit = async () => {
       })
     }, 5000)
   } catch (error) {
-    generalError.value = error.message || 'An error occurred. Please try again.'
+    generalError.value = error instanceof Error ? error.message : 'An error occurred. Please try again.'
     
     if (errorRef.value) {
       gsap.from(errorRef.value, {
@@ -303,6 +349,70 @@ onMounted(() => {
       duration: 3 + Math.random() * 4
     })
   }
+
+  // Initialize Turnstile widget
+  const initTurnstile = () => {
+    if (typeof window === 'undefined') {
+      return
+    }
+
+    const windowWithTurnstile = window as typeof window & {
+      turnstile?: {
+        ready: (callback: () => void) => void
+        render: (container: string, options: {
+          sitekey: string
+          theme: string
+          size: string
+          callback: (token: string) => void
+          'error-callback': () => void
+          'expired-callback': () => void
+        }) => string
+        reset: (widgetId: string) => void
+      }
+    }
+
+    if (!windowWithTurnstile.turnstile) {
+      // Wait for Turnstile script to load
+      setTimeout(initTurnstile, 100)
+      return
+    }
+
+    const turnstile = windowWithTurnstile.turnstile
+    // Get site key from runtime config (public, safe to expose)
+    // @ts-ignore - useRuntimeConfig is auto-imported by Nuxt
+    const config = useRuntimeConfig()
+    const siteKey = config?.public?.turnstileSiteKey || process.env.TURNSTILE_SITE_KEY
+
+    if (!siteKey) {
+      console.warn('Turnstile site key not configured')
+      return
+    }
+
+    turnstile.ready(() => {
+      turnstileWidgetId.value = turnstile.render('#turnstile-widget', {
+        sitekey: siteKey,
+        theme: 'auto',
+        size: 'normal',
+        callback: (token: string) => {
+          turnstileToken.value = token
+          errors.turnstile = ''
+          turnstileReady.value = true
+        },
+        'error-callback': () => {
+          turnstileToken.value = ''
+          errors.turnstile = 'Verification failed. Please try again.'
+          turnstileReady.value = false
+        },
+        'expired-callback': () => {
+          turnstileToken.value = ''
+          errors.turnstile = 'Verification expired. Please verify again.'
+          turnstileReady.value = false
+        }
+      })
+    })
+  }
+
+  initTurnstile()
 
   // Create timeline for coordinated animations
   const tl = gsap.timeline()
@@ -398,8 +508,8 @@ onMounted(() => {
   })
 
   // Add focus effects to form fields
-  const inputs = formRef.value?.querySelectorAll('input, textarea')
-  inputs?.forEach(input => {
+  const inputs = formRef.value ? (formRef.value as HTMLElement).querySelectorAll('input, textarea') : null
+  inputs?.forEach((input: Element) => {
     input.addEventListener('focus', () => {
       gsap.to(input, {
         boxShadow: '0 0 20px rgba(212, 165, 116, 0.3)',
