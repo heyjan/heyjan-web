@@ -17,7 +17,9 @@ Your contact form is now **fully functional** and integrated into your portfolio
 3. **API Endpoint** (`/server/api/contact.post.ts`)
    - Server-side validation
    - Error handling
-   - Ready for email integration
+   - **Resend email integration** ✅
+   - HTML email templates
+   - XSS protection
 
 4. **Homepage Integration**
    - Contact section added to your main index page
@@ -58,44 +60,38 @@ const contactInfo = [
 ]
 ```
 
-### Step 3: Set Up Email Sending (Optional but Recommended)
+### Step 3: Configure Email Sending (Required)
 
-Currently, form submissions are only logged to the server console. To receive emails:
+Email sending is already implemented using Resend! You just need to set up your environment variables:
 
-#### Quick Option: Use Resend
-```bash
-npm install resend
-```
+1. **Set Environment Variables**
 
-1. Sign up at [resend.com](https://resend.com)
-2. Get your API key
-3. Create `.env.local`:
-```env
-RESEND_API_KEY=re_your_api_key_here
-CONTACT_EMAIL=your-email@example.com
-```
+   Create a `.env` file in your project root (or add to your existing `.env`):
+   ```env
+   RESEND_API_KEY=re_your_api_key_here
+   RESEND_FROM_EMAIL=contact@heyjan.de
+   CONTACT_EMAIL=jan@heyjan.de
+   ```
 
-4. Update `/server/api/contact.post.ts` - replace the TODO section with:
-```typescript
-import { Resend } from 'resend'
+   **Environment Variables:**
+   - `RESEND_API_KEY` - Your Resend API key (required)
+   - `RESEND_FROM_EMAIL` - Email address from your verified domain (defaults to `contact@heyjan.de`)
+   - `CONTACT_EMAIL` - Email address where you want to receive contact form submissions (defaults to `jan@heyjan.de`)
 
-const resend = new Resend(process.env.RESEND_API_KEY)
+2. **Verify Your Domain in Resend**
+   - Make sure your domain (`heyjan.de`) is verified in your Resend dashboard
+   - The `RESEND_FROM_EMAIL` must use a verified domain
 
-// Inside the try block:
-await resend.emails.send({
-  from: 'noreply@janmayer.dev',
-  to: process.env.CONTACT_EMAIL,
-  subject: `New Contact: ${subject}`,
-  html: `
-    <h2>New Contact Submission</h2>
-    <p><strong>Name:</strong> ${name}</p>
-    <p><strong>Email:</strong> ${email}</p>
-    <p><strong>Subject:</strong> ${subject}</p>
-    <p><strong>Message:</strong></p>
-    <p>${message.replace(/\n/g, '<br>')}</p>
-  `
-})
-```
+3. **Test the Form**
+   - Submit a test message through the contact form
+   - Check your email inbox for the submission
+   - Check server logs if emails aren't arriving
+
+**Note:** The email template includes:
+- Professional HTML formatting
+- XSS protection (all user input is escaped)
+- Reply-to header set to the sender's email
+- Plain text fallback version
 
 ## 📋 Features Included
 
