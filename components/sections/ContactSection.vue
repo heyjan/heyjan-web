@@ -174,6 +174,7 @@ const generalError = ref('')
 const turnstileToken = ref<string>('')
 const turnstileWidgetId = ref<string | null>(null)
 const turnstileReady = ref<boolean>(false)
+const turnstileInitialized = ref<boolean>(false)
 
 // Contact info with icons
 const contactInfo = [
@@ -352,6 +353,11 @@ onMounted(() => {
 
   // Initialize Turnstile widget
   const initTurnstile = () => {
+    // Prevent double initialization
+    if (turnstileInitialized.value || turnstileWidgetId.value) {
+      return
+    }
+
     if (typeof window === 'undefined') {
       return
     }
@@ -395,27 +401,42 @@ onMounted(() => {
       return
     }
 
+    // Check if widget is already rendered in this container
+    if (container.querySelector('.cf-turnstile')) {
+      turnstileInitialized.value = true
+      return
+    }
+
+    // Mark as initialized before rendering
+    turnstileInitialized.value = true
+
     // Render widget directly (script is loaded via onload callback)
-    turnstileWidgetId.value = turnstile.render('#turnstile-widget', {
-      sitekey: siteKey,
-      theme: 'auto',
-      size: 'normal',
-      callback: (token: string) => {
-        turnstileToken.value = token
-        errors.turnstile = ''
-        turnstileReady.value = true
-      },
-      'error-callback': () => {
-        turnstileToken.value = ''
-        errors.turnstile = 'Verification failed. Please try again.'
-        turnstileReady.value = false
-      },
-      'expired-callback': () => {
-        turnstileToken.value = ''
-        errors.turnstile = 'Verification expired. Please verify again.'
-        turnstileReady.value = false
-      }
-    })
+    try {
+      turnstileWidgetId.value = turnstile.render('#turnstile-widget', {
+        sitekey: siteKey,
+        theme: 'auto',
+        size: 'normal',
+        callback: (token: string) => {
+          turnstileToken.value = token
+          errors.turnstile = ''
+          turnstileReady.value = true
+        },
+        'error-callback': () => {
+          turnstileToken.value = ''
+          errors.turnstile = 'Verification failed. Please try again.'
+          turnstileReady.value = false
+        },
+        'expired-callback': () => {
+          turnstileToken.value = ''
+          errors.turnstile = 'Verification expired. Please verify again.'
+          turnstileReady.value = false
+        }
+      })
+    } catch (error) {
+      // If rendering fails, reset the flag so we can try again
+      turnstileInitialized.value = false
+      console.error('Turnstile rendering error:', error)
+    }
   }
 
   // Global callback function called when Turnstile script loads
@@ -429,13 +450,14 @@ onMounted(() => {
   }
 
   // Fallback: also try to initialize on mount in case onload callback didn't fire
+  // But only if widget hasn't been initialized yet
   nextTick(() => {
     // Small delay to ensure script has time to load
     setTimeout(() => {
-      if (!turnstileWidgetId.value) {
+      if (!turnstileWidgetId.value && !turnstileInitialized.value) {
         initTurnstile()
       }
-    }, 500)
+    }, 1000)
   })
 
   // Create timeline for coordinated animations
