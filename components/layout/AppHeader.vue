@@ -78,13 +78,12 @@
   ]
   
   const menuItems = [
-    { name: 'About', href: '#about' },
-    { name: 'Experience', href: '#experience' },
-    { name: 'Education', href: '#education' },
-    { name: 'Skills', href: '#skills' },
+    { name: 'Home', href: '/' },
+    { name: 'About Jan Mayer', href: '/jan-mayer' },
+    { name: 'Projects', href: '/projects' },
     { name: 'Blog', href: '/blog' },
-    { name: 'Contact', href: '#contact' },
-    { name: 'Test', href: '/test' },
+    { name: 'CV', href: '/cv' },
+    { name: 'Contact', href: '/contact' },
   ]
   
   const toggleMenu = () => {

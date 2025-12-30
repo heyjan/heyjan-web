@@ -9,6 +9,11 @@
 
     <!-- Mobile-first layout -->
     <div class="max-w-md mx-auto relative z-10">
+      <!-- Breadcrumb -->
+      <div class="mb-6">
+        <Breadcrumb />
+      </div>
+      
       <!-- Header -->
       <div class="mb-12">
         <div class="flex items-center justify-between mb-2">
@@ -86,6 +91,7 @@
 
 <script setup lang="ts">
 import { Dumbbell, Wallet, LogOut } from 'lucide-vue-next'
+import Breadcrumb from '~/components/ui/Breadcrumb.vue'
 
 definePageMeta({
   middleware: 'auth'

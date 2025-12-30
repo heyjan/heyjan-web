@@ -86,10 +86,13 @@ export default defineNuxtConfig({
 
   // Hybrid rendering: SEO for homepage, SPA-style for auth/app
   routeRules: {
-    "/": { prerender: true },        // homepage: fully prerendered for SEO
-    "/blog": { prerender: true },    // blog listing: prerendered for SEO
-    "/blog/**": { prerender: true }, // blog articles: prerendered for SEO
-    "/impressum": { prerender: true }, // Impressum: prerendered for SEO
+    "/": { prerender: true },           // homepage: fully prerendered for SEO
+    "/jan-mayer": { prerender: true },  // person page: prerendered for SEO
+    "/cv": { prerender: true },         // CV page: prerendered for SEO
+    "/projects": { prerender: true },   // projects listing: prerendered for SEO
+    "/blog": { prerender: true },       // blog listing: prerendered for SEO
+    "/blog/**": { prerender: true },    // blog articles: prerendered for SEO
+    "/impressum": { prerender: true },  // Impressum: prerendered for SEO
     "/datenschutz": { prerender: true }, // Datenschutzerklärung: prerendered for SEO
     "/auth/**": { ssr: false },      // auth flows: client-side only
     "/app/**": { ssr: false },       // app dashboard & tools: client-side only

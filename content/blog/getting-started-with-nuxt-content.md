@@ -3,6 +3,7 @@ title: Getting Started with Nuxt Content
 description: Learn how to set up and use Nuxt Content to create a powerful blog system
 date: '2025-02-28'
 author: Jan Mayer
+authorUrl: /jan-mayer
 tags:
   - Nuxt
   - Content Management

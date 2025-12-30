@@ -4,21 +4,10 @@
     
     <main>
       <HeroSection />
-      <AIAndCloudSection />
-      <SkillsSection />
-      <WorkExperienceSection />
-      <SoftwareSection />
+      <ServicesSection />
+      <FeaturedProjects />
+      <LatestPosts />
       <ContactSection />
-      <!-- Add more sections as needed:
-        <EducationSection />
-        <ResearchSection />
-        <LanguagesSection />
-        <ScholarshipsSection />
-        <VolunteeringSection />
-        <MilestonesSection />
-        <CodingSection />
-        <PracticalSkillsSection />
-      -->
     </main>
     
     <AppFooter />
@@ -26,40 +15,34 @@
 </template>
 
 <script setup>
-import HeroSection from '~/components/sections/HeroSection.vue';
-import AIAndCloudSection from '~/components/sections/AIAndCloudSection.vue';
-import SkillsSection from '~/components/sections/SkillsSection.vue';
-import AppFooter from '~/components/layout/AppFooter.vue';
-import AppHeader from '~/components/layout/AppHeader.vue';
-import SoftwareSection from '~/components/sections/SoftwareSection.vue';
-import WorkExperienceSection from '~/components/sections/WorkExperienceSection.vue';
-import ContactSection from '~/components/sections/ContactSection.vue';
-import { onMounted } from 'vue'
-import { gsap } from 'gsap'
-import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { computed } from 'vue'
 
-// Set up page metadata with SEO
+import AppFooter from '~/components/layout/AppFooter.vue'
+import AppHeader from '~/components/layout/AppHeader.vue'
+import ContactSection from '~/components/sections/ContactSection.vue'
+import FeaturedProjects from '~/components/sections/FeaturedProjects.vue'
+import HeroSection from '~/components/sections/HeroSection.vue'
+import LatestPosts from '~/components/sections/LatestPosts.vue'
+import ServicesSection from '~/components/sections/ServicesSection.vue'
+
+const route = useRoute()
+const canonicalUrl = computed(() => `https://heyjan.de${route.path}`)
+
 useSeoMeta({
-  title: 'Jan Mayer – Full-Stack Developer & AI Specialist | Ulm',
-  description: 'AI Solution Architect at LIQUI MOLY specializing in Azure AI Foundry and enterprise AI solutions. Self-taught developer building production-ready AI systems.',
-  ogTitle: 'Jan Mayer – Full-Stack Developer & AI Specialist | Ulm',
-  ogDescription: 'AI Solution Architect at LIQUI MOLY specializing in Azure AI Foundry and enterprise AI solutions. Self-taught developer building production-ready AI systems.',
+  title: 'Jan Mayer',
+  description: 'AI Solution Architect and Full-Stack Developer based in Ulm, Germany — enterprise AI, Azure AI Foundry, and RAG architectures.',
+  ogTitle: 'Jan Mayer',
+  ogDescription: 'AI Solution Architect and Full-Stack Developer based in Ulm, Germany — enterprise AI, Azure AI Foundry, and RAG architectures.',
   ogImage: 'https://heyjan.de/images/profile.jpg',
-  ogUrl: 'https://heyjan.de',
+  ogUrl: canonicalUrl.value,
   ogType: 'website',
   twitterCard: 'summary_large_image',
-  twitterTitle: 'Jan Mayer – Full-Stack Developer & AI Specialist | Ulm',
-  twitterDescription: 'AI Solution Architect at LIQUI MOLY specializing in Azure AI Foundry and enterprise AI solutions.',
+  twitterTitle: 'Jan Mayer',
+  twitterDescription: 'AI Solution Architect and Full-Stack Developer — enterprise AI, Azure AI Foundry, and RAG architectures.',
   twitterImage: 'https://heyjan.de/images/profile.jpg',
 })
 
-onMounted(() => {
-  // Register ScrollTrigger plugin
-  gsap.registerPlugin(ScrollTrigger)
-  
-  // Smooth scroll setup
-  ScrollTrigger.config({
-    autoRefreshEvents: 'visibilitychange,DOMContentLoaded,load'
-  })
+useHead({
+  link: [{ rel: 'canonical', href: canonicalUrl.value }],
 })
 </script>

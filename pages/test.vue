@@ -3,6 +3,11 @@
     <AppHeader />
     
     <main class="pt-20">
+      <div class="section-padding">
+        <div class="max-w-4xl mx-auto mb-8">
+          <Breadcrumb />
+        </div>
+      </div>
       <!-- Hero Section -->
       <section class="section-padding min-h-screen flex items-center justify-center relative overflow-hidden">
         <div class="absolute inset-0 -z-10">
@@ -83,6 +88,7 @@ import { gsap } from 'gsap'
 import { Zap, Rocket, Star } from 'lucide-vue-next'
 import AppHeader from '~/components/layout/AppHeader.vue'
 import AppFooter from '~/components/layout/AppFooter.vue'
+import Breadcrumb from '~/components/ui/Breadcrumb.vue'
 
 const heroRef = ref(null)
 const featureRefs = ref([])

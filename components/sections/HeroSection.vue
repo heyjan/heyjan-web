@@ -27,31 +27,37 @@
           <span class="text-lg md:text-xl text-gray-400 font-mono">Full-Stack Developer / AI Solution Architect</span>
         </div>
         
-        <h1 class="text-4xl md:text-6xl lg:text-7xl font-serif mb-6">
-          <span class="text-gray-300 block mb-2" ref="introText">This is</span>
-          <span class="text-primary relative inline-block" ref="nameText">
+        <div class="mb-6">
+          <span class="text-gray-300 block mb-2 text-2xl md:text-6xl font-serif" ref="introText">This is</span>
+          <h1 class="text-4xl md:text-6xl lg:text-7xl font-serif text-primary relative inline-block" ref="nameText">
             {{ name }}
             <!-- Underline effect -->
-            <div class="absolute -bottom-2 left-0 w-full h-1 bg-gradient-to-r from-primary to-transparent opacity-60" ref="underlineRef"></div>
-          </span>
-        </h1>
+            <div class="absolute -bottom-2 left-0 w-full h-1 bg-gradient-to-r from-primary to-transparent opacity-60" ref="underlineRef" style="z-index: 1000;"></div>
+          </h1>
+        </div>
         
         <!-- Description with fade-in effect -->
         <div class="mb-8" ref="descriptionRef">
           <p class="text-lg text-gray-400 leading-relaxed max-w-lg">
-            Building enterprise AI solutions that transform business operations with modern web technologies and creative solutions.
+            Designing and building enterprise AI that drives efficiency and real-world impact.
           </p>
         </div>
         
-        <!-- CTA Buttons
+        <!-- CTA Buttons -->
         <div class="flex gap-4" ref="buttonsRef">
-          <button class="px-6 py-3 bg-primary text-dark-300 font-medium rounded-lg hover:bg-primary/90 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-primary/25">
-            View My Work
-          </button>
-          <button class="px-6 py-3 border border-primary text-primary font-medium rounded-lg hover:bg-primary hover:text-dark-300 transition-all duration-300 hover:scale-105">
-            Get In Touch
-          </button>
-        </div> -->
+          <NuxtLink
+            to="/jan-mayer"
+            class="px-6 py-3 bg-primary text-dark-300 font-medium rounded-lg hover:bg-primary/90 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-primary/25"
+          >
+            About Jan Mayer
+          </NuxtLink>
+          <NuxtLink
+            to="/cv"
+            class="px-6 py-3 border border-primary text-primary font-medium rounded-lg hover:bg-primary hover:text-dark-300 transition-all duration-300 hover:scale-105"
+          >
+            View CV
+          </NuxtLink>
+        </div>
       </div>
       
       <!-- Profile Image with enhanced effects -->

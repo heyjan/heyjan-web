@@ -12,6 +12,9 @@
 
     <!-- Login form container -->
     <div class="relative z-10 w-full max-w-md">
+      <div class="mb-6 flex justify-center">
+        <Breadcrumb />
+      </div>
       <div class="bg-dark-100/40 backdrop-blur-xl border border-primary/10 rounded-lg p-8">
         <!-- Header -->
         <div class="text-center mb-8">
@@ -81,6 +84,8 @@
 </template>
 
 <script setup lang="ts">
+import Breadcrumb from '~/components/ui/Breadcrumb.vue'
+
 definePageMeta({
   middleware: 'auth'
 })

@@ -4,11 +4,13 @@
     
     <main class="section-padding">
       <div class="max-w-4xl mx-auto">
+        <Breadcrumb :custom-title="article?.title" />
+        
         <div v-if="pending" class="text-center py-12">
           <p class="text-gray-200/60">Loading article...</p>
         </div>
 
-        <div v-else-if="article" class="bg-dark-100/40 border border-primary/10 rounded-lg overflow-hidden">
+        <div v-else-if="article" class="bg-dark-100/40 border border-primary/10 rounded-lg overflow-hidden mt-4">
           <article class="p-8 md:p-12">
             <!-- Article Header -->
             <div class="mb-8">
@@ -27,24 +29,30 @@
               </h1>
               
               <div class="flex flex-wrap items-center gap-4 text-gray-200/70 mb-6">
-                <span v-if="article.date" class="flex items-center">
+                <span v-if="article.meta?.date" class="flex items-center">
                   <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
                   </svg>
-                  {{ formatDate(article.date) }}
+                  {{ formatDate(article.meta.date) }}
                 </span>
                 
-                <span v-if="article.author" class="flex items-center">
+                <span v-if="article.meta?.author" class="flex items-center">
                   <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
                   </svg>
-                  {{ article.author }}
+                  <NuxtLink
+                    :to="article.meta.authorUrl || '/jan-mayer'"
+                    class="hover:text-primary transition-colors"
+                    aria-label="Author page"
+                  >
+                    {{ article.meta.author }}
+                  </NuxtLink>
                 </span>
               </div>
               
-              <div v-if="article.tags" class="flex flex-wrap gap-2 mb-6">
+              <div v-if="article.meta?.tags" class="flex flex-wrap gap-2 mb-6">
                 <span
-                  v-for="tag in article.tags"
+                  v-for="tag in article.meta.tags"
                   :key="tag"
                   class="px-3 py-1 text-sm bg-primary/10 text-primary rounded-full border border-primary/20"
                 >
@@ -84,6 +92,7 @@
 <script setup>
 import AppHeader from '~/components/layout/AppHeader.vue'
 import AppFooter from '~/components/layout/AppFooter.vue'
+import Breadcrumb from '~/components/ui/Breadcrumb.vue'
 
 const route = useRoute()
 const slug = route.params.slug

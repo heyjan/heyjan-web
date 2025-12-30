@@ -4,7 +4,8 @@
     
     <main class="section-padding">
       <div class="max-w-4xl mx-auto">
-        <h1 class="text-4xl md:text-5xl font-serif text-primary mb-8">Datenschutzerklärung</h1>
+        <Breadcrumb />
+        <h1 class="text-4xl md:text-5xl font-serif text-primary mb-8 mt-4">Datenschutzerklärung</h1>
         
         <div class="h-px bg-gradient-to-r from-transparent via-primary/20 to-transparent mb-8"></div>
 
@@ -189,6 +190,7 @@
 <script setup>
 import AppHeader from '~/components/layout/AppHeader.vue'
 import AppFooter from '~/components/layout/AppFooter.vue'
+import Breadcrumb from '~/components/ui/Breadcrumb.vue'
 
 useHead({
   title: 'Datenschutzerklärung - Jan Mayer',

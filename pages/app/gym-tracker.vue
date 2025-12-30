@@ -8,6 +8,11 @@
 
     <!-- Mobile-first layout -->
     <div class="max-w-md mx-auto relative z-10">
+      <!-- Breadcrumb -->
+      <div class="mb-6">
+        <Breadcrumb />
+      </div>
+      
       <!-- Header -->
       <div class="mb-8 flex items-center justify-between">
         <div>
@@ -197,6 +202,7 @@ import {
   X,
   Trash2
 } from 'lucide-vue-next'
+import Breadcrumb from '~/components/ui/Breadcrumb.vue'
 
 // Auto-injected by Nuxt
 // definePageMeta, useAuth, $fetch are available without import
