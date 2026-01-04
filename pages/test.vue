@@ -160,7 +160,7 @@ const codeExample = `// In app.vue
 useHead({
   title: 'Test Page - Jan Mayer',
   meta: [
-    { name: 'description', content: 'Test page to demonstrate page transition effects' }
+    { name: 'description', content: 'Technical demonstration page showcasing GSAP-powered page transitions, smooth navigation animations, and Vue.js component examples on heyjan.de.' }
   ]
 })
 

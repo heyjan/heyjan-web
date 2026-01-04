@@ -100,7 +100,10 @@ export default defineNuxtConfig({
 
   sitemap: {
     autoLastmod: true,
-    exclude: ['/app/**', '/auth/**'],
+    exclude: ['/app/**', '/auth/**', '/test'],
+    sources: [
+      '/api/__sitemap__/urls',
+    ],
   },
 
   robots: {

@@ -195,7 +195,7 @@ import Breadcrumb from '~/components/ui/Breadcrumb.vue'
 useHead({
   title: 'Datenschutzerklärung - Jan Mayer',
   meta: [
-    { name: 'description', content: 'Datenschutzerklärung gemäß DSGVO' }
+    { name: 'description', content: 'Datenschutzerklärung von Jan Mayer gemäß DSGVO. Informationen zur Datenerhebung, Speicherung und Verarbeitung personenbezogener Daten auf heyjan.de.' }
   ]
 })
 </script>

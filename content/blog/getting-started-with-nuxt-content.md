@@ -1,6 +1,6 @@
 ---
 title: Getting Started with Nuxt Content
-description: Learn how to set up and use Nuxt Content to create a powerful blog system
+description: Step-by-step tutorial on setting up Nuxt Content for building a blog system. Covers installation, Markdown configuration, content querying, and Vue component integration.
 date: '2025-02-28'
 author: Jan Mayer
 authorUrl: /jan-mayer
@@ -11,8 +11,6 @@ tags:
   - Tutorial
 image: /images/blog/nuxt-content.jpg
 ---
-
-# Getting Started with Nuxt Content
 
 Nuxt Content is a powerful module that allows you to write content in Markdown, JSON, YAML, CSV, or XML and fetch it using a MongoDB-like API. It's perfect for creating blogs, documentation sites, and content-driven applications.
 

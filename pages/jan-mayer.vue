@@ -138,10 +138,15 @@ useHead({
 useSchemaOrg([
   definePerson({
     name: 'Jan Mayer',
-    url: () => canonicalUrl.value,
-    image: '/images/profile.jpg',
+    url: 'https://heyjan.de/jan-mayer',
+    image: 'https://heyjan.de/images/profile.jpg',
     jobTitle: 'AI Solution Architect & Consultant',
+    worksFor: {
+      '@type': 'Organization',
+      name: 'Self-employed',
+    },
     address: {
+      '@type': 'PostalAddress',
       addressLocality: 'Ulm',
       addressCountry: 'DE',
     },

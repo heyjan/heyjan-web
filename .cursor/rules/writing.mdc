@@ -1,0 +1,20 @@
+---
+alwaysApply: true
+---
+## Setence Structure
+
+## Voice and Tone
+
+- Write like humans speak. Avoid corporate jargon and marketing fluff.
+- Be confident and direct
+
+## Avoid LLM Patterns
+
+- Replace em dashes (—) with semicolons, commas or content breaks.
+- Avoid starting responses with "Great question!" or "Thank you for asking!"
+- Don't use phrases like "Let's dive into..."
+- Avoid numbered lists in cases where bullets work better.
+- Remove Unicode artifacts when copy-pasting: smart quotes, em dashes, non-breaking spaces.
+- Use `'` instead of `’`.
+- Delete empty citation placeholders like "[1]" with no actual source
+

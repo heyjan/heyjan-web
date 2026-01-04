@@ -72,7 +72,7 @@ import Breadcrumb from '~/components/ui/Breadcrumb.vue'
 useHead({
   title: 'Impressum - Jan Mayer',
   meta: [
-    { name: 'description', content: 'Impressum und rechtliche Angaben gemäß TMG' }
+    { name: 'description', content: 'Impressum von Jan Mayer, AI Solution Architect aus Ulm. Rechtliche Angaben gemäß § 5 TMG, Kontaktinformationen und Haftungsausschluss.' }
   ]
 })
 </script>

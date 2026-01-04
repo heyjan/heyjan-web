@@ -90,7 +90,7 @@ import Breadcrumb from '~/components/ui/Breadcrumb.vue'
 useHead({
   title: 'Blog | Jan Mayer',
   meta: [
-    { name: 'description', content: 'Blog articles about web development, AI, and technology' }
+    { name: 'description', content: 'Technical articles by Jan Mayer on web development, enterprise AI, Azure AI Foundry, RAG architectures, and modern full-stack development practices.' }
   ]
 })
 
