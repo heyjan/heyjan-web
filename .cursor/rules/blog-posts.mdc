@@ -1,0 +1,222 @@
+---
+globs: *.md
+alwaysApply: false
+---
+
+# Blog Post Guidance
+
+## Purpose
+This guide defines the standards for creating high-quality, SEO-optimized blog posts.
+
+---
+
+
+## Quality Standards
+
+use @writing.mdc
+
+---
+
+## Content Structure
+
+```
+┌─────────────────────────────────────┐
+│         SEO HEADLINE (H1)           │
+│  - Clear, benefit-driven            │
+│  - Primary keyword included         │
+│  - Under 60 characters              │
+└─────────────────────────────────────┘
+              ↓
+┌─────────────────────────────────────┐
+│         INTRODUCTION                │
+│  - Hook with relatable scenario     │
+│  - Primary keyword in first 100w    │
+│  - Clear takeaway/benefit           │
+│  - Optional: Skip if adds no value  │
+└─────────────────────────────────────┘
+              ↓
+┌─────────────────────────────────────┐
+│         BODY CONTENT                │
+│                                     │
+│  ┌─────────────────────────────┐   │
+│  │  Main Section (H2)          │   │
+│  │  - BLUF: Key takeaway first │   │
+│  │  - Actionable advice        │   │
+│  │  - Relatable examples       │   │
+│  └─────────────────────────────┘   │
+│            ↓                        │
+│  ┌─────────────────────────────┐   │
+│  │  Subsection (H3)            │   │
+│  │  - Short paragraphs         │   │
+│  │  - Break up with bullets    │   │
+│  │  - Add visuals/code boxes   │   │
+│  └─────────────────────────────┘   │
+│            ↓                        │
+│  [Repeat for additional sections]   │
+└─────────────────────────────────────┘
+              ↓
+┌─────────────────────────────────────┐
+│         CONCLUSION                  │
+│  - Reinforce outcome                │
+│  - Clear next step/CTA              │
+│  - Optional: Helpful resource       │
+│  - No restating of content          │
+└─────────────────────────────────────┘
+              ↓
+┌─────────────────────────────────────┐
+│         FAQ SECTION                 │
+│  - YES, include at bottom           │
+│  - 3-5 common questions             │
+│  - Answer directly, briefly         │
+│  - Use natural language             │
+└─────────────────────────────────────┘
+```
+
+---
+
+## Writing Guidelines
+
+### Headline (H1)
+- **Clear and simple language** - no jargon
+- **Include primary keyword** near the beginning
+- **Communicate the benefit** to the reader
+- **Match title tag and H1** (or keep very similar)
+- **Be accurate** - avoid clickbait
+- **Under 60 characters** for title tag
+
+### Introduction
+- Start with **relatable scenario** (not generic statements)
+- Include **primary keyword** in first 100 words
+- State **main benefit** specifically
+- Make **takeaway clear** - what will they learn?
+- **Skip if unnecessary** - don't waste reader's time
+
+### Body Content
+Apply these principles:
+
+**Structure**
+- Use **BLUF framework** - bottom line up front
+- **Descriptive subheadings** with keywords
+- Short paragraphs (2-4 sentences)
+- Break up heavy text with bullets and visuals
+
+**Content**
+- Make it **actionable** - clear steps, frameworks
+- Use **relatable examples** for your audience
+- **Write for the reader** - anticipate questions
+- Include **internal links** to related content
+
+**SEO Optimization**
+- Use **primary keyword** naturally throughout
+- Sprinkle **secondary keywords** in body/headers
+- Add **descriptive header tags** (H2, H3, H4)
+- Optimize **URL slug** - short, clear, keyword-focused
+- Write **meta description** (under 105 characters)
+
+### Conclusion
+- **Reinforce the outcome** - remind what they learned
+- **One clear next step** - specific action to take
+- **Share a resource** if relevant (tool, template, checklist)
+- **Invite engagement** when appropriate
+- **No restating content** - move them forward
+
+---
+
+## Visual Elements
+
+### Images
+**Quantity**: Maximum **2 images** per blog post
+
+**Image Specifications**:
+- **Width**: 1200px (standard)
+- **Height**: 630px (recommended for social sharing)
+- **Aspect ratio**: 16:9 or 1.91:1
+- **Format**: JPG or PNG
+- **File size**: Under 200KB (compressed)
+- **Alt text**: Required for all images
+  - Under 125 characters
+  - Descriptive and keyword-relevant
+  - Helpful for accessibility
+
+**Image Placement**:
+- Hero image at top (optional)
+- Supporting image mid-article or in key section
+- Never stack images directly
+
+### Code Examples
+**All code must be in code boxes**
+
+```
+Example of proper formatting:
+```javascript
+function example() {
+  return "Always use syntax highlighting";
+}
+```
+```
+
+**Code Box Requirements**:
+- Always specify language for syntax highlighting
+- Include brief description above code if needed
+- Keep examples concise and relevant
+- Test all code before publishing
+
+---
+
+## FAQ Section
+
+### Requirement
+**YES** - Include FAQ section at the bottom of each blog post
+
+### Guidelines
+- **3-5 questions** related to the topic
+- Answer **common questions** from your audience
+- Keep answers **brief and direct** (2-4 sentences)
+- Use **natural language** - how people actually ask
+- Format as H3 for each question
+- Can help rank for "People Also Ask" in Google
+
+### Example Format
+```markdown
+## Frequently Asked Questions
+
+### How long should a blog post be?
+Aim for 1,500-2,500 words for most topics. The key is covering the topic thoroughly while respecting the reader's time.
+
+### Should I include images in every post?
+Yes, but maximum 2 images. Use them strategically to enhance understanding, not just for decoration.
+```
+
+---
+
+## Pre-Publish Checklist
+
+Before publishing, verify:
+
+- [ ] Headline includes primary keyword
+- [ ] Title tag under 60 characters
+- [ ] Meta description under 105 characters
+- [ ] URL slug is short and clear
+- [ ] Primary keyword in first 100 words
+- [ ] All images have alt text
+- [ ] Maximum 2 images used
+- [ ] All code in proper code boxes
+- [ ] Internal links added where relevant
+- [ ] FAQ section included (3-5 questions)
+- [ ] Conclusion has clear CTA/next step
+- [ ] Proofread for clarity and errors
+
+---
+
+## SEO Metadata Template
+
+```
+Title Tag: [Primary Keyword] | [Brand Name]
+Meta Description: [Benefit/hook in 105 chars or less]
+URL Slug: /primary-keyword-here/
+H1: [Clear headline with primary keyword]
+Open Graph Title: [Can be same as title tag]
+Open Graph Description: [Can be same as meta description]
+```
+
+---

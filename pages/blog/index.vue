@@ -21,49 +21,53 @@
             :key="article._path"
             class="bg-dark-100/40 border border-primary/10 rounded-lg overflow-hidden hover:border-primary/30 transition-all duration-300 group"
           >
-            <NuxtLink :to="article._path" class="block">
-              <div class="p-6">
-                <div class="flex items-center gap-3 mb-4">
-                  <span class="text-sm text-gray-200/60">
-                    {{ formatDate(article.date) }}
+            <div class="p-6">
+              <div class="flex items-center gap-3 mb-4">
+                <span class="text-sm text-gray-200/60">
+                  {{ formatDate(article.date) }}
+                </span>
+                <span v-if="article.author" class="text-sm text-gray-200/60">
+                  <span class="text-gray-200/40">·</span>
+                  <NuxtLink
+                    :to="article.authorUrl || '/jan-mayer'"
+                    class="hover:text-primary transition-colors"
+                    aria-label="Author page"
+                  >
+                    {{ article.author }}
+                  </NuxtLink>
+                </span>
+                <span v-if="article.tags" class="flex gap-2">
+                  <span
+                    v-for="tag in article.tags"
+                    :key="tag"
+                    class="px-3 py-1 text-xs bg-primary/10 text-primary rounded-full border border-primary/20"
+                  >
+                    {{ tag }}
                   </span>
-                  <span v-if="article.author" class="text-sm text-gray-200/60">
-                    <span class="text-gray-200/40">·</span>
-                    <NuxtLink
-                      :to="article.authorUrl || '/jan-mayer'"
-                      class="hover:text-primary transition-colors"
-                      aria-label="Author page"
-                    >
-                      {{ article.author }}
-                    </NuxtLink>
-                  </span>
-                  <span v-if="article.tags" class="flex gap-2">
-                    <span
-                      v-for="tag in article.tags"
-                      :key="tag"
-                      class="px-3 py-1 text-xs bg-primary/10 text-primary rounded-full border border-primary/20"
-                    >
-                      {{ tag }}
-                    </span>
-                  </span>
-                </div>
-                
+                </span>
+              </div>
+
+              <NuxtLink
+                :to="article._path"
+                class="block"
+                :aria-label="`Read article: ${article.title || 'Blog post'}`"
+              >
                 <h2 class="text-2xl font-serif text-white mb-3 group-hover:text-primary transition-colors">
                   {{ article.title }}
                 </h2>
-                
+
                 <p v-if="article.description" class="text-gray-200/70 mb-4">
                   {{ article.description }}
                 </p>
-                
+
                 <div class="flex items-center text-primary font-medium">
                   Read more
                   <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
                   </svg>
                 </div>
-              </div>
-            </NuxtLink>
+              </NuxtLink>
+            </div>
           </article>
         </div>
 

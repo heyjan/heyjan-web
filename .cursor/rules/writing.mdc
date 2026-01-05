@@ -11,10 +11,25 @@ alwaysApply: true
 ## Avoid LLM Patterns
 
 - Replace em dashes (—) with semicolons, commas or content breaks.
+- Dont include ( ) and filenames in Headlines
 - Avoid starting responses with "Great question!" or "Thank you for asking!"
 - Don't use phrases like "Let's dive into..."
 - Avoid numbered lists in cases where bullets work better.
 - Remove Unicode artifacts when copy-pasting: smart quotes, em dashes, non-breaking spaces.
+- Dont use Icons at all
 - Use `'` instead of `’`.
 - Delete empty citation placeholders like "[1]" with no actual source
+
+## Banned words
+
+- beängstigend
+- verdammt
+- bullshit
+- ehrliche
+
+### Technical Content
+- Explain context for non-technical readers
+- Use concrete examples over abstract concepts
+- Link to relevant tools/resources
+- Balance technical depth with accessibility
 

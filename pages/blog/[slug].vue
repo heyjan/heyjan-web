@@ -3,7 +3,7 @@
     <AppHeader />
     
     <main class="section-padding">
-      <div class="max-w-4xl mx-auto">
+      <div class="max-w-[67rem] mx-auto">
         <Breadcrumb :custom-title="article?.title" />
         
         <div v-if="pending" class="text-center py-12">
@@ -24,9 +24,17 @@
                 Back to Blog
               </NuxtLink>
               
-              <h1 class="text-4xl md:text-5xl font-serif text-white mb-4">
+              <h1 class="text-4xl md:text-5xl font-serif text-primary mb-4">
                 {{ article.title }}
               </h1>
+
+              <img
+                v-if="article.meta?.image"
+                :src="article.meta.image"
+                :alt="article.title ? `Hero image for: ${article.title}` : 'Blog post hero image'"
+                class="w-full h-auto rounded-lg border border-primary/10 mb-6"
+                loading="lazy"
+              />
               
               <div class="flex flex-wrap items-center gap-4 text-gray-200/70 mb-6">
                 <span v-if="article.meta?.date" class="flex items-center">
@@ -135,7 +143,7 @@ const formatDate = (date) => {
 .prose h2 {
   font-size: 1.875rem;
   font-family: var(--font-family-serif);
-  color: white;
+  color: var(--color-primary);
   margin-top: 2rem;
   margin-bottom: 1rem;
 }
@@ -143,9 +151,15 @@ const formatDate = (date) => {
 .prose h3 {
   font-size: 1.5rem;
   font-family: var(--font-family-serif);
-  color: white;
+  color: var(--color-primary);
   margin-top: 1.5rem;
   margin-bottom: 0.75rem;
+}
+
+.prose h4,
+.prose h5,
+.prose h6 {
+  color: var(--color-primary);
 }
 
 .prose p {
@@ -170,13 +184,13 @@ const formatDate = (date) => {
   border-radius: 0.25rem;
   font-size: 0.875rem;
   font-family: monospace;
-  color: var(--color-primary);
+  color: #E5E5E5;
 }
 
 .prose pre {
-  background-color: #252525;
+  background-color: #E5E5E5;
   border: 1px solid rgba(212, 165, 116, 0.2);
-  color: #E5E5E5;
+  color: #1E1E1E;
   padding: 1rem;
   border-radius: 0.5rem;
   overflow-x: auto;
@@ -186,12 +200,21 @@ const formatDate = (date) => {
 .prose pre code {
   background-color: transparent;
   padding: 0;
-  color: #E5E5E5;
+  color: #1E1E1E;
 }
 
 .prose a {
   color: var(--color-primary);
   text-decoration: underline;
+}
+
+.prose h2 a,
+.prose h3 a,
+.prose h4 a,
+.prose h5 a,
+.prose h6 a {
+  text-decoration: none;
+  color: inherit;
 }
 
 .prose a:hover {
