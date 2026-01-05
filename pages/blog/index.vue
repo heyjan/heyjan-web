@@ -8,7 +8,7 @@
         <h1 class="text-4xl md:text-5xl font-serif text-white mb-4 mt-4">Blog</h1>
         <div class="h-px bg-gradient-to-r from-primary via-gray-700 to-transparent mb-8"></div>
         <p class="text-lg text-gray-200/70 mb-12">
-          Thoughts, tutorials, and insights on web development, AI, and technology.
+          Sharing my journey building AI solutions, exploring modern web development, AI security, and documenting the lessons learned along the way.
         </p>
 
         <div v-if="pending" class="text-center py-12">
@@ -22,7 +22,7 @@
             class="bg-dark-100/40 border border-primary/10 rounded-lg overflow-hidden hover:border-primary/30 transition-all duration-300 group"
           >
             <div class="p-6">
-              <div class="flex items-center gap-3 mb-4">
+              <div class="flex flex-wrap items-center gap-3 mb-4">
                 <span class="text-sm text-gray-200/60">
                   {{ formatDate(article.date) }}
                 </span>
@@ -36,7 +36,7 @@
                     {{ article.author }}
                   </NuxtLink>
                 </span>
-                <span v-if="article.tags" class="flex gap-2">
+                <span v-if="article.tags" class="flex flex-wrap gap-2">
                   <span
                     v-for="tag in article.tags"
                     :key="tag"
@@ -94,7 +94,7 @@ import Breadcrumb from '~/components/ui/Breadcrumb.vue'
 useHead({
   title: 'Blog | Jan Mayer',
   meta: [
-    { name: 'description', content: 'Technical articles by Jan Mayer on web development, enterprise AI, Azure AI Foundry, RAG architectures, and modern full-stack development practices.' }
+    { name: 'description', content: 'Technical articles by Jan Mayer on web development, enterprise AI, Azure AI Foundry, RAG architectures, AI security, and modern full-stack development practices.' }
   ]
 })
 
