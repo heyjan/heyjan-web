@@ -1,6 +1,12 @@
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap');
-
 @import "tailwindcss";
+
+@font-face {
+  font-family: 'TT Travels Text';
+  src: url('/font/TT_Travels_Text_Medium.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
 
 @theme {
   --color-primary: #D4A574;
@@ -8,8 +14,8 @@
   --color-dark-200: #252525;
   --color-dark-300: #1E1E1E;
   
-  --font-family-serif: 'Playfair Display', serif;
-  --font-family-sans: 'Inter', sans-serif;
+  --font-serif: 'TT Travels Text', serif;
+  --font-sans: 'Inter', sans-serif;
 }
 
 @layer base {

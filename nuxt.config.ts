@@ -13,7 +13,7 @@ export default defineNuxtConfig({
       htmlAttrs: {
           lang: 'en'
       },
-      titleTemplate: (title) =>
+      titleTemplate: (title?: string) =>
           title
               ? `${title} · Jan Mayer`
               : 'Jan Mayer · AI Solution Architect & Consultant',
@@ -28,7 +28,8 @@ export default defineNuxtConfig({
       ],
       link: [
         { rel: "icon", type: "image/x-icon", href: "/favicon.ico" },
-        { rel: "preconnect", href: "https://challenges.cloudflare.com" }
+        { rel: "preconnect", href: "https://challenges.cloudflare.com" },
+        { rel: "preload", href: "/font/TT_Travels_Text_Medium.woff2", as: "font", type: "font/woff2", crossorigin: "anonymous" }
       ],
       script: [
         { src: "https://analytics.ahrefs.com/analytics.js", async: true, 'data-key': "kK9WahAIZ2+5ycKldReAYA" },
@@ -57,7 +58,24 @@ export default defineNuxtConfig({
   components: true,
 
   // Modules: https://nuxt.com/docs/guide/directory-structure/modules
-  modules: ["v-gsap-nuxt", "@nuxt/content", "@nuxtjs/seo"],
+  modules: ["v-gsap-nuxt", "@nuxt/content", "@nuxtjs/seo", "@nuxt/fonts"],
+
+  fonts: {
+    defaults: {
+      preload: true,
+      display: "swap",
+    },
+    families: [
+      {
+        name: "Inter",
+        provider: "google",
+        weights: ["300", "400", "500", "600"],
+        styles: ["normal"],
+        preload: true,
+        global: true,
+      },
+    ],
+  },
 
   seo: {
     redirectToCanonicalSiteUrl: true

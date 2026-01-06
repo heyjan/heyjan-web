@@ -67,10 +67,6 @@
                   {{ tag }}
                 </span>
               </div>
-              
-              <p v-if="article.description" class="text-xl text-gray-200 leading-relaxed">
-                {{ article.description }}
-              </p>
             </div>
 
             <!-- Article Content -->
