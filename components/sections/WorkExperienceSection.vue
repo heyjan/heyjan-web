@@ -56,7 +56,17 @@
       tags: ['Azure AI Foundry', 'Docker', 'Python', 'Azure', 'PHP', ],
       icon: Building2
     },
-    // Add more work experience items
+    {
+      title: 'Wohngruppenleitung Wohnheim',
+      company: 'Sozialpsychiatrisches Wohnheim, Diakonie Neu-Ulm',
+      period: '2017 - 2024',
+      description: [
+        'Led residential group for individuals with mental health needs',
+        'Coordinated care and support services'
+      ],
+      tags: ['Social Work', 'Mental Health', 'Leadership'],
+      icon: Building2
+    }
   ])
   
   onMounted(() => {
