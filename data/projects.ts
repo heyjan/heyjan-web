@@ -19,10 +19,22 @@ export const projects: Project[] = [
     tags: ['Azure', 'AI Foundry', 'Evaluation'],
   },
   {
-    slug: 'nuxt-seo-hub',
-    title: 'Nuxt SEO Hub (Coming soon)',
-    description: 'A structured Nuxt site foundation with SEO, content, and routing best practices.',
-    tags: ['Nuxt', 'SEO', 'Content'],
+    slug: 'media-center-ai',
+    title: 'Media Center with Object Recognition and multiple AI powered Tools (Coming Soon)',
+    description: 'A comprehensive media management platform leveraging computer vision and AI to automatically identify objects, analyze content, and provide intelligent media processing capabilities.',
+    tags: ['AI', 'Computer Vision', 'Object Recognition'],
+  },
+  {
+    slug: 'data-classification-matching',
+    title: 'Data Classification and Matching System (Coming Soon)',
+    description: 'An intelligent system that automatically classifies and matches data across different sources using machine learning algorithms to improve data quality and consistency.',
+    tags: ['AI', 'Data Processing', 'Classification'],
+  },
+  {
+    slug: 'expense-manager-ocr',
+    title: 'Expense Manager - Tool to combine OCR and Vision API to extract totals (Coming Soon)',
+    description: 'Automated expense tracking solution that uses OCR and computer vision APIs to extract and process receipt information, eliminating manual data entry.',
+    tags: ['OCR', 'Vision API', 'Finance'],
   },
 ]
 

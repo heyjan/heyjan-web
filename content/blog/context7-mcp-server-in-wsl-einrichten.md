@@ -4,12 +4,15 @@ description: Schritt-für-Schritt Anleitung - Context7 MCP-Server in WSL install
 date: '2026-01-05'
 author: Jan Mayer
 authorUrl: /jan-mayer
+publisher: Jan Mayer
+keywords: MCP, Model Context Protocol, Context7, WSL, Windows Subsystem for Linux, AI Tools, Developer Experience, Nuxt, Documentation, API Integration
 tags:
   - MCP
   - WSL
   - AI Tools
   - Developer Experience
 image: /images/blog/context7-mcp-wsl-mcp-json.png
+imageTitle: Context7 MCP-Server Configuration in WSL
 ---
 
 
@@ -129,7 +132,7 @@ Der **Pro-Plan** kostet **€7 pro Seat und Monat**. Für private Repositories k
 
 ## Weiterführende Links
 
-- [Upstash Context7 auf GitHub](https://github.com/upstash/context7)
-- [Context7 Pläne und Pricing](https://context7.com/plans)
-- [Context7 Doku zu Plänen und Pricing](https://context7.com/docs/plans-pricing)
+- [Upstash Context7 auf GitHub](https://github.com/upstash/context7 "View Context7 on GitHub")
+- [Context7 Pläne und Pricing](https://context7.com/plans "Context7 Plans and Pricing")
+- [Context7 Doku zu Plänen und Pricing](https://context7.com/docs/plans-pricing "Context7 Documentation: Plans and Pricing")
 

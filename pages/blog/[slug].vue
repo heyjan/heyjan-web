@@ -32,6 +32,7 @@
                 v-if="article.meta?.image"
                 :src="article.meta.image"
                 :alt="article.title ? `Hero image for: ${article.title}` : 'Blog post hero image'"
+                :title="article.meta?.imageTitle || (article.title ? `Hero image for: ${article.title}` : 'Blog post hero image')"
                 class="w-full h-auto rounded-lg border border-primary/10 mb-6"
                 loading="lazy"
               />
@@ -110,14 +111,82 @@ const { data: article, pending } = await useAsyncData(`blog-article-${slug}`, as
   }
 })
 
+const canonicalUrl = computed(() => `https://heyjan.de${route.path}`)
+const authorName = computed(() => article.value?.meta?.author || 'Jan Mayer')
+const publisherName = computed(() => article.value?.meta?.publisher || 'Jan Mayer')
+const keywords = computed(() => {
+  if (article.value?.meta?.keywords) {
+    return Array.isArray(article.value.meta.keywords) 
+      ? article.value.meta.keywords.join(', ')
+      : article.value.meta.keywords
+  }
+  if (article.value?.meta?.tags) {
+    return Array.isArray(article.value.meta.tags)
+      ? article.value.meta.tags.join(', ')
+      : article.value.meta.tags
+  }
+  return ''
+})
+
 useHead({
-  title: article.value ? `${article.value.title} | Blog` : 'Article Not Found',
+  title: article.value ? `${article.value.title} | Blog | Jan Mayer` : 'Article Not Found',
   meta: [
     { 
       name: 'description', 
       content: article.value?.description || 'Blog article' 
-    }
+    },
+    {
+      name: 'author',
+      content: authorName.value
+    },
+    {
+      name: 'publisher',
+      content: publisherName.value
+    },
+    ...(keywords.value ? [{
+      name: 'keywords',
+      content: keywords.value
+    }] : []),
+    {
+      property: 'og:author',
+      content: authorName.value
+    },
+    {
+      property: 'og:publisher',
+      content: publisherName.value
+    },
+    {
+      property: 'article:author',
+      content: authorName.value
+    },
+    {
+      property: 'article:published_time',
+      content: article.value?.meta?.date || ''
+    },
+    ...(article.value?.meta?.tags ? article.value.meta.tags.map(tag => ({
+      property: 'article:tag',
+      content: tag
+    })) : [])
+  ],
+  link: [
+    { rel: 'canonical', href: canonicalUrl.value }
   ]
+})
+
+useSeoMeta({
+  title: article.value ? `${article.value.title} | Blog | Jan Mayer` : 'Article Not Found',
+  description: article.value?.description || 'Blog article',
+  ogTitle: article.value ? `${article.value.title} | Blog | Jan Mayer` : 'Article Not Found',
+  ogDescription: article.value?.description || 'Blog article',
+  ogImage: article.value?.meta?.image ? `https://heyjan.de${article.value.meta.image}` : 'https://heyjan.de/images/profile.jpg',
+  ogUrl: canonicalUrl.value,
+  ogType: 'article',
+  ogSiteName: 'Jan Mayer',
+  articlePublishedTime: article.value?.meta?.date || '',
+  twitterCard: 'summary_large_image',
+  twitterTitle: article.value ? `${article.value.title} | Blog | Jan Mayer` : 'Article Not Found',
+  twitterDescription: article.value?.description || 'Blog article',
+  twitterImage: article.value?.meta?.image ? `https://heyjan.de${article.value.meta.image}` : 'https://heyjan.de/images/profile.jpg',
 })
 
 const formatDate = (date) => {
