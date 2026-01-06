@@ -9,7 +9,6 @@ tags:
   - Content Management
   - Vue.js
   - Tutorial
-image: /images/blog/nuxt-content.jpg
 ---
 
 Nuxt Content is a powerful module that allows you to write content in Markdown, JSON, YAML, CSV, or XML and fetch it using a MongoDB-like API. It's perfect for creating blogs, documentation sites, and content-driven applications.
