@@ -17,6 +17,8 @@
             </p>
           </section>
 
+          <AboutSection />
+
           <section class="grid grid-cols-1 md:grid-cols-3 gap-6">
             <div class="md:col-span-2 bg-dark-100/40 border border-primary/10 rounded-lg p-8">
               <h2 class="text-2xl font-serif text-white mb-4">Focus</h2>
@@ -113,6 +115,7 @@ import { definePerson } from '@unhead/schema-org/vue'
 import AppHeader from '~/components/layout/AppHeader.vue'
 import AppFooter from '~/components/layout/AppFooter.vue'
 import Breadcrumb from '~/components/ui/Breadcrumb.vue'
+import AboutSection from '~/components/sections/AboutSection.vue'
 
 const route = useRoute()
 const canonicalUrl = computed(() => `https://heyjan.de${route.path}`)
