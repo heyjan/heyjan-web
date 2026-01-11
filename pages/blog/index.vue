@@ -3,7 +3,7 @@
     <AppHeader />
     
     <main class="section-padding">
-      <div class="max-w-4xl mx-auto">
+      <div class="max-w-6xl mx-auto">
         <Breadcrumb />
         <h1 class="text-4xl md:text-5xl font-serif text-white mb-4 mt-4">Blog</h1>
         <div class="h-px bg-gradient-to-r from-primary via-gray-700 to-transparent mb-8"></div>
@@ -15,58 +15,77 @@
           <p class="text-gray-200/60">Loading articles...</p>
         </div>
 
-        <div v-else-if="articles && articles.length > 0" class="space-y-6">
+        <div v-else-if="articles && articles.length > 0" class="grid grid-cols-1 md:grid-cols-2 gap-8">
           <article
             v-for="article in articles"
             :key="article._path"
-            class="bg-dark-100/40 border border-primary/10 rounded-lg overflow-hidden hover:border-primary/30 transition-all duration-300 group"
+            class="bg-dark-100/40 border border-primary/10 rounded-lg overflow-hidden hover:border-primary/30 transition-all duration-300 group flex flex-col"
           >
-            <div class="p-6">
-              <div class="flex flex-wrap items-center gap-3 mb-4">
-                <span class="text-sm text-gray-200/60">
-                  {{ formatDate(article.date) }}
+            <!-- Image -->
+            <NuxtLink
+              :to="article._path"
+              class="block overflow-hidden"
+              :aria-label="`Read article: ${article.title || 'Blog post'}`"
+            >
+              <img
+                v-if="article.image"
+                :src="article.image"
+                :alt="article.imageTitle || article.title"
+                class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-500"
+                loading="lazy"
+              />
+              <div 
+                v-else 
+                class="w-full h-48 bg-gradient-to-br from-primary/20 via-dark-200 to-dark-100 flex items-center justify-center"
+              >
+                <span class="text-4xl text-primary/40 font-serif">{{ article.title?.charAt(0) || 'B' }}</span>
+              </div>
+            </NuxtLink>
+            
+            <div class="p-6 flex flex-col flex-grow">
+              <!-- Tags -->
+              <div v-if="article.tags" class="flex flex-wrap gap-2 mb-4">
+                <span
+                  v-for="tag in article.tags.slice(0, 3)"
+                  :key="tag"
+                  class="text-xs text-primary hover:text-primary/80 transition-colors"
+                >
+                  {{ tag }}<span v-if="article.tags.indexOf(tag) < Math.min(article.tags.length, 3) - 1" class="text-gray-500 mx-2">·</span>
                 </span>
-                <span v-if="article.author" class="text-sm text-gray-200/60">
-                  <span class="text-gray-200/40">·</span>
+              </div>
+
+              <!-- Title -->
+              <NuxtLink
+                :to="article._path"
+                class="block group/title"
+                :aria-label="`Read article: ${article.title || 'Blog post'}`"
+              >
+                <h2 class="text-xl font-serif text-white mb-3 group-hover/title:text-primary transition-colors leading-tight">
+                  {{ article.title }}
+                </h2>
+              </NuxtLink>
+
+              <!-- Description -->
+              <p v-if="article.description" class="text-gray-200/70 text-sm mb-4 flex-grow line-clamp-3">
+                {{ article.description }}
+              </p>
+
+              <!-- Author + Date -->
+              <footer class="flex items-center gap-3 mt-auto pt-4 border-t border-primary/10">
+                <div class="flex flex-col">
                   <NuxtLink
+                    v-if="article.author"
                     :to="article.authorUrl || '/jan-mayer'"
-                    class="hover:text-primary transition-colors"
+                    class="text-sm text-white hover:text-primary transition-colors"
                     aria-label="Author page"
                   >
                     {{ article.author }}
                   </NuxtLink>
-                </span>
-                <span v-if="article.tags" class="flex flex-wrap gap-2">
-                  <span
-                    v-for="tag in article.tags"
-                    :key="tag"
-                    class="px-3 py-1 text-xs bg-primary/10 text-primary rounded-full border border-primary/20"
-                  >
-                    {{ tag }}
-                  </span>
-                </span>
-              </div>
-
-              <NuxtLink
-                :to="article._path"
-                class="block"
-                :aria-label="`Read article: ${article.title || 'Blog post'}`"
-              >
-                <h2 class="text-2xl font-serif text-white mb-3 group-hover:text-primary transition-colors">
-                  {{ article.title }}
-                </h2>
-
-                <p v-if="article.description" class="text-gray-200/70 mb-4">
-                  {{ article.description }}
-                </p>
-
-                <div class="flex items-center text-primary font-medium">
-                  Read more
-                  <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-                  </svg>
+                  <time class="text-xs text-gray-200/60">
+                    {{ formatDate(article.date) }}
+                  </time>
                 </div>
-              </NuxtLink>
+              </footer>
             </div>
           </article>
         </div>
