@@ -23,11 +23,25 @@ import AppHeader from '~/components/layout/AppHeader.vue'
 import AppFooter from '~/components/layout/AppFooter.vue'
 import Breadcrumb from '~/components/ui/Breadcrumb.vue'
 
-// Set up page metadata
-useHead({
+const route = useRoute()
+const canonicalUrl = computed(() => `https://heyjan.de${route.path}`)
+
+useSeoMeta({
   title: 'Get In Touch - Jan Mayer',
-  meta: [
-    { name: 'description', content: 'Get in touch with Jan Mayer for AI consulting, enterprise solution architecture, and full-stack development projects. Based in Ulm, Germany; available for remote work.' }
-  ]
+  description: 'Get in touch with Jan Mayer for AI consulting, enterprise solution architecture, and full-stack development projects. Based in Ulm, Germany; available for remote work.',
+  ogTitle: 'Get In Touch - Jan Mayer',
+  ogDescription: 'Get in touch with Jan Mayer for AI consulting, enterprise solution architecture, and full-stack development projects. Based in Ulm, Germany; available for remote work.',
+  ogImage: 'https://heyjan.de/images/profile.jpg',
+  ogUrl: canonicalUrl.value,
+  ogType: 'website',
+  ogSiteName: 'Jan Mayer',
+  twitterCard: 'summary_large_image',
+  twitterTitle: 'Get In Touch - Jan Mayer',
+  twitterDescription: 'Get in touch with Jan Mayer for AI consulting and full-stack development projects.',
+  twitterImage: 'https://heyjan.de/images/profile.jpg',
+})
+
+useHead({
+  link: [{ rel: 'canonical', href: canonicalUrl.value }],
 })
 </script>

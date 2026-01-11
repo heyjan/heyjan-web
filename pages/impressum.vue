@@ -69,11 +69,26 @@ import AppHeader from '~/components/layout/AppHeader.vue'
 import AppFooter from '~/components/layout/AppFooter.vue'
 import Breadcrumb from '~/components/ui/Breadcrumb.vue'
 
-useHead({
+const route = useRoute()
+const canonicalUrl = computed(() => `https://heyjan.de${route.path}`)
+
+useSeoMeta({
   title: 'Impressum - Jan Mayer',
-  meta: [
-    { name: 'description', content: 'Impressum von Jan Mayer, AI Solution Architect aus Ulm. Rechtliche Angaben gemäß § 5 TMG, Kontaktinformationen und Haftungsausschluss.' }
-  ]
+  description: 'Impressum von Jan Mayer, AI Solution Architect aus Ulm. Rechtliche Angaben gemäß § 5 TMG, Kontaktinformationen und Haftungsausschluss.',
+  ogTitle: 'Impressum - Jan Mayer',
+  ogDescription: 'Impressum von Jan Mayer, AI Solution Architect aus Ulm. Rechtliche Angaben gemäß § 5 TMG, Kontaktinformationen und Haftungsausschluss.',
+  ogImage: 'https://heyjan.de/images/profile.jpg',
+  ogUrl: canonicalUrl.value,
+  ogType: 'website',
+  ogSiteName: 'Jan Mayer',
+  twitterCard: 'summary_large_image',
+  twitterTitle: 'Impressum - Jan Mayer',
+  twitterDescription: 'Impressum von Jan Mayer, AI Solution Architect aus Ulm.',
+  twitterImage: 'https://heyjan.de/images/profile.jpg',
+})
+
+useHead({
+  link: [{ rel: 'canonical', href: canonicalUrl.value }],
 })
 </script>
 

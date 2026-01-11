@@ -192,11 +192,26 @@ import AppHeader from '~/components/layout/AppHeader.vue'
 import AppFooter from '~/components/layout/AppFooter.vue'
 import Breadcrumb from '~/components/ui/Breadcrumb.vue'
 
-useHead({
+const route = useRoute()
+const canonicalUrl = computed(() => `https://heyjan.de${route.path}`)
+
+useSeoMeta({
   title: 'Datenschutzerklärung - Jan Mayer',
-  meta: [
-    { name: 'description', content: 'Datenschutzerklärung von Jan Mayer gemäß DSGVO. Informationen zur Datenerhebung, Speicherung und Verarbeitung personenbezogener Daten auf heyjan.de.' }
-  ]
+  description: 'Datenschutzerklärung von Jan Mayer gemäß DSGVO. Informationen zur Datenerhebung, Speicherung und Verarbeitung personenbezogener Daten auf heyjan.de.',
+  ogTitle: 'Datenschutzerklärung - Jan Mayer',
+  ogDescription: 'Datenschutzerklärung von Jan Mayer gemäß DSGVO. Informationen zur Datenerhebung, Speicherung und Verarbeitung personenbezogener Daten auf heyjan.de.',
+  ogImage: 'https://heyjan.de/images/profile.jpg',
+  ogUrl: canonicalUrl.value,
+  ogType: 'website',
+  ogSiteName: 'Jan Mayer',
+  twitterCard: 'summary_large_image',
+  twitterTitle: 'Datenschutzerklärung - Jan Mayer',
+  twitterDescription: 'Datenschutzerklärung von Jan Mayer gemäß DSGVO.',
+  twitterImage: 'https://heyjan.de/images/profile.jpg',
+})
+
+useHead({
+  link: [{ rel: 'canonical', href: canonicalUrl.value }],
 })
 </script>
 

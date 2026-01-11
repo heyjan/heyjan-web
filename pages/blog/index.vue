@@ -91,11 +91,26 @@ import AppHeader from '~/components/layout/AppHeader.vue'
 import AppFooter from '~/components/layout/AppFooter.vue'
 import Breadcrumb from '~/components/ui/Breadcrumb.vue'
 
-useHead({
+const route = useRoute()
+const canonicalUrl = computed(() => `https://heyjan.de${route.path}`)
+
+useSeoMeta({
   title: 'Blog | Jan Mayer',
-  meta: [
-    { name: 'description', content: 'Technical articles by Jan Mayer on web development, enterprise AI, Azure AI Foundry, RAG architectures, AI security, and modern full-stack development practices.' }
-  ]
+  description: 'Technical articles by Jan Mayer on web development, enterprise AI, Azure AI Foundry, RAG architectures, AI security, and modern full-stack development practices.',
+  ogTitle: 'Blog | Jan Mayer',
+  ogDescription: 'Technical articles by Jan Mayer on web development, enterprise AI, Azure AI Foundry, RAG architectures, AI security, and modern full-stack development practices.',
+  ogImage: 'https://heyjan.de/images/profile.jpg',
+  ogUrl: canonicalUrl.value,
+  ogType: 'website',
+  ogSiteName: 'Jan Mayer',
+  twitterCard: 'summary_large_image',
+  twitterTitle: 'Blog | Jan Mayer',
+  twitterDescription: 'Technical articles by Jan Mayer on web development, enterprise AI, Azure AI Foundry, and RAG architectures.',
+  twitterImage: 'https://heyjan.de/images/profile.jpg',
+})
+
+useHead({
+  link: [{ rel: 'canonical', href: canonicalUrl.value }],
 })
 
 const { data: articles, pending, error } = await useAsyncData('blog-articles', async () => {

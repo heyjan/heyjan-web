@@ -6,6 +6,8 @@
       <div class="section-padding">
         <div class="max-w-5xl mx-auto">
           <Breadcrumb />
+          <h1 class="text-4xl md:text-5xl font-serif text-white mb-4 mt-4">Curriculum Vitae</h1>
+          <div class="h-px bg-gradient-to-r from-primary via-gray-700 to-transparent mb-8"></div>
         </div>
       </div>
       
@@ -67,15 +69,15 @@ const route = useRoute()
 const canonicalUrl = computed(() => `https://heyjan.de${route.path}`)
 
 useSeoMeta({
-  title: 'CV',
+  title: 'Curriculum Vitae - Jan Mayer',
   description: 'Curriculum vitae of Jan Mayer; AI Solution Architect and Full-Stack Developer based in Ulm, Germany.',
-  ogTitle: 'CV - Jan Mayer',
+  ogTitle: 'Curriculum Vitae - Jan Mayer',
   ogDescription: 'Curriculum vitae of Jan Mayer; AI Solution Architect and Full-Stack Developer based in Ulm, Germany.',
   ogImage: 'https://heyjan.de/images/profile.jpg',
   ogUrl: canonicalUrl.value,
   ogType: 'profile',
   twitterCard: 'summary_large_image',
-  twitterTitle: 'CV - Jan Mayer',
+  twitterTitle: 'Curriculum Vitae - Jan Mayer',
   twitterDescription: 'Curriculum vitae of Jan Mayer; AI Solution Architect and Full-Stack Developer.',
   twitterImage: 'https://heyjan.de/images/profile.jpg',
 })
