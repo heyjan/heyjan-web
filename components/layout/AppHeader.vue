@@ -80,6 +80,7 @@
   const menuItems = [
     { name: 'Home', href: '/' },
     { name: 'About Jan Mayer', href: '/jan-mayer' },
+    { name: 'Case Studies', href: '/case-studies' },
     { name: 'Projects', href: '/projects' },
     { name: 'Blog', href: '/blog' },
     { name: 'CV', href: '/cv' },

@@ -5,7 +5,8 @@
     <main>
       <HeroSection />
       <ServicesSection />
-      <FeaturedProjects />
+      <FeaturedCaseStudy />
+      <!-- <FeaturedProjects /> -->
       <LatestPosts />
       <ContactSection />
     </main>
@@ -20,7 +21,8 @@ import { computed } from 'vue'
 import AppFooter from '~/components/layout/AppFooter.vue'
 import AppHeader from '~/components/layout/AppHeader.vue'
 import ContactSection from '~/components/sections/ContactSection.vue'
-import FeaturedProjects from '~/components/sections/FeaturedProjects.vue'
+import FeaturedCaseStudy from '~/components/sections/FeaturedCaseStudy.vue'
+// import FeaturedProjects from '~/components/sections/FeaturedProjects.vue'
 import HeroSection from '~/components/sections/HeroSection.vue'
 import LatestPosts from '~/components/sections/LatestPosts.vue'
 import ServicesSection from '~/components/sections/ServicesSection.vue'

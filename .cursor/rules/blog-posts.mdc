@@ -130,6 +130,7 @@ Apply these principles:
 **Image Specifications**:
 - **Width**: 1200px (standard)
 - **Height**: 630px (recommended for social sharing)
+- Convert with imagemagick
 - **Aspect ratio**: 16:9 or 1.91:1
 - **Format**: JPG or PNG
 - **File size**: Under 200KB (compressed)
