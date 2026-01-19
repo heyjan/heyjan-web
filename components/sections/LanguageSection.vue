@@ -1,8 +1,8 @@
 <template>
-  <div class="h-full flex flex-col" ref="sectionRef">
+  <div ref="sectionRef">
     <SectionTitle title="Languages" />
     
-    <div class="flex flex-col gap-4 flex-1">
+    <div class="flex flex-col gap-4">
       <div 
         v-for="language in languages" 
         :key="language.name"

@@ -1,8 +1,8 @@
 <template>
-  <div class="h-full flex flex-col" ref="sectionRef">
+  <div ref="sectionRef">
     <SectionTitle title="General Skills" />
     
-    <div class="flex flex-col gap-4 flex-1">
+    <div class="flex flex-col gap-4">
       <div 
         v-for="skill in skills" 
         :key="skill.name"

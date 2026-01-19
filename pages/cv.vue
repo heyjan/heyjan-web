@@ -11,31 +11,25 @@
         </div>
       </div>
       
-      <!-- Row 1: Skills | Work Experience -->
+      <!-- Row 1: Skills + Interests + Languages | Work Experience -->
       <div class="section-padding">
         <div class="max-w-5xl mx-auto">
           <div class="grid grid-cols-1 lg:grid-cols-2 gap-16">
-            <SkillsSection />
+            <div class="flex flex-col gap-8">
+              <SkillsSection />
+              <InterestsSection />
+              <LanguageSection />
+            </div>
             <WorkExperienceSection />
           </div>
         </div>
       </div>
       
-      <!-- Row 2: Interests | AI & Cloud -->
+      <!-- Row 2: AI & Cloud | Software -->
       <div class="section-padding bg-dark-200">
         <div class="max-w-5xl mx-auto">
           <div class="grid grid-cols-1 lg:grid-cols-2 gap-16">
-            <InterestsSection />
             <AIAndCloudSection />
-          </div>
-        </div>
-      </div>
-      
-      <!-- Row 3: Languages | Software -->
-      <div class="section-padding">
-        <div class="max-w-5xl mx-auto">
-          <div class="grid grid-cols-1 lg:grid-cols-2 gap-16">
-            <LanguageSection />
             <SoftwareSection />
           </div>
         </div>
