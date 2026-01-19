@@ -25,13 +25,15 @@
 import { ref, onMounted } from 'vue'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import { 
-  Sparkles, 
-  Network, 
-  MessageSquare, 
-  Layers, 
-  Database, 
-  Zap
+import {
+  Sparkles,
+  Network,
+  MessageSquare,
+  Layers,
+  Database,
+  Zap,
+  Cpu,
+  GitBranch
 } from 'lucide-vue-next'
 import SectionTitle from '~/components/ui/SectionTitle.vue'
 import SkillRating from '~/components/ui/SkillRating.vue'
@@ -40,10 +42,15 @@ const sectionRef = ref(null)
 
 const expertiseList = ref([
   { name: 'Azure AI Foundry', rating: 5, icon: Sparkles },
+  { name: 'NVIDIA Ecosystem', rating: 4, icon: Cpu },
   { name: 'LangChain / RAG Architecture', rating: 5, icon: Network },
   { name: 'Prompt Engineering', rating: 5, icon: MessageSquare },
+  { name: 'ETL Pipelines', rating: 4, icon: Database },
+  { name: 'SQL & API Integrations', rating: 4, icon: Network },
   { name: 'Solution Architecture', rating: 5, icon: Layers },
   { name: 'Vector Databases', rating: 4, icon: Database },
+  { name: 'FastAPI', rating: 4, icon: Zap },
+  { name: 'CI/CD Pipelines', rating: 4, icon: GitBranch },
   { name: 'n8n Automation Workflow', rating: 5, icon: Zap },
 ])
 

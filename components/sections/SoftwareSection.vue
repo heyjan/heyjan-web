@@ -25,12 +25,11 @@
 import { ref, onMounted } from 'vue'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import { 
-  PanelsTopLeft, 
-  Code, 
-  GitBranch, 
-  Container, 
-  Cloud, 
+import {
+  Code,
+  GitBranch,
+  Container,
+  Cloud,
   Database,
   CloudUpload
 } from 'lucide-vue-next'
@@ -40,7 +39,6 @@ import SkillRating from '~/components/ui/SkillRating.vue'
 const sectionRef = ref(null)
 
 const softwareList = ref([
-  { name: 'Wordpress', rating: 5, icon: PanelsTopLeft },
   { name: 'VS Code / Cursor', rating: 5, icon: Code },
   { name: 'Git', rating: 4, icon: GitBranch },
   { name: 'Docker', rating: 4, icon: Container },

@@ -25,19 +25,15 @@
 import { ref, onMounted } from 'vue'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import { 
-  Swords, 
-  TrendingUp, 
-  Cpu
+import {
+  Swords
 } from 'lucide-vue-next'
 import SectionTitle from '~/components/ui/SectionTitle.vue'
 
 const sectionRef = ref(null)
 
 const interests = ref([
-  { name: 'Brazilian Jiu Jitsu', detail: 'Brown Belt', icon: Swords },
-  { name: 'Financial Markets', icon: TrendingUp },
-  { name: 'Technology', icon: Cpu },
+  { name: 'Brazilian Jiu Jitsu', detail: '9 Years - Brown Belt', icon: Swords },
 ])
 
 onMounted(() => {

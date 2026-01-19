@@ -5,17 +5,18 @@ date: '2026-01-14'
 author: Jan Mayer
 authorUrl: /jan-mayer
 publisher: Jan Mayer
-keywords: Joomla, Kunena, Datenextraktion, DDEV, CodeIgniter, Datenmigration, Legacy-System
+keywords: Joomla, Kunena, Datenextraktion, DDEV, CodeIgniter, Datenmigration, Legacy-System, Azure AI Search
 tags:
   - Datenmigration
   - Legacy-System
   - DDEV
   - CodeIgniter
+  - Azure AI Search
 image: /images/case-studies/fallstudie-joomla.png
 imageTitle: Joomla Forum Datenextraktion Dashboard
 client: Internes Projekt
 industry: Datenmanagement
-duration: In Arbeit
+duration: 2 Tage (Extraktion), fortlaufend
 status: draft
 ---
 
@@ -84,15 +85,31 @@ Relativ schnell haben wir die Tabelle `jom25_kunena_messages` als Point of Inter
 
 `parent 0` steht hierbei für den ersten Beitrag eines Forenpost. Alles mit einer parent ID verweist auf den ursprünglichen Beitrag.
 
-## Nächste Schritte
+## Erstes Ziel erreicht: Tabellenrelationen
 
-Mit diesen Informationen müssen wir als nächstes:
+Nach zwei Tagen Detektivarbeit haben wir unser erstes Ziel erreicht: Die Relation zwischen Beitrag, User und Antwort steht.
 
-- Die einzelnen Posts rekonstruieren
-- Die ursprüngliche Frage identifizieren
-- Unseren Admin Account identifizieren, der die Antworten beinhaltet
-- Irrelevante Beiträge filtern
+Von ursprünglich 150 Joomla-Tabellen sind nur noch 5 übrig. Der Rest war entweder irrelevant oder Systemtabellen ohne Nutzdaten.
+
+Jetzt können wir alle User-Posts extrahieren und in eine nutzbare JSON-Struktur bringen:
+
+![JSON Export der Forendaten](/images/case-studies/joomla-json-export.png)
+
+## Nächste Schritte: Dataset und Evaluation
+
+Mit den strukturierten Daten beginnt die eigentliche Arbeit:
+
+**Dataset aufbereiten**
+- Daten bereinigen und validieren
+- Sample von 100 Q/A-Paaren erstellen
+- Export als JSONL für Azure AI Search
+- Erste Evaluation der Suchergebnisse
+
+**Dashboard erweitern**
+- UI aufräumen und optimieren
+- Q/A Evaluation System für Techniker bauen
+- Bewertungsmöglichkeit für Antwortqualität
 
 ## Aktueller Stand
 
-Diese Fallstudie ist noch in Arbeit. Die nächsten Schritte werden die eigentliche Datenbereinigung und Strukturierung dokumentieren.
+Die Datenextraktion ist abgeschlossen. Die nächste Phase konzentriert sich auf die Datenqualität und den Aufbau eines Evaluation-Systems.

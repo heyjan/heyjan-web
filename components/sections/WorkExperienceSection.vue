@@ -31,27 +31,27 @@ const sectionRef = ref(null)
 
 const workExperience = ref([
   {
-    title: 'Self-employed Developer & AI Consultant',
-    company: 'heyjan',
-    period: '2017 - present',
+    title: 'Freelance Web Development',
+    company: 'HEYJAN.DE',
+    period: '2016 - present',
     description: [
-      'Developed and maintained web applications',
-      'Collaborated with clients to deliver custom solutions'
+      'Frontend and backend development projects for startups',
+      'Collaboration with management, marketing and other developers'
     ],
-    tags: ['Wordpress', 'Docker','Nuxt', 'FastAPI'],
+    tags: ['Docker', 'Nuxt', 'FastAPI'],
     icon: User
   },
   {
-    title: 'Full-Stack Web Developer & AI Specialist',
-    company: 'LIQUI MOLY',
-    period: '2024 - present',
+    title: 'Full Stack Developer / AI Solution Architect',
+    company: 'LIQUI MOLY GmbH',
+    period: '09/2024 - present',
     description: [
-      'Designing RAG systems for internal knowledge management',
-      'Leading AI transformation initiatives and proof-of-concepts',
-      'Built scalable web applications',
-      'Implemented CI/CD pipelines'
+      'Building AI competence from requirements analysis to implementation',
+      'Evaluation and selection of Microsoft AI solutions under Würth Group IT governance',
+      'Identification and assessment of AI use cases with business departments',
+      'Managing PoCs through to planned production release Q1/Q2 2026'
     ],
-    tags: ['Azure AI Foundry', 'Docker', 'Python', 'Azure', 'PHP', ],
+    tags: ['Azure AI Foundry', 'Docker', 'Python', 'Azure', 'PHP'],
     icon: Building2
   },
   {

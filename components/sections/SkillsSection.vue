@@ -23,10 +23,9 @@
 <script setup>
 import { ref, onMounted } from 'vue'
 import { gsap } from 'gsap'
-import { 
-  Brain, 
-  Palette, 
-  Puzzle, 
+import {
+  Brain,
+  Puzzle,
   HandMetal
 } from 'lucide-vue-next'
 import SectionTitle from '~/components/ui/SectionTitle.vue'
@@ -35,9 +34,8 @@ const sectionRef = ref(null)
 
 const skills = ref([
   { name: 'Analytical Thinking', icon: Brain },
-  { name: 'Creativity', icon: Palette },
-  { name: 'Problem Solving', icon: Puzzle },
-  { name: 'Hands-on mentality', icon: HandMetal },
+  { name: 'Solution-oriented Working', icon: Puzzle },
+  { name: 'Hands-on Mentality', icon: HandMetal },
 ])
 
 onMounted(() => {
