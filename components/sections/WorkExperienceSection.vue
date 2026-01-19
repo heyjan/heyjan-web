@@ -31,17 +31,6 @@ const sectionRef = ref(null)
 
 const workExperience = ref([
   {
-    title: 'Freelance Web Development',
-    company: 'HEYJAN.DE',
-    period: '2016 - present',
-    description: [
-      'Frontend and backend development projects for startups',
-      'Collaboration with management, marketing and other developers'
-    ],
-    tags: ['Docker', 'Nuxt', 'FastAPI'],
-    icon: User
-  },
-  {
     title: 'Full Stack Developer / AI Solution Architect',
     company: 'LIQUI MOLY GmbH',
     period: '09/2024 - present',
@@ -53,6 +42,17 @@ const workExperience = ref([
     ],
     tags: ['Azure AI Foundry', 'Docker', 'Python', 'Azure', 'PHP'],
     icon: Building2
+  },
+  {
+    title: 'Freelance Web Development',
+    company: 'HEYJAN.DE',
+    period: '2016 - present',
+    description: [
+      'Frontend and backend development projects for startups',
+      'Collaboration with management, marketing and other developers'
+    ],
+    tags: ['Docker', 'Nuxt', 'FastAPI'],
+    icon: User
   },
   {
     title: 'Wohngruppenleitung Wohnheim',
