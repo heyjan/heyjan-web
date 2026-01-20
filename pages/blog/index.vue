@@ -114,17 +114,17 @@ const route = useRoute()
 const canonicalUrl = computed(() => `https://heyjan.de${route.path}`)
 
 useSeoMeta({
-  title: 'Blog | Jan Mayer',
-  description: 'Technical articles by Jan Mayer on web development, enterprise AI, Azure AI Foundry, RAG architectures, AI security, and modern full-stack development practices.',
-  ogTitle: 'Blog | Jan Mayer',
-  ogDescription: 'Technical articles by Jan Mayer on web development, enterprise AI, Azure AI Foundry, RAG architectures, AI security, and modern full-stack development practices.',
+  title: 'Blog',
+  description: 'Technical articles on enterprise AI, Azure AI Foundry, RAG architectures, and full-stack development.',
+  ogTitle: 'Blog - Jan Mayer',
+  ogDescription: 'Technical articles on enterprise AI, Azure AI Foundry, RAG architectures, and full-stack development.',
   ogImage: 'https://heyjan.de/images/profile.jpg',
   ogUrl: canonicalUrl.value,
   ogType: 'website',
   ogSiteName: 'Jan Mayer',
   twitterCard: 'summary_large_image',
-  twitterTitle: 'Blog | Jan Mayer',
-  twitterDescription: 'Technical articles by Jan Mayer on web development, enterprise AI, Azure AI Foundry, and RAG architectures.',
+  twitterTitle: 'Blog - Jan Mayer',
+  twitterDescription: 'Technical articles on enterprise AI, Azure AI Foundry, RAG architectures, and full-stack development.',
   twitterImage: 'https://heyjan.de/images/profile.jpg',
 })
 

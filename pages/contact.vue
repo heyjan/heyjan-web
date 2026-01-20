@@ -27,17 +27,17 @@ const route = useRoute()
 const canonicalUrl = computed(() => `https://heyjan.de${route.path}`)
 
 useSeoMeta({
-  title: 'Get In Touch - Jan Mayer',
-  description: 'Get in touch with Jan Mayer for AI consulting, enterprise solution architecture, and full-stack development projects. Based in Ulm, Germany; available for remote work.',
-  ogTitle: 'Get In Touch - Jan Mayer',
-  ogDescription: 'Get in touch with Jan Mayer for AI consulting, enterprise solution architecture, and full-stack development projects. Based in Ulm, Germany; available for remote work.',
+  title: 'Contact',
+  description: 'Contact Jan Mayer for AI consulting, solution architecture, and full-stack development. Based in Ulm, Germany.',
+  ogTitle: 'Contact - Jan Mayer',
+  ogDescription: 'Contact Jan Mayer for AI consulting, solution architecture, and full-stack development. Based in Ulm, Germany.',
   ogImage: 'https://heyjan.de/images/profile.jpg',
   ogUrl: canonicalUrl.value,
   ogType: 'website',
   ogSiteName: 'Jan Mayer',
   twitterCard: 'summary_large_image',
-  twitterTitle: 'Get In Touch - Jan Mayer',
-  twitterDescription: 'Get in touch with Jan Mayer for AI consulting and full-stack development projects.',
+  twitterTitle: 'Contact - Jan Mayer',
+  twitterDescription: 'Contact Jan Mayer for AI consulting and full-stack development projects.',
   twitterImage: 'https://heyjan.de/images/profile.jpg',
 })
 

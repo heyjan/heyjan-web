@@ -1,6 +1,6 @@
 ---
 title: Getting Started with Nuxt Content
-description: Step-by-step tutorial on setting up Nuxt Content for building a blog system. Covers installation, Markdown configuration, content querying, and Vue component integration.
+description: Set up Nuxt Content for your blog. Installation, Markdown config, content querying, and Vue integration.
 date: '2025-02-28'
 author: Jan Mayer
 authorUrl: /jan-mayer

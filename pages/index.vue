@@ -31,16 +31,15 @@ const route = useRoute()
 const canonicalUrl = computed(() => `https://heyjan.de${route.path}`)
 
 useSeoMeta({
-  title: 'Jan Mayer',
-  description: 'AI Solution Architect and Full-Stack Developer based in Ulm, Germany — enterprise AI, Azure AI Foundry, and RAG architectures.',
-  ogTitle: 'Jan Mayer',
-  ogDescription: 'AI Solution Architect and Full-Stack Developer based in Ulm, Germany — enterprise AI, Azure AI Foundry, and RAG architectures.',
+  description: 'AI Solution Architect and Full-Stack Developer based in Ulm, Germany. Enterprise AI, Azure AI Foundry, and RAG architectures.',
+  ogTitle: 'Jan Mayer - AI Solution Architect & Consultant',
+  ogDescription: 'AI Solution Architect and Full-Stack Developer based in Ulm, Germany. Enterprise AI, Azure AI Foundry, and RAG architectures.',
   ogImage: 'https://heyjan.de/images/profile.jpg',
   ogUrl: canonicalUrl.value,
   ogType: 'website',
   twitterCard: 'summary_large_image',
-  twitterTitle: 'Jan Mayer',
-  twitterDescription: 'AI Solution Architect and Full-Stack Developer — enterprise AI, Azure AI Foundry, and RAG architectures.',
+  twitterTitle: 'Jan Mayer - AI Solution Architect & Consultant',
+  twitterDescription: 'AI Solution Architect and Full-Stack Developer. Enterprise AI, Azure AI Foundry, and RAG architectures.',
   twitterImage: 'https://heyjan.de/images/profile.jpg',
 })
 

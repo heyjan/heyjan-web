@@ -1,6 +1,6 @@
 ---
 title: Clawdbot - Your Personal AI Assistant 2026 Setup Guide
-description: Your phone buzzes. It's 8 AM, and your AI assistant has already checked your calendar, read your emails, and sent you a morning briefing through WhatsApp. Set up Clawdbot on Hetzner VPS with Tailscale security. Complete self-hosted AI assistant guide.
+description: Deploy Clawdbot on Hetzner VPS with Tailscale security. Self-hosted AI assistant for WhatsApp and Telegram.
 date: '2026-01-11'
 author: Jan Mayer
 authorUrl: /jan-mayer
