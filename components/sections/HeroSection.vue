@@ -45,18 +45,12 @@
         
         <!-- CTA Buttons -->
         <div class="flex gap-4" ref="buttonsRef">
-          <NuxtLink
-            to="/jan-mayer"
-            class="px-6 py-3 bg-primary text-white font-medium rounded-lg hover:bg-primary/90 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-primary/25"
-          >
+          <UiDitherButton to="/jan-mayer" variant="primary" size="md">
             About Jan Mayer
-          </NuxtLink>
-          <NuxtLink
-            to="/cv"
-            class="px-6 py-3 border border-primary text-primary font-medium rounded-lg hover:bg-primary hover:text-white transition-all duration-300 hover:scale-105"
-          >
+          </UiDitherButton>
+          <UiDitherButton to="/cv" variant="secondary" size="md">
             View CV
-          </NuxtLink>
+          </UiDitherButton>
         </div>
       </div>
       
@@ -185,25 +179,6 @@
       ease: 'elastic.out(1, 0.3)'
     }, '-=0.6')
     
-    // Add hover effects for buttons
-    const buttons = buttonsRef.value?.querySelectorAll('button')
-    buttons?.forEach(button => {
-      button.addEventListener('mouseenter', () => {
-        gsap.to(button, {
-          scale: 1.05,
-          duration: 0.3,
-          ease: 'power2.out'
-        })
-      })
-      
-      button.addEventListener('mouseleave', () => {
-        gsap.to(button, {
-          scale: 1,
-          duration: 0.3,
-          ease: 'power2.out'
-        })
-      })
-    })
   })
   </script>
   
@@ -229,24 +204,4 @@
     background-clip: text;
   }
   
-  /* Enhanced button hover effects */
-  button {
-    position: relative;
-    overflow: hidden;
-  }
-  
-  button::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-    transition: left 0.5s;
-  }
-  
-  button:hover::before {
-    left: 100%;
-  }
   </style>

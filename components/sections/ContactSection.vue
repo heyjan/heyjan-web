@@ -116,14 +116,16 @@
 
         <!-- Submit Button -->
         <div ref="buttonRef">
-          <button
+          <UiDitherButton
             type="submit"
+            variant="primary"
+            size="lg"
             :disabled="isSubmitting"
-            class="w-full px-8 py-3 bg-primary text-white font-medium rounded-lg hover:bg-primary/90 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-primary/25 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
+            class="w-full"
           >
             <span v-if="!isSubmitting">Send Message</span>
             <span v-else>Sending...</span>
-          </button>
+          </UiDitherButton>
         </div>
 
         <!-- Success Message -->
