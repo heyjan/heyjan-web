@@ -1,5 +1,5 @@
 <template>
-  <div class="min-h-screen bg-dark-300">
+  <div class="min-h-screen bg-background">
     <AppHeader />
     
     <main class="section-padding">
@@ -7,10 +7,10 @@
         <Breadcrumb :custom-title="caseStudy?.title" />
         
         <div v-if="pending" class="text-center py-12">
-          <p class="text-gray-200/60">Loading case study...</p>
+          <p class="text-text-muted/60">Loading case study...</p>
         </div>
 
-        <div v-else-if="caseStudy" class="bg-dark-100/40 border border-primary/10 rounded-lg overflow-hidden mt-4">
+        <div v-else-if="caseStudy" class="bg-surface border border-border rounded-lg overflow-hidden mt-4 shadow-sm">
           <article class="p-8 md:p-12">
             <div class="mb-8">
               <NuxtLink 
@@ -36,22 +36,22 @@
                 loading="lazy"
               />
 
-              <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6 p-4 bg-dark-200/50 rounded-lg border border-primary/10">
+              <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6 p-4 bg-background rounded-lg border border-border">
                 <div v-if="caseStudy.meta?.client">
-                  <span class="text-xs text-gray-400 uppercase tracking-wider">Client</span>
-                  <p class="text-white font-medium">{{ caseStudy.meta.client }}</p>
+                  <span class="text-xs text-text-muted uppercase tracking-wider">Client</span>
+                  <p class="text-text font-medium">{{ caseStudy.meta.client }}</p>
                 </div>
                 <div v-if="caseStudy.meta?.industry">
-                  <span class="text-xs text-gray-400 uppercase tracking-wider">Industry</span>
-                  <p class="text-white font-medium">{{ caseStudy.meta.industry }}</p>
+                  <span class="text-xs text-text-muted uppercase tracking-wider">Industry</span>
+                  <p class="text-text font-medium">{{ caseStudy.meta.industry }}</p>
                 </div>
                 <div v-if="caseStudy.meta?.duration">
-                  <span class="text-xs text-gray-400 uppercase tracking-wider">Duration</span>
-                  <p class="text-white font-medium">{{ caseStudy.meta.duration }}</p>
+                  <span class="text-xs text-text-muted uppercase tracking-wider">Duration</span>
+                  <p class="text-text font-medium">{{ caseStudy.meta.duration }}</p>
                 </div>
                 <div v-if="caseStudy.meta?.date">
-                  <span class="text-xs text-gray-400 uppercase tracking-wider">Published</span>
-                  <p class="text-white font-medium">{{ formatDate(caseStudy.meta.date) }}</p>
+                  <span class="text-xs text-text-muted uppercase tracking-wider">Published</span>
+                  <p class="text-text font-medium">{{ formatDate(caseStudy.meta.date) }}</p>
                 </div>
               </div>
               
@@ -73,11 +73,11 @@
         </div>
 
         <div v-else class="text-center py-12">
-          <h1 class="text-2xl font-serif text-white mb-4">Case Study Not Found</h1>
-          <p class="text-gray-200/70 mb-6">The case study you're looking for doesn't exist.</p>
+          <h1 class="text-2xl font-serif text-text mb-4">Case Study Not Found</h1>
+          <p class="text-text-muted mb-6">The case study you're looking for doesn't exist.</p>
           <NuxtLink 
             to="/case-studies" 
-            class="inline-block px-6 py-3 bg-primary hover:bg-primary/90 text-dark-300 rounded-lg transition-colors font-medium"
+            class="inline-block px-6 py-3 bg-primary hover:bg-primary/90 text-white rounded-lg transition-colors font-medium"
           >
             Back to Case Studies
           </NuxtLink>
@@ -197,7 +197,7 @@ const formatDate = (date) => {
 
 <style>
 .prose {
-  color: #E5E5E5;
+  color: #1A1A1A;
 }
 
 .prose h2 {
@@ -225,13 +225,13 @@ const formatDate = (date) => {
 .prose p {
   margin-bottom: 1rem;
   line-height: 1.75;
-  color: #E5E5E5;
+  color: #1A1A1A;
 }
 
 .prose ul, .prose ol {
   margin-bottom: 1rem;
   margin-left: 1.5rem;
-  color: #E5E5E5;
+  color: #1A1A1A;
 }
 
 .prose li {
@@ -239,18 +239,19 @@ const formatDate = (date) => {
 }
 
 .prose code {
-  background-color: #252525;
+  background-color: #E8EEF7;
   padding: 0.25rem 0.5rem;
   border-radius: 0.25rem;
   font-size: 0.875rem;
   font-family: monospace;
-  color: #E5E5E5;
+  color: #3055A6;
+  border: 1px solid rgba(48, 85, 166, 0.15);
 }
 
 .prose pre {
-  background-color: #E5E5E5;
-  border: 1px solid rgba(212, 165, 116, 0.2);
-  color: #1E1E1E;
+  background-color: #F8F9FC;
+  border: 1px solid rgba(48, 85, 166, 0.2);
+  color: #1A1A1A;
   padding: 1rem;
   border-radius: 0.5rem;
   overflow-x: auto;
@@ -261,7 +262,8 @@ const formatDate = (date) => {
 .prose pre code {
   background-color: transparent;
   padding: 0;
-  color: #1E1E1E;
+  color: #1A1A1A;
+  border: none;
 }
 
 .prose a {
@@ -279,7 +281,7 @@ const formatDate = (date) => {
 }
 
 .prose a:hover {
-  color: rgba(212, 165, 116, 0.8);
+  color: rgba(48, 85, 166, 0.8);
 }
 
 .prose blockquote {
@@ -287,11 +289,14 @@ const formatDate = (date) => {
   padding-left: 1rem;
   font-style: italic;
   margin: 1rem 0;
-  color: #A1A1A1;
+  color: #5A5A5A;
+  background-color: rgba(254, 222, 199, 0.2);
+  padding: 1rem;
+  border-radius: 0 0.5rem 0.5rem 0;
 }
 
 .prose strong {
-  color: white;
+  color: #1A1A1A;
   font-weight: 600;
 }
 </style>

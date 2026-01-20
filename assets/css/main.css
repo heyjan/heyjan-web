@@ -9,10 +9,19 @@
 }
 
 @theme {
-  --color-primary: #D4A574;
-  --color-dark-100: #2D2D2D;
-  --color-dark-200: #252525;
-  --color-dark-300: #1E1E1E;
+  --color-primary: #3055A6;
+  --color-highlight: #FEDEC7;
+  --color-background: #F5F5F5;
+  --color-surface: #FFFFFF;
+  --color-surface-alt: #EBEBEB;
+  --color-text: #1A1A1A;
+  --color-text-muted: #5A5A5A;
+  --color-border: #D1D1D1;
+  
+  /* Legacy aliases for gradual migration */
+  --color-dark-100: #EBEBEB;
+  --color-dark-200: #F0F0F0;
+  --color-dark-300: #F5F5F5;
   
   --font-serif: 'TT Travels Text', serif;
   --font-sans: 'Inter', sans-serif;
@@ -20,11 +29,11 @@
 
 @layer base {
     body {
-      @apply bg-dark-300 text-gray-200 font-sans;
+      @apply bg-background text-text font-sans;
     }
     
     h1, h2, h3, h4, h5, h6 {
-      @apply font-serif;
+      @apply font-serif text-text;
     }
   }
 
@@ -34,7 +43,7 @@
     }
     
     .divider-line {
-      @apply h-px bg-gradient-to-r from-transparent via-gray-700 to-transparent my-12;
+      @apply h-px bg-gradient-to-r from-transparent via-border to-transparent my-12;
     }
   }
 

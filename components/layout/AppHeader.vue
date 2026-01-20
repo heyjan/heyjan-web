@@ -1,7 +1,7 @@
 <template>
     <header 
       class="fixed top-0 left-0 right-0 z-50 transition-all duration-300"
-      :class="{ 'bg-dark-300/95 backdrop-blur-sm shadow-lg': scrolled }"
+      :class="{ 'bg-background/95 backdrop-blur-sm shadow-lg': scrolled }"
     >
       <nav class="px-6 md:px-12 lg:px-20 py-4 flex justify-between items-center">
         <button 
@@ -30,10 +30,10 @@
             :href="social.url"
             target="_blank"
             rel="noopener noreferrer"
-            class="w-10 h-10 rounded-full bg-dark-100 flex items-center justify-center hover:bg-primary hover:scale-110 transition-all"
+            class="group w-10 h-10 rounded-full bg-surface border border-border flex items-center justify-center hover:bg-primary hover:border-primary hover:scale-110 transition-all"
             :aria-label="social.name"
           >
-            <component :is="social.icon" class="w-5 h-5 text-white" />
+            <component :is="social.icon" class="w-5 h-5 text-primary group-hover:text-white transition-colors" />
           </a>
         </div>
       </nav>
@@ -42,7 +42,7 @@
       <Transition name="slide">
         <div 
           v-if="menuOpen"
-          class="absolute top-full left-0 right-0 bg-dark-300/98 backdrop-blur-sm border-t border-gray-800"
+          class="absolute top-full left-0 right-0 bg-background/98 backdrop-blur-sm border-t border-border"
         >
           <div class="px-6 md:px-12 lg:px-20 py-8">
             <nav class="space-y-4">
@@ -51,7 +51,7 @@
                 :key="item.name"
                 :href="item.href"
                 @click.prevent="handleNavClick(item.href)"
-                class="block text-2xl font-serif text-white hover:text-primary transition-colors"
+                class="block text-2xl font-serif text-text hover:text-primary transition-colors"
               >
                 {{ item.name }}
               </a>

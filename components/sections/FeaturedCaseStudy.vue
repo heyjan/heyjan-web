@@ -15,7 +15,7 @@
       <NuxtLink
         v-if="featured"
         :to="`/case-studies/${featured.slug}`"
-        class="bg-dark-100/40 border border-primary/10 rounded-lg overflow-hidden hover:border-primary/30 transition-all block group"
+        class="bg-surface border border-border rounded-lg overflow-hidden hover:border-primary/50 transition-all block group shadow-sm"
       >
         <div class="flex flex-col md:flex-row">
           <div v-if="featured.image" class="md:w-2/5 flex-shrink-0">
@@ -27,10 +27,10 @@
             />
           </div>
           <div class="p-6 md:p-8 flex flex-col justify-center" :class="featured.image ? 'md:w-3/5' : 'w-full'">
-            <h3 class="text-xl md:text-2xl font-serif text-white mb-3 group-hover:text-primary transition-colors">
+            <h3 class="text-xl md:text-2xl font-serif text-text mb-3 group-hover:text-primary transition-colors">
               {{ featured.title }}
             </h3>
-            <p class="text-gray-200/70 leading-relaxed mb-4">
+            <p class="text-text-muted leading-relaxed mb-4">
               {{ featured.description }}
             </p>
 

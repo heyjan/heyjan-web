@@ -6,8 +6,8 @@
       <div class="section-padding">
         <div class="max-w-5xl mx-auto">
           <Breadcrumb />
-          <h1 class="text-4xl md:text-5xl font-serif text-white mb-4 mt-4">Curriculum Vitae</h1>
-          <div class="h-px bg-gradient-to-r from-primary via-gray-700 to-transparent mb-8"></div>
+          <h1 class="text-4xl md:text-5xl font-serif text-text mb-4 mt-4">Curriculum Vitae</h1>
+          <div class="h-px bg-gradient-to-r from-primary via-border to-transparent mb-8"></div>
         </div>
       </div>
       
@@ -26,7 +26,7 @@
       </div>
       
       <!-- Row 2: AI & Cloud | Software -->
-      <div class="section-padding bg-dark-200">
+      <div class="section-padding bg-surface">
         <div class="max-w-5xl mx-auto">
           <div class="grid grid-cols-1 lg:grid-cols-2 gap-16">
             <AIAndCloudSection />

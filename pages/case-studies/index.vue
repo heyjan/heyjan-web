@@ -1,15 +1,15 @@
 <template>
-  <div class="min-h-screen bg-dark-300">
+  <div class="min-h-screen bg-background">
     <AppHeader />
 
     <main class="section-padding">
       <div class="max-w-4xl mx-auto">
         <Breadcrumb />
 
-        <h1 class="text-4xl md:text-5xl font-serif text-white mb-4 mt-4">Case Studies</h1>
-        <div class="h-px bg-gradient-to-r from-primary via-gray-700 to-transparent mb-8" />
+        <h1 class="text-4xl md:text-5xl font-serif text-text mb-4 mt-4">Case Studies</h1>
+        <div class="h-px bg-gradient-to-r from-primary via-border to-transparent mb-8" />
 
-        <p class="text-lg text-gray-200/70 mb-12">
+        <p class="text-lg text-text-muted mb-12">
           Real-world implementations and their outcomes. Each case study documents the challenge, approach, and measurable results.
         </p>
 
@@ -18,7 +18,7 @@
             v-for="study in casestudies"
             :key="study.slug"
             :to="`/case-studies/${study.slug}`"
-            class="bg-dark-100/40 border border-primary/10 rounded-lg overflow-hidden hover:border-primary/30 transition-all block group"
+            class="bg-surface border border-border rounded-lg overflow-hidden hover:border-primary/50 transition-all block group shadow-sm"
           >
             <div class="flex flex-col md:flex-row">
               <div v-if="study.image" class="md:w-2/5 flex-shrink-0">
@@ -30,10 +30,10 @@
                 />
               </div>
               <div class="p-6 flex flex-col justify-center" :class="study.image ? 'md:w-3/5' : 'w-full'">
-                <h2 class="text-xl md:text-2xl font-serif text-white mb-3 group-hover:text-primary transition-colors">
+                <h2 class="text-xl md:text-2xl font-serif text-text mb-3 group-hover:text-primary transition-colors">
                   {{ study.title }}
                 </h2>
-                <p class="text-gray-200/70 leading-relaxed mb-4 text-sm md:text-base">
+                <p class="text-text-muted leading-relaxed mb-4 text-sm md:text-base">
                   {{ study.description }}
                 </p>
 

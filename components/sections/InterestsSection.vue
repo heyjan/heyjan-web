@@ -6,15 +6,14 @@
       <div 
         v-for="interest in interests" 
         :key="interest.name"
-        class="flex items-center gap-4 p-4 rounded-lg bg-dark-100/50 hover:bg-dark-100 transition-all group"
-        style="border: 1px solid #333;"
+        class="flex items-center gap-4 p-4 rounded-lg bg-surface hover:bg-highlight/20 transition-all group border border-border shadow-sm"
       >
-        <div class="w-10 h-10 rounded-lg bg-dark-300 flex items-center justify-center group-hover:scale-110 transition-transform">
+        <div class="w-10 h-10 rounded-lg bg-background flex items-center justify-center group-hover:scale-110 transition-transform border border-border">
           <component :is="interest.icon" class="w-6 h-6 text-primary" />
         </div>
         <div class="flex-1">
-          <span class="text-white font-medium">{{ interest.name }}</span>
-          <span v-if="interest.detail" class="text-gray-400 text-sm ml-2">{{ interest.detail }}</span>
+          <span class="text-text font-medium">{{ interest.name }}</span>
+          <span v-if="interest.detail" class="text-text-muted text-sm ml-2">{{ interest.detail }}</span>
         </div>
       </div>
     </div>

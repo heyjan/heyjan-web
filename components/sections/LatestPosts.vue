@@ -1,5 +1,5 @@
 <template>
-  <section class="section-padding bg-dark-200">
+  <section class="section-padding bg-surface">
     <div class="max-w-5xl mx-auto">
       <div class="flex items-end justify-between gap-6 mb-6">
         <SectionTitle title="Latest Writing" />
@@ -12,11 +12,11 @@
         </NuxtLink>
       </div>
 
-      <div v-if="pending" class="text-gray-200/60">
+      <div v-if="pending" class="text-text-muted">
         Loading posts...
       </div>
 
-      <div v-else-if="posts.length === 0" class="text-gray-200/60">
+      <div v-else-if="posts.length === 0" class="text-text-muted">
         No posts yet.
       </div>
 
@@ -24,16 +24,16 @@
         <article
           v-for="post in posts"
           :key="post._path"
-          class="rounded-lg bg-dark-100/40 border border-primary/10 hover:border-primary/30 transition-all overflow-hidden"
+          class="rounded-lg bg-background border border-border hover:border-primary/50 transition-all overflow-hidden shadow-sm"
         >
           <NuxtLink :to="post._path" class="block p-6">
-            <p v-if="post.date" class="text-sm text-gray-200/60 mb-3">
+            <p v-if="post.date" class="text-sm text-text-muted/70 mb-3">
               {{ formatDate(post.date) }}
             </p>
-            <h3 class="text-xl font-serif text-white mb-3">
+            <h3 class="text-xl font-serif text-text mb-3">
               {{ post.title }}
             </h3>
-            <p v-if="post.description" class="text-gray-200/70 leading-relaxed mb-4">
+            <p v-if="post.description" class="text-text-muted leading-relaxed mb-4">
               {{ post.description }}
             </p>
 

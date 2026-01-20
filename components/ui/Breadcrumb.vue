@@ -1,6 +1,6 @@
 <template>
   <nav aria-label="Breadcrumb" class="breadcrumb-container">
-    <ol class="flex items-center gap-2 text-sm text-gray-400">
+    <ol class="flex items-center gap-2 text-sm text-text-muted">
       <li>
         <NuxtLink 
           to="/" 
@@ -11,7 +11,7 @@
       </li>
       <template v-for="(item, index) in breadcrumbItems" :key="index">
         <li class="flex items-center gap-2">
-          <span class="text-gray-600">/</span>
+          <span class="text-border">/</span>
           <NuxtLink 
             v-if="item.to"
             :to="item.to"
@@ -21,7 +21,7 @@
           </NuxtLink>
           <span 
             v-else
-            class="text-gray-300"
+            class="text-text"
           >
             {{ item.label }}
           </span>

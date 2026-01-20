@@ -1,17 +1,17 @@
 <template>
-  <div class="min-h-screen bg-dark-300">
+  <div class="min-h-screen bg-background">
     <AppHeader />
 
     <main class="section-padding">
       <div class="max-w-4xl mx-auto">
         <Breadcrumb />
 
-        <h1 class="text-4xl md:text-5xl font-serif text-white mb-4 mt-4">Jan Mayer</h1>
-        <div class="h-px bg-gradient-to-r from-primary via-gray-700 to-transparent mb-8" />
+        <h1 class="text-4xl md:text-5xl font-serif text-text mb-4 mt-4">Jan Mayer</h1>
+        <div class="h-px bg-gradient-to-r from-primary via-border to-transparent mb-8" />
 
         <div class="space-y-10">
-          <section class="bg-dark-100/40 border border-primary/10 rounded-lg p-8">
-            <p class="text-lg text-gray-200/80 leading-relaxed">
+          <section class="bg-surface border border-border rounded-lg p-8 shadow-sm">
+            <p class="text-lg text-text-muted leading-relaxed">
               AI Solution Architect and Full-Stack Developer based in Ulm, Germany. I build production-ready enterprise AI
               systems with a focus on Azure AI Foundry and retrieval-augmented generation (RAG).
             </p>
@@ -20,9 +20,9 @@
           <AboutSection />
 
           <section class="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div class="md:col-span-2 bg-dark-100/40 border border-primary/10 rounded-lg p-8">
-              <h2 class="text-2xl font-serif text-white mb-4">Focus</h2>
-              <ul class="space-y-3 text-gray-200/80 leading-relaxed list-disc pl-5">
+            <div class="md:col-span-2 bg-surface border border-border rounded-lg p-8 shadow-sm">
+              <h2 class="text-2xl font-serif text-text mb-4">Focus</h2>
+              <ul class="space-y-3 text-text-muted leading-relaxed list-disc pl-5">
                 <li>Enterprise AI delivery: discovery, architecture, implementation, rollout</li>
                 <li>RAG architectures for internal knowledge and copilots</li>
                 <li>Evaluation, observability, and safety patterns</li>
@@ -30,8 +30,8 @@
               </ul>
             </div>
 
-            <div class="bg-dark-100/40 border border-primary/10 rounded-lg p-8">
-              <h2 class="text-2xl font-serif text-white mb-4">Links</h2>
+            <div class="bg-surface border border-border rounded-lg p-8 shadow-sm">
+              <h2 class="text-2xl font-serif text-text mb-4">Links</h2>
               <div class="space-y-3">
                 <a
                   href="mailto:jan@heyjan.de"
@@ -71,30 +71,30 @@
             </div>
           </section>
 
-          <section class="bg-dark-100/40 border border-primary/10 rounded-lg p-8">
-            <h2 class="text-2xl font-serif text-white mb-4">Explore</h2>
+          <section class="bg-surface border border-border rounded-lg p-8 shadow-sm">
+            <h2 class="text-2xl font-serif text-text mb-4">Explore</h2>
             <div class="flex flex-wrap gap-3">
               <NuxtLink
                 to="/projects"
-                class="inline-flex items-center px-6 py-3 bg-primary hover:bg-primary/90 text-dark-300 rounded-lg transition-colors font-medium"
+                class="inline-flex items-center px-6 py-3 bg-primary hover:bg-primary/90 text-white rounded-lg transition-colors font-medium"
               >
                 Projects
               </NuxtLink>
               <NuxtLink
                 to="/blog"
-                class="inline-flex items-center px-6 py-3 border border-primary text-primary hover:bg-primary hover:text-dark-300 rounded-lg transition-colors font-medium"
+                class="inline-flex items-center px-6 py-3 border border-primary text-primary hover:bg-primary hover:text-white rounded-lg transition-colors font-medium"
               >
                 Blog
               </NuxtLink>
               <NuxtLink
                 to="/cv"
-                class="inline-flex items-center px-6 py-3 border border-primary text-primary hover:bg-primary hover:text-dark-300 rounded-lg transition-colors font-medium"
+                class="inline-flex items-center px-6 py-3 border border-primary text-primary hover:bg-primary hover:text-white rounded-lg transition-colors font-medium"
               >
                 CV
               </NuxtLink>
               <NuxtLink
                 to="/contact"
-                class="inline-flex items-center px-6 py-3 border border-primary text-primary hover:bg-primary hover:text-dark-300 rounded-lg transition-colors font-medium"
+                class="inline-flex items-center px-6 py-3 border border-primary text-primary hover:bg-primary hover:text-white rounded-lg transition-colors font-medium"
               >
                 Contact
               </NuxtLink>

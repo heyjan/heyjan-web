@@ -1,5 +1,5 @@
 <template>
-  <div class="min-h-screen bg-dark-300">
+  <div class="min-h-screen bg-background">
     <AppHeader />
     
     <main class="section-padding">
@@ -7,10 +7,10 @@
         <Breadcrumb :custom-title="article?.title" />
         
         <div v-if="pending" class="text-center py-12">
-          <p class="text-gray-200/60">Loading article...</p>
+          <p class="text-text-muted/60">Loading article...</p>
         </div>
 
-        <div v-else-if="article" class="bg-dark-100/40 border border-primary/10 rounded-lg overflow-hidden mt-4">
+        <div v-else-if="article" class="bg-surface border border-border rounded-lg overflow-hidden mt-4 shadow-sm">
           <article class="p-8 md:p-12">
             <!-- Article Header -->
             <div class="mb-8">
@@ -37,7 +37,7 @@
                 loading="lazy"
               />
               
-              <div class="flex flex-wrap items-center gap-4 text-gray-200/70 mb-6">
+              <div class="flex flex-wrap items-center gap-4 text-text-muted mb-6">
                 <span v-if="article.meta?.date" class="flex items-center">
                   <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
@@ -78,11 +78,11 @@
         </div>
 
         <div v-else class="text-center py-12">
-          <h1 class="text-2xl font-serif text-white mb-4">Article Not Found</h1>
-          <p class="text-gray-200/70 mb-6">The article you're looking for doesn't exist.</p>
+          <h1 class="text-2xl font-serif text-text mb-4">Article Not Found</h1>
+          <p class="text-text-muted mb-6">The article you're looking for doesn't exist.</p>
           <NuxtLink 
             to="/blog" 
-            class="inline-block px-6 py-3 bg-primary hover:bg-primary/90 text-dark-300 rounded-lg transition-colors font-medium"
+            class="inline-block px-6 py-3 bg-primary hover:bg-primary/90 text-white rounded-lg transition-colors font-medium"
           >
             Back to Blog
           </NuxtLink>
@@ -236,8 +236,8 @@ onMounted(() => {
           position: absolute;
           top: 0.5rem;
           right: 0.5rem;
-          background: rgba(30, 30, 30, 0.8);
-          border: 1px solid rgba(212, 165, 116, 0.3);
+          background: rgba(48, 85, 166, 0.1);
+          border: 1px solid rgba(48, 85, 166, 0.3);
           border-radius: 0.375rem;
           padding: 0.375rem;
           cursor: pointer;
@@ -246,16 +246,17 @@ onMounted(() => {
           justify-content: center;
           transition: all 0.2s ease;
           z-index: 10;
+          color: #3055A6;
         `
 
         copyButton.addEventListener('mouseenter', () => {
-          copyButton.style.background = 'rgba(212, 165, 116, 0.2)'
-          copyButton.style.borderColor = 'rgba(212, 165, 116, 0.5)'
+          copyButton.style.background = 'rgba(48, 85, 166, 0.2)'
+          copyButton.style.borderColor = 'rgba(48, 85, 166, 0.5)'
         })
 
         copyButton.addEventListener('mouseleave', () => {
-          copyButton.style.background = 'rgba(30, 30, 30, 0.8)'
-          copyButton.style.borderColor = 'rgba(212, 165, 116, 0.3)'
+          copyButton.style.background = 'rgba(48, 85, 166, 0.1)'
+          copyButton.style.borderColor = 'rgba(48, 85, 166, 0.3)'
         })
 
         // Handle copy click
@@ -299,7 +300,7 @@ onMounted(() => {
 
 <style>
 .prose {
-  color: #E5E5E5;
+  color: #1A1A1A;
 }
 
 .prose h2 {
@@ -327,13 +328,13 @@ onMounted(() => {
 .prose p {
   margin-bottom: 1rem;
   line-height: 1.75;
-  color: #E5E5E5;
+  color: #1A1A1A;
 }
 
 .prose ul, .prose ol {
   margin-bottom: 1rem;
   margin-left: 1.5rem;
-  color: #E5E5E5;
+  color: #1A1A1A;
 }
 
 .prose li {
@@ -341,18 +342,19 @@ onMounted(() => {
 }
 
 .prose code {
-  background-color: #252525;
+  background-color: #E8EEF7;
   padding: 0.25rem 0.5rem;
   border-radius: 0.25rem;
   font-size: 0.875rem;
   font-family: monospace;
-  color: #E5E5E5;
+  color: #3055A6;
+  border: 1px solid rgba(48, 85, 166, 0.15);
 }
 
 .prose pre {
-  background-color: #E5E5E5;
-  border: 1px solid rgba(212, 165, 116, 0.2);
-  color: #1E1E1E;
+  background-color: #F8F9FC;
+  border: 1px solid rgba(48, 85, 166, 0.2);
+  color: #1A1A1A;
   padding: 1rem;
   border-radius: 0.5rem;
   overflow-x: auto;
@@ -361,11 +363,11 @@ onMounted(() => {
 }
 
 .copy-code-button {
-  color: #E5E5E5;
+  color: #3055A6;
 }
 
 .copy-code-button:hover {
-  color: var(--color-primary);
+  color: #1A1A1A;
 }
 
 .copy-code-button svg {
@@ -381,7 +383,8 @@ onMounted(() => {
 .prose pre code {
   background-color: transparent;
   padding: 0;
-  color: #1E1E1E;
+  color: #1A1A1A;
+  border: none;
 }
 
 .prose a {
@@ -399,7 +402,7 @@ onMounted(() => {
 }
 
 .prose a:hover {
-  color: rgba(212, 165, 116, 0.8);
+  color: rgba(48, 85, 166, 0.8);
 }
 
 .prose blockquote {
@@ -407,11 +410,14 @@ onMounted(() => {
   padding-left: 1rem;
   font-style: italic;
   margin: 1rem 0;
-  color: #A1A1A1;
+  color: #5A5A5A;
+  background-color: rgba(254, 222, 199, 0.2);
+  padding: 1rem;
+  border-radius: 0 0.5rem 0.5rem 0;
 }
 
 .prose strong {
-  color: white;
+  color: #1A1A1A;
   font-weight: 600;
 }
 </style>

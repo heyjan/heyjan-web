@@ -6,14 +6,13 @@
       <div 
         v-for="expertise in expertiseList" 
         :key="expertise.name"
-        class="flex items-center justify-between p-4 rounded-lg bg-dark-100/50 hover:bg-dark-100 transition-all group"
-        style="border: 1px solid #333;"
+        class="flex items-center justify-between p-4 rounded-lg bg-background hover:bg-highlight/20 transition-all group border border-border shadow-sm"
       >
         <div class="flex items-center gap-4">
-          <div class="w-10 h-10 rounded-lg bg-dark-300 flex items-center justify-center group-hover:scale-110 transition-transform">
+          <div class="w-10 h-10 rounded-lg bg-surface flex items-center justify-center group-hover:scale-110 transition-transform border border-border">
             <component :is="expertise.icon" class="w-6 h-6 text-primary" v-if="expertise.icon" />
           </div>
-          <span class="text-white font-medium">{{ expertise.name }}</span>
+          <span class="text-text font-medium">{{ expertise.name }}</span>
         </div>
         <SkillRating :rating="expertise.rating" />
       </div>

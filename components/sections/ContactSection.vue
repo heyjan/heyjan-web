@@ -3,14 +3,14 @@
     <!-- Background Effects -->
     <div class="absolute inset-0 -z-10">
       <!-- Gradient Orbs -->
-      <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/10 rounded-full blur-3xl animate-pulse"></div>
-      <div class="absolute bottom-1/4 right-1/4 w-80 h-80 bg-blue-500/10 rounded-full blur-3xl animate-pulse" style="animation-delay: 1s;"></div>
+      <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/15 rounded-full blur-3xl animate-pulse"></div>
+      <div class="absolute bottom-1/4 right-1/4 w-80 h-80 bg-highlight/40 rounded-full blur-3xl animate-pulse" style="animation-delay: 1s;"></div>
       
       <!-- Floating Particles -->
       <div 
         v-for="particle in particles" 
         :key="`particle-${particle.id}`"
-        class="absolute w-1 h-1 bg-primary/30 rounded-full animate-float"
+        class="absolute w-1 h-1 bg-primary/40 rounded-full animate-float"
         :style="{
           left: particle.left + '%',
           top: particle.top + '%',
@@ -25,11 +25,11 @@
       <div class="mb-12" ref="titleRef">
         <div class="flex justify-center mb-8">
           <div class="flex items-center gap-3">
-            <h2 class="text-2xl md:text-3xl font-serif text-white">Get In Touch</h2>
+            <h2 class="text-2xl md:text-3xl font-serif text-text">Get In Touch</h2>
           </div>
         </div>
         <div class="h-px bg-gradient-to-r from-transparent via-primary to-transparent mb-4 max-w-md mx-auto"></div>
-        <p class="text-gray-400 text-lg mt-4 text-center">Let's discuss your project or just say hello</p>
+        <p class="text-text-muted text-lg mt-4 text-center">Let's discuss your project or just say hello</p>
       </div>
 
       <div class="grid md:grid-cols-2 gap-8 mb-12">
@@ -37,75 +37,75 @@
         <div 
           v-for="(info, index) in contactInfo" 
           :key="index"
-          class="contact-card p-6 rounded-lg border border-gray-800 hover:border-primary/50 transition-all duration-300"
+          class="contact-card p-6 rounded-lg border border-border hover:border-primary/50 transition-all duration-300"
           :ref="(el: any) => { if (el) infoCardsRef[index] = el }"
         >
             <a :href="info.link" target="_blank">
           <component :is="info.icon" class="w-8 h-8 text-primary mb-4" />
-          <h3 class="text-white font-serif text-lg mb-2">{{ info.title }}</h3>
-          <p class="text-gray-400">{{ info.value }}</p>
+          <h3 class="text-text font-serif text-lg mb-2">{{ info.title }}</h3>
+          <p class="text-text-muted">{{ info.value }}</p>
             </a>
         </div>
       </div>
 
       <!-- Contact Form -->
-      <form @submit.prevent="handleSubmit" class="bg-dark-200/50 border border-gray-800 rounded-lg p-8" ref="formRef">
+      <form @submit.prevent="handleSubmit" class="bg-surface border border-border rounded-lg p-8 shadow-sm" ref="formRef">
         <div class="grid md:grid-cols-2 gap-6 mb-6">
           <!-- Name Field -->
           <div class="form-group" ref="nameFieldRef">
-            <label for="name" class="block text-white font-medium mb-2">Full Name</label>
+            <label for="name" class="block text-text font-medium mb-2">Full Name</label>
             <input
               id="name"
               v-model="form.name"
               type="text"
               placeholder="John Doe"
-              class="w-full px-4 py-3 bg-dark-300 border border-gray-700 text-white placeholder-gray-500 rounded-lg focus:outline-none focus:border-primary transition-colors duration-300"
+              class="w-full px-4 py-3 bg-background border border-border text-text placeholder-text-muted/60 rounded-lg focus:outline-none focus:border-primary transition-colors duration-300"
               required
             />
-            <p v-if="errors.name" class="text-red-400 text-sm mt-1">{{ errors.name }}</p>
+            <p v-if="errors.name" class="text-red-500 text-sm mt-1">{{ errors.name }}</p>
           </div>
 
           <!-- Email Field -->
           <div class="form-group" ref="emailFieldRef">
-            <label for="email" class="block text-white font-medium mb-2">Email Address</label>
+            <label for="email" class="block text-text font-medium mb-2">Email Address</label>
             <input
               id="email"
               v-model="form.email"
               type="email"
               placeholder="john@example.com"
-              class="w-full px-4 py-3 bg-dark-300 border border-gray-700 text-white placeholder-gray-500 rounded-lg focus:outline-none focus:border-primary transition-colors duration-300"
+              class="w-full px-4 py-3 bg-background border border-border text-text placeholder-text-muted/60 rounded-lg focus:outline-none focus:border-primary transition-colors duration-300"
               required
             />
-            <p v-if="errors.email" class="text-red-400 text-sm mt-1">{{ errors.email }}</p>
+            <p v-if="errors.email" class="text-red-500 text-sm mt-1">{{ errors.email }}</p>
           </div>
         </div>
 
         <!-- Subject Field -->
         <div class="form-group mb-6" ref="subjectFieldRef">
-          <label for="subject" class="block text-white font-medium mb-2">Subject</label>
+          <label for="subject" class="block text-text font-medium mb-2">Subject</label>
           <input
             id="subject"
             v-model="form.subject"
             type="text"
             placeholder="Project Inquiry"
-            class="w-full px-4 py-3 bg-dark-300 border border-gray-700 text-white placeholder-gray-500 rounded-lg focus:outline-none focus:border-primary transition-colors duration-300"
+            class="w-full px-4 py-3 bg-background border border-border text-text placeholder-text-muted/60 rounded-lg focus:outline-none focus:border-primary transition-colors duration-300"
             required
           />
-          <p v-if="errors.subject" class="text-red-400 text-sm mt-1">{{ errors.subject }}</p>
+          <p v-if="errors.subject" class="text-red-500 text-sm mt-1">{{ errors.subject }}</p>
         </div>
 
         <!-- Message Field -->
         <div class="form-group mb-6" ref="messageFieldRef">
-          <label for="message" class="block text-white font-medium mb-2">Message</label>
+          <label for="message" class="block text-text font-medium mb-2">Message</label>
           <textarea
             id="message"
             v-model="form.message"
             placeholder="Tell me about your project..."
             rows="6"
-            class="w-full px-4 py-3 bg-dark-300 border border-gray-700 text-white placeholder-gray-500 rounded-lg focus:outline-none focus:border-primary transition-colors duration-300 resize-none"
+            class="w-full px-4 py-3 bg-background border border-border text-text placeholder-text-muted/60 rounded-lg focus:outline-none focus:border-primary transition-colors duration-300 resize-none"
             required
           ></textarea>
-          <p v-if="errors.message" class="text-red-400 text-sm mt-1">{{ errors.message }}</p>
+          <p v-if="errors.message" class="text-red-500 text-sm mt-1">{{ errors.message }}</p>
         </div>
 
         <!-- Turnstile Widget -->
@@ -119,7 +119,7 @@
           <button
             type="submit"
             :disabled="isSubmitting"
-            class="w-full px-8 py-3 bg-primary text-dark-300 font-medium rounded-lg hover:bg-primary/90 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-primary/25 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
+            class="w-full px-8 py-3 bg-primary text-white font-medium rounded-lg hover:bg-primary/90 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-primary/25 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
           >
             <span v-if="!isSubmitting">Send Message</span>
             <span v-else>Sending...</span>
@@ -537,7 +537,7 @@ onMounted(() => {
     card.addEventListener('mouseenter', () => {
       gsap.to(card, {
         y: -8,
-        boxShadow: '0 20px 40px rgba(212, 165, 116, 0.15)',
+        boxShadow: '0 20px 40px rgba(48, 85, 166, 0.15)',
         duration: 0.3,
         ease: 'power2.out'
       })
@@ -546,7 +546,7 @@ onMounted(() => {
     card.addEventListener('mouseleave', () => {
       gsap.to(card, {
         y: 0,
-        boxShadow: '0 0px 0px rgba(212, 165, 116, 0)',
+        boxShadow: '0 0px 0px rgba(48, 85, 166, 0)',
         duration: 0.3,
         ease: 'power2.out'
       })
@@ -558,7 +558,7 @@ onMounted(() => {
   inputs?.forEach((input: Element) => {
     input.addEventListener('focus', () => {
       gsap.to(input, {
-        boxShadow: '0 0 20px rgba(212, 165, 116, 0.3)',
+        boxShadow: '0 0 20px rgba(48, 85, 166, 0.25)',
         duration: 0.3,
         ease: 'power2.out'
       })
@@ -566,7 +566,7 @@ onMounted(() => {
 
     input.addEventListener('blur', () => {
       gsap.to(input, {
-        boxShadow: '0 0 0px rgba(212, 165, 116, 0)',
+        boxShadow: '0 0 0px rgba(48, 85, 166, 0)',
         duration: 0.3,
         ease: 'power2.out'
       })
@@ -590,22 +590,22 @@ onMounted(() => {
 }
 
 .contact-card {
-  background: linear-gradient(135deg, rgba(212, 165, 116, 0.05) 0%, rgba(212, 165, 116, 0.02) 100%);
+  background: linear-gradient(135deg, rgba(48, 85, 166, 0.05) 0%, rgba(254, 222, 199, 0.08) 100%);
   backdrop-filter: blur(10px);
   transition: all 0.3s ease;
 }
 
 .contact-card:hover {
-  background: linear-gradient(135deg, rgba(212, 165, 116, 0.1) 0%, rgba(212, 165, 116, 0.05) 100%);
+  background: linear-gradient(135deg, rgba(48, 85, 166, 0.1) 0%, rgba(254, 222, 199, 0.15) 100%);
 }
 
 input:focus,
 textarea:focus {
-  border-color: #D4A574;
+  border-color: #3055A6;
 }
 
 input::placeholder,
 textarea::placeholder {
-  color: #666666;
+  color: #888888;
 }
 </style>

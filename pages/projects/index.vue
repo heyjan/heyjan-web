@@ -1,15 +1,15 @@
 <template>
-  <div class="min-h-screen bg-dark-300">
+  <div class="min-h-screen bg-background">
     <AppHeader />
 
     <main class="section-padding">
       <div class="max-w-4xl mx-auto">
         <Breadcrumb />
 
-        <h1 class="text-4xl md:text-5xl font-serif text-white mb-4 mt-4">Projects</h1>
-        <div class="h-px bg-gradient-to-r from-primary via-gray-700 to-transparent mb-8" />
+        <h1 class="text-4xl md:text-5xl font-serif text-text mb-4 mt-4">Projects</h1>
+        <div class="h-px bg-gradient-to-r from-primary via-border to-transparent mb-8" />
 
-        <p class="text-lg text-gray-200/70 mb-12">
+        <p class="text-lg text-text-muted mb-12">
           A selection of work and experiments. Detailed write-ups will be added over time.
         </p>
 
@@ -17,12 +17,12 @@
           <div
             v-for="project in projects"
             :key="project.slug"
-            class="bg-dark-100/40 border border-primary/10 rounded-lg p-6 hover:border-primary/30 transition-all"
+            class="bg-surface border border-border rounded-lg p-6 hover:border-primary/50 transition-all shadow-sm"
           >
-            <h2 class="text-2xl font-serif text-white mb-3">
+            <h2 class="text-2xl font-serif text-text mb-3">
               {{ project.title }}
             </h2>
-            <p class="text-gray-200/70 leading-relaxed mb-4">
+            <p class="text-text-muted leading-relaxed mb-4">
               {{ project.description }}
             </p>
 

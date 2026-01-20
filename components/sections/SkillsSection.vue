@@ -6,14 +6,13 @@
       <div 
         v-for="skill in skills" 
         :key="skill.name"
-        class="flex items-center gap-4 p-4 rounded-lg bg-dark-100/50 hover:bg-dark-100 transition-colors"
-        style="border: 1px solid #333;"
+        class="flex items-center gap-4 p-4 rounded-lg bg-surface hover:bg-highlight/20 transition-colors border border-border shadow-sm"
       >
-        <div class="w-10 h-10 rounded-lg bg-dark-300 flex items-center justify-center group-hover:scale-110 transition-transform">
+        <div class="w-10 h-10 rounded-lg bg-background flex items-center justify-center group-hover:scale-110 transition-transform border border-border">
           <component :is="skill.icon" class="w-6 h-6 text-primary" v-if="skill.icon" />
         </div>
         <div class="flex-1">
-          <p class="text-white font-medium">{{ skill.name }}</p>
+          <p class="text-text font-medium">{{ skill.name }}</p>
         </div>
       </div>
     </div>

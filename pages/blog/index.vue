@@ -1,25 +1,25 @@
 <template>
-  <div class="min-h-screen bg-dark-300">
+  <div class="min-h-screen bg-background">
     <AppHeader />
     
     <main class="section-padding">
       <div class="max-w-6xl mx-auto">
         <Breadcrumb />
-        <h1 class="text-4xl md:text-5xl font-serif text-white mb-4 mt-4">Blog</h1>
-        <div class="h-px bg-gradient-to-r from-primary via-gray-700 to-transparent mb-8"></div>
-        <p class="text-lg text-gray-200/70 mb-12">
+        <h1 class="text-4xl md:text-5xl font-serif text-text mb-4 mt-4">Blog</h1>
+        <div class="h-px bg-gradient-to-r from-primary via-border to-transparent mb-8"></div>
+        <p class="text-lg text-text-muted mb-12">
           Sharing my journey building AI solutions, exploring modern web development, AI security, and documenting the lessons learned along the way.
         </p>
 
         <div v-if="pending" class="text-center py-12">
-          <p class="text-gray-200/60">Loading articles...</p>
+          <p class="text-text-muted/60">Loading articles...</p>
         </div>
 
         <div v-else-if="articles && articles.length > 0" class="grid grid-cols-1 md:grid-cols-2 gap-8">
           <article
             v-for="article in articles"
             :key="article._path"
-            class="bg-dark-100/40 border border-primary/10 rounded-lg overflow-hidden hover:border-primary/30 transition-all duration-300 group flex flex-col"
+            class="bg-surface border border-border rounded-lg overflow-hidden hover:border-primary/50 transition-all duration-300 group flex flex-col shadow-sm"
           >
             <!-- Image -->
             <NuxtLink
@@ -36,9 +36,9 @@
               />
               <div 
                 v-else 
-                class="w-full h-48 bg-gradient-to-br from-primary/20 via-dark-200 to-dark-100 flex items-center justify-center"
+                class="w-full h-48 bg-gradient-to-br from-primary/20 via-highlight/30 to-surface flex items-center justify-center"
               >
-                <span class="text-4xl text-primary/40 font-serif">{{ article.title?.charAt(0) || 'B' }}</span>
+                <span class="text-4xl text-primary/60 font-serif">{{ article.title?.charAt(0) || 'B' }}</span>
               </div>
             </NuxtLink>
             
@@ -60,28 +60,28 @@
                 class="block group/title"
                 :aria-label="`Read article: ${article.title || 'Blog post'}`"
               >
-                <h2 class="text-xl font-serif text-white mb-3 group-hover/title:text-primary transition-colors leading-tight">
+                <h2 class="text-xl font-serif text-text mb-3 group-hover/title:text-primary transition-colors leading-tight">
                   {{ article.title }}
                 </h2>
               </NuxtLink>
 
               <!-- Description -->
-              <p v-if="article.description" class="text-gray-200/70 text-sm mb-4 flex-grow line-clamp-3">
+              <p v-if="article.description" class="text-text-muted text-sm mb-4 flex-grow line-clamp-3">
                 {{ article.description }}
               </p>
 
               <!-- Author + Date -->
-              <footer class="flex items-center gap-3 mt-auto pt-4 border-t border-primary/10">
+              <footer class="flex items-center gap-3 mt-auto pt-4 border-t border-border">
                 <div class="flex flex-col">
                   <NuxtLink
                     v-if="article.author"
                     :to="article.authorUrl || '/jan-mayer'"
-                    class="text-sm text-white hover:text-primary transition-colors"
+                    class="text-sm text-text hover:text-primary transition-colors"
                     aria-label="Author page"
                   >
                     {{ article.author }}
                   </NuxtLink>
-                  <time class="text-xs text-gray-200/60">
+                  <time class="text-xs text-text-muted/70">
                     {{ formatDate(article.date) }}
                   </time>
                 </div>
@@ -91,9 +91,9 @@
         </div>
 
         <div v-else class="text-center py-12">
-          <p class="text-gray-200/60">No articles found.</p>
-          <p v-if="error" class="text-red-400 text-sm mt-2">Error: {{ error.message }}</p>
-          <p v-if="articles !== null" class="text-gray-200/70 text-sm mt-2">
+          <p class="text-text-muted">No articles found.</p>
+          <p v-if="error" class="text-red-500 text-sm mt-2">Error: {{ error.message }}</p>
+          <p v-if="articles !== null" class="text-text-muted text-sm mt-2">
             Found {{ articles?.length || 0 }} articles. 
             <span v-if="articles && articles.length === 0">Check browser console for query details.</span>
           </p>

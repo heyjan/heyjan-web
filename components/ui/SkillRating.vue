@@ -4,7 +4,7 @@
         v-for="i in 5" 
         :key="i"
         class="w-3 h-3 rounded-full transition-all duration-300"
-        :class="i <= rating ? 'bg-primary' : 'bg-gray-700'"
+        :class="i <= rating ? 'bg-primary' : 'bg-border'"
       />
     </div>
   </template>

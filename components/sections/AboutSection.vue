@@ -1,8 +1,8 @@
 <template>
-  <section class="bg-dark-100/40 border border-primary/10 rounded-lg p-8">
-    <h2 class="text-2xl font-serif text-white mb-6">About</h2>
+  <section class="bg-surface border border-border rounded-lg p-8 shadow-sm">
+    <h2 class="text-2xl font-serif text-text mb-6">About</h2>
     
-    <div class="space-y-6 text-gray-200/80 leading-relaxed">
+    <div class="space-y-6 text-text-muted leading-relaxed">
       <p>
         Technology grabbed attention early, from reading computer magazines in school to building the first HTML pages in Netscape Composer, the very first WYSIWYG editor. Over time this turned into a self-taught path into web development, cloud, and AI.
       </p>
