@@ -27,7 +27,7 @@
               class="block overflow-hidden"
               :aria-label="`Read article: ${article.title || 'Blog post'}`"
             >
-              <img
+              <NuxtImg
                 v-if="article.image"
                 :src="article.image"
                 :alt="article.imageTitle || article.title"

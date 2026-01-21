@@ -19,7 +19,7 @@
       >
         <div class="flex flex-col md:flex-row">
           <div v-if="featured.image" class="md:w-2/5 flex-shrink-0">
-            <img
+            <NuxtImg
               :src="featured.image"
               :alt="featured.title"
               class="w-full h-48 md:h-64 object-cover group-hover:scale-105 transition-transform duration-300"

@@ -116,7 +116,7 @@
 
         <!-- Submit Button -->
         <div ref="buttonRef">
-          <UiDitherButton
+          <DitherButton
             type="submit"
             variant="primary"
             size="lg"
@@ -125,7 +125,7 @@
           >
             <span v-if="!isSubmitting">Send Message</span>
             <span v-else>Sending...</span>
-          </UiDitherButton>
+          </DitherButton>
         </div>
 
         <!-- Success Message -->

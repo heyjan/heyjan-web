@@ -1,13 +1,5 @@
 @import "tailwindcss";
 
-@font-face {
-  font-family: 'TT Travels Text';
-  src: url('/font/TT_Travels_Text_Medium.woff2') format('woff2');
-  font-weight: 500;
-  font-style: normal;
-  font-display: swap;
-}
-
 @theme {
   --color-primary: #3055A6;
   --color-highlight: #FEDEC7;

@@ -29,10 +29,8 @@ export default defineNuxtConfig({
       link: [
         { rel: "icon", type: "image/x-icon", href: "/favicon.ico" },
         { rel: "preconnect", href: "https://challenges.cloudflare.com" },
-        { rel: "preload", href: "/font/TT_Travels_Text_Medium.woff2", as: "font", type: "font/woff2", crossorigin: "anonymous" }
       ],
       script: [
-        { src: "https://analytics.ahrefs.com/analytics.js", async: true, 'data-key': "kK9WahAIZ2+5ycKldReAYA" },
         {
           src: "https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit&onload=onTurnstileLoad",
           defer: true
@@ -55,27 +53,66 @@ export default defineNuxtConfig({
   },
 
   // Auto import components: https://nuxt.com/docs/guide/directory-structure/components
-  components: true,
+  components: [
+    {
+      path: '~/components',
+      pathPrefix: false,
+    },
+  ],
 
   // Modules: https://nuxt.com/docs/guide/directory-structure/modules
-  modules: ["v-gsap-nuxt", "@nuxt/content", "@nuxtjs/seo", "@nuxt/fonts"],
+  modules: [
+    "v-gsap-nuxt",
+    "@nuxt/content",
+    "@nuxtjs/seo",
+    "@nuxt/fonts",
+    "@nuxt/image",
+    "@nuxt/scripts",
+  ],
 
   fonts: {
-    defaults: {
-      preload: true,
-      display: "swap",
-    },
     families: [
       {
-        name: "Inter",
-        provider: "google",
-        weights: ["300", "400", "500", "600"],
-        styles: ["normal"],
-        preload: true,
-        global: true,
+        name: 'Inter',
+        provider: 'google',
+        weights: ['300', '400', '500', '600'],
       },
-    ],
+      {
+        name: 'TT Travels Text',
+        provider: 'local',
+        src: [
+          { url: '/font/TT_Travels_Text_Medium.woff2', weight: 500, style: 'normal' }
+        ],
+      }
+    ]
   },
+
+  // Image optimization
+  image: {
+    format: ['webp'],
+    quality: 80,
+    screens: {
+      xs: 320,
+      sm: 640,
+      md: 768,
+      lg: 1024,
+      xl: 1280,
+    },
+  },
+
+  // Third-party scripts optimization
+  scripts: {
+    globals: {
+      ahrefs: {
+        src: 'https://analytics.ahrefs.com/analytics.js',
+        async: true,
+        defer: true,
+        'data-key': 'kK9WahAIZ2+5ycKldReAYA',
+      },
+    },
+  },
+
+
 
   seo: {
     redirectToCanonicalSiteUrl: true
@@ -100,6 +137,12 @@ export default defineNuxtConfig({
     port: process.env.PORT || 3000,
   },
 
+  // Nitro server configuration
+  nitro: {
+    // Compress static assets for better performance
+    compressPublicAssets: true,
+  },
+
   compatibilityDate: "2025-02-28",
 
   // Hybrid rendering: SEO for homepage, SPA-style for auth/app
@@ -114,6 +157,43 @@ export default defineNuxtConfig({
     "/datenschutz": { prerender: true }, // Datenschutzerklärung: prerendered for SEO
     "/auth/**": { ssr: false },      // auth flows: client-side only
     "/app/**": { ssr: false },       // app dashboard & tools: client-side only
+
+    // Static asset caching - 1 year cache for images, fonts, and icons
+    "/images/**": {
+      headers: {
+        "Cache-Control": "public, max-age=31536000, immutable"
+      }
+    },
+    "/font/**": {
+      headers: {
+        "Cache-Control": "public, max-age=31536000, immutable"
+      }
+    },
+    "/_nuxt/**": {
+      headers: {
+        "Cache-Control": "public, max-age=31536000, immutable"
+      }
+    },
+    "/favicon.ico": {
+      headers: {
+        "Cache-Control": "public, max-age=31536000, immutable"
+      }
+    },
+    "/favicon.svg": {
+      headers: {
+        "Cache-Control": "public, max-age=31536000, immutable"
+      }
+    },
+    "/*.png": {
+      headers: {
+        "Cache-Control": "public, max-age=31536000, immutable"
+      }
+    },
+    "/site.webmanifest": {
+      headers: {
+        "Cache-Control": "public, max-age=31536000, immutable"
+      }
+    },
   },
 
   sitemap: {
@@ -169,4 +249,16 @@ export default defineNuxtConfig({
       turnstileSiteKey: process.env.TURNSTILE_SITE_KEY || ''
     }
   },
+
+  // Performance improvements
+  experimental: {
+    defaults: {
+      nuxtLink: {
+        prefetchOn: {
+          interaction: true,
+          visibility: false
+        }
+      }
+    }
+  }
 });

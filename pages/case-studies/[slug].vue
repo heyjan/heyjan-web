@@ -27,7 +27,7 @@
                 {{ caseStudy.title }}
               </h1>
 
-              <img
+              <NuxtImg
                 v-if="caseStudy.meta?.image"
                 :src="caseStudy.meta.image"
                 :alt="caseStudy.title ? `Hero image for: ${caseStudy.title}` : 'Case study hero image'"

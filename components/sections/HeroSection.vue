@@ -24,11 +24,11 @@
       <div class="max-w-2xl relative z-10" ref="titleRef">
         <!-- Subtitle with typewriter effect -->
         <div class="mb-4" ref="subtitleRef">
-          <span class="text-lg md:text-xl text-text-muted font-mono">Full-Stack Developer / AI Solution Architect</span>
+          <span v-once class="text-lg md:text-xl text-text-muted font-mono">Full-Stack Developer / AI Solution Architect</span>
         </div>
         
         <div class="mb-6">
-          <span class="text-text/80 block mb-2 text-2xl md:text-6xl font-serif" ref="introText">This is</span>
+          <span v-once class="text-text/80 block mb-2 text-2xl md:text-6xl font-serif" ref="introText">This is</span>
           <h1 class="text-4xl md:text-6xl lg:text-7xl font-serif text-primary relative inline-block" ref="nameText">
             {{ name }}
             <!-- Underline effect -->
@@ -38,19 +38,19 @@
         
         <!-- Description with fade-in effect -->
         <div class="mb-8" ref="descriptionRef">
-          <p class="text-lg text-text-muted leading-relaxed max-w-lg">
+          <p v-once class="text-lg text-text-muted leading-relaxed max-w-lg">
             Designing and building enterprise AI that drives efficiency and real-world impact.
           </p>
         </div>
         
         <!-- CTA Buttons -->
         <div class="flex gap-4" ref="buttonsRef">
-          <UiDitherButton to="/jan-mayer" variant="primary" size="md">
+          <DitherButton to="/jan-mayer" variant="primary" size="md">
             About Jan Mayer
-          </UiDitherButton>
-          <UiDitherButton to="/cv" variant="secondary" size="md">
+          </DitherButton>
+          <DitherButton to="/cv" variant="secondary" size="md">
             View CV
-          </UiDitherButton>
+          </DitherButton>
         </div>
       </div>
       
@@ -62,9 +62,14 @@
           
           <!-- Main image container -->
           <div class="w-48 h-48 lg:w-64 lg:h-64 rounded-full overflow-hidden border-4 border-primary/40 relative group">
-            <img 
+            <NuxtImg 
               :src="profileImage" 
               :alt="name"
+              format="webp"
+              loading="eager"
+              fetchpriority="high"
+              width="256"
+              height="256"
               class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
             />
             

@@ -16,11 +16,11 @@
         <div class="max-w-5xl mx-auto">
           <div class="grid grid-cols-1 lg:grid-cols-2 gap-16">
             <div class="flex flex-col gap-8">
-              <SkillsSection />
-              <InterestsSection />
-              <LanguageSection />
+              <LazySkillsSection hydrate-on-visible />
+              <LazyInterestsSection hydrate-on-visible />
+              <LazyLanguageSection hydrate-on-visible />
             </div>
-            <WorkExperienceSection />
+            <LazyWorkExperienceSection hydrate-on-visible />
           </div>
         </div>
       </div>
@@ -29,14 +29,14 @@
       <div class="section-padding bg-surface">
         <div class="max-w-5xl mx-auto">
           <div class="grid grid-cols-1 lg:grid-cols-2 gap-16">
-            <AIAndCloudSection />
-            <SoftwareSection />
+            <LazyAIAndCloudSection hydrate-on-visible />
+            <LazySoftwareSection hydrate-on-visible />
           </div>
         </div>
       </div>
       
       <!-- Row 4: Contact Form (full width) -->
-      <ContactSection />
+      <LazyContactSection hydrate-on-visible />
     </main>
 
     <AppFooter />
@@ -51,13 +51,6 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import AppFooter from '~/components/layout/AppFooter.vue'
 import AppHeader from '~/components/layout/AppHeader.vue'
 import Breadcrumb from '~/components/ui/Breadcrumb.vue'
-import AIAndCloudSection from '~/components/sections/AIAndCloudSection.vue'
-import ContactSection from '~/components/sections/ContactSection.vue'
-import InterestsSection from '~/components/sections/InterestsSection.vue'
-import LanguageSection from '~/components/sections/LanguageSection.vue'
-import SkillsSection from '~/components/sections/SkillsSection.vue'
-import SoftwareSection from '~/components/sections/SoftwareSection.vue'
-import WorkExperienceSection from '~/components/sections/WorkExperienceSection.vue'
 
 const route = useRoute()
 const canonicalUrl = computed(() => `https://heyjan.de${route.path}`)

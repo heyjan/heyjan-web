@@ -28,7 +28,7 @@
                 {{ article.title }}
               </h1>
 
-              <img
+              <NuxtImg
                 v-if="article.meta?.image"
                 :src="article.meta.image"
                 :alt="article.title ? `Hero image for: ${article.title}` : 'Blog post hero image'"
