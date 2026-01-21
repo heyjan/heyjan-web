@@ -1,5 +1,6 @@
 <template>
     <header 
+      ref="headerRef"
       class="fixed top-0 left-0 right-0 z-50 transition-all duration-300"
       :class="{ 'bg-background/95 backdrop-blur-sm shadow-lg': scrolled }"
     >
@@ -69,6 +70,7 @@
   
   const scrolled = ref(false)
   const menuOpen = ref(false)
+  const headerRef = ref(null)
   
   const socials = [
     { name: 'LinkedIn', url: 'https://www.linkedin.com/in/jan-mayer-a8b7b4176/', icon: Linkedin },
@@ -89,6 +91,15 @@
   
   const toggleMenu = () => {
     menuOpen.value = !menuOpen.value
+  }
+  
+  /**
+   * Closes the menu when clicking outside the header element
+   */
+  const handleClickOutside = (event) => {
+    if (menuOpen.value && headerRef.value && !headerRef.value.contains(event.target)) {
+      menuOpen.value = false
+    }
   }
   
   const handleNavClick = (href) => {
@@ -115,10 +126,12 @@
   
   onMounted(() => {
     window.addEventListener('scroll', handleScroll)
+    document.addEventListener('click', handleClickOutside)
   })
   
   onUnmounted(() => {
     window.removeEventListener('scroll', handleScroll)
+    document.removeEventListener('click', handleClickOutside)
   })
   </script>
   

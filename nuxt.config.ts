@@ -11,20 +11,20 @@ export default defineNuxtConfig({
   app: {
     head: {
       htmlAttrs: {
-          lang: 'en'
+        lang: 'en'
       },
       titleTemplate: (title?: string) =>
-          title
-              ? `${title} · Jan Mayer`
-              : 'Jan Mayer · AI Solution Architect & Consultant',
+        title
+          ? `${title} · Jan Mayer`
+          : 'Jan Mayer · AI Solution Architect & Consultant',
       meta: [
-          { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-          { name: 'robots', content: 'index, follow' },
-          {
-              name: 'description',
-              content:
-                  'Jan Mayer is an AI Solution Architect and Full-Stack Developer based in Ulm, Germany, specializing in enterprise AI, Azure AI Foundry, and RAG architectures.'
-          }
+        { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+        { name: 'robots', content: 'index, follow' },
+        {
+          name: 'description',
+          content:
+            'Jan Mayer is an AI Solution Architect and Full-Stack Developer based in Ulm, Germany, specializing in enterprise AI, Azure AI Foundry, and RAG architectures.'
+        }
       ],
       link: [
         { rel: "icon", type: "image/x-icon", href: "/favicon.ico" },
@@ -33,9 +33,9 @@ export default defineNuxtConfig({
       ],
       script: [
         { src: "https://analytics.ahrefs.com/analytics.js", async: true, 'data-key': "kK9WahAIZ2+5ycKldReAYA" },
-        { 
-          src: "https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit&onload=onTurnstileLoad", 
-          defer: true 
+        {
+          src: "https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit&onload=onTurnstileLoad",
+          defer: true
         }
       ],
     },
@@ -147,6 +147,18 @@ export default defineNuxtConfig({
     plugins: [
       tailwindcss(),
     ],
+    build: {
+      rollupOptions: {
+        output: {
+          manualChunks: {
+            // Split GSAP into its own chunk for lazy loading
+            'gsap': ['gsap', 'gsap/ScrollTrigger', 'gsap/ScrollToPlugin'],
+            // Split lucide icons into their own chunk
+            'lucide': ['lucide-vue-next'],
+          },
+        },
+      },
+    },
   },
 
   runtimeConfig: {

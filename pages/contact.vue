@@ -6,7 +6,7 @@
       <div class="section-padding">
         <div class="max-w-4xl mx-auto">
           <Breadcrumb />
-          <h1 class="text-4xl md:text-5xl font-serif text-white mb-4 mt-4">Contact</h1>
+          <h1 class="text-4xl md:text-5xl font-serif text-text mb-4 mt-4">Contact</h1>
           <div class="h-px bg-gradient-to-r from-primary via-gray-700 to-transparent mb-8" />
         </div>
       </div>

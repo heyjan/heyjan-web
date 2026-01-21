@@ -19,7 +19,6 @@
     "@tailwindcss/vite": "^4.1.14",
     "bcrypt": "^5.1.1",
     "better-sqlite3": "^12.5.0",
-    "core-js": "^3.27.2",
     "gsap": "^3.13.0",
     "lucide-vue-next": "^0.546.0",
     "mysql2": "^3.6.5",

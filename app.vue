@@ -1,67 +1,17 @@
 <template>
-  <div>
-    <!-- Top curtain overlay -->
-    <div 
-      id="page-overlay-top"
-      class="fixed left-0 right-0 z-[9999] pointer-events-none bg-dark-300"
-      style="height: 50%; top: 0; transform: scaleY(0); transform-origin: top;"
-    />
-    
-    <!-- Bottom curtain overlay -->
-    <div 
-      id="page-overlay-bottom"
-      class="fixed left-0 right-0 z-[9999] pointer-events-none bg-dark-300"
-      style="height: 50%; bottom: 0; transform: scaleY(0); transform-origin: bottom;"
-    />
-    
-    <!-- Center glow effect -->
-    <div 
-      id="page-overlay-glow"
-      class="fixed left-0 right-0 top-1/2 z-[9998] pointer-events-none"
-      style="height: 2px; background: linear-gradient(90deg, transparent, #D4A574, transparent); transform: translateY(-50%) scaleX(0); opacity: 0;"
-    />
-    
+  <div class="h-full">
+    <!-- Scanner Bar Effect -->
+    <div id="shutter-bar" class="shutter-bar" />
+
     <NuxtLayout>
       <NuxtPage :transition="{
         name: 'page',
         mode: 'out-in',
-        onBeforeEnter: (el) => {
-          if (el) {
-            gsap.set(el, {
-              opacity: 0
-            })
-          }
-        },
-        onEnter: (el, done) => {
-          if (el) {
-            gsap.to(el, {
-              opacity: 1,
-              duration: 0.5,
-              ease: 'power2.out',
-              onComplete: done
-            })
-          } else {
-            done()
-          }
-        },
-        onBeforeLeave: (el) => {
-          if (el) {
-            playTransitionAnimation()
-          }
-        },
-        onLeave: (el, done) => {
-          if (el) {
-            gsap.to(el, {
-              opacity: 0,
-              duration: 0.4,
-              ease: 'power2.in',
-              delay: 0.2,
-              onComplete: done
-            })
-          } else {
-            done()
-          }
-        }
+        onBeforeLeave: handleBeforeLeave,
+        onLeave: handleLeave,
+        onBeforeEnter: handleBeforeEnter,
+        onEnter: handleEnter,
+        onAfterEnter: handleAfterEnter
       }" />
     </NuxtLayout>
   </div>
@@ -70,64 +20,113 @@
 <script setup>
 import { gsap } from 'gsap'
 
+// Configuration
+const TRANSITION_DURATION = 2
+const EASE = 'power2.inOut'
+
 /**
- * Play the dual-curtain transition animation
+ * Get the scanner bar element
  */
-const playTransitionAnimation = () => {
-  const overlayTop = document.getElementById('page-overlay-top')
-  const overlayBottom = document.getElementById('page-overlay-bottom')
-  const overlayGlow = document.getElementById('page-overlay-glow')
-  
-  if (!overlayTop || !overlayBottom || !overlayGlow) return
-  
-  const tl = gsap.timeline()
-  
-  // Curtains close (slide in from top and bottom)
-  tl.to([overlayTop, overlayBottom], {
-    scaleY: 1,
-    duration: 0.5,
-    ease: 'power2.inOut'
-  }, 0)
-  
-  // Glow effect grows in center
-  tl.to(overlayGlow, {
-    scaleX: 1,
-    opacity: 1,
-    duration: 0.5,
-    ease: 'power2.inOut'
-  }, 0)
-  
-  // Hold for a moment
-  tl.to({}, { duration: 0.2 })
-  
-  // Curtains open (slide out)
-  tl.to([overlayTop, overlayBottom], {
-    scaleY: 0,
-    duration: 0.5,
-    ease: 'power2.inOut'
+const getBar = () => document.getElementById('shutter-bar')
+
+/**
+ * Play scanner bar animation synced with page transition
+ */
+const animateScannerBar = () => {
+  const bar = getBar()
+  if (!bar) return
+
+  gsap.fromTo(bar, 
+    { top: '100%', opacity: 0 },
+    {
+      top: '-10%',
+      opacity: 1,
+      duration: TRANSITION_DURATION,
+      ease: EASE,
+      onComplete: () => {
+        gsap.set(bar, { opacity: 0, top: '100%' })
+      }
+    }
+  )
+}
+
+/**
+ * Before leave: Start scanner bar and prepare leaving page
+ */
+const handleBeforeLeave = (el) => {
+  if (!el) return
+  animateScannerBar()
+  gsap.set(el, { 
+    zIndex: 10,
+    transformOrigin: 'center center'
   })
-  
-  // Glow fades out as curtains open
-  tl.to(overlayGlow, {
-    scaleX: 0,
+}
+
+/**
+ * Leave: Animate leaving page out
+ */
+const handleLeave = (el, done) => {
+  if (!el) {
+    done()
+    return
+  }
+
+  gsap.to(el, {
     opacity: 0,
-    duration: 0.5,
-    ease: 'power2.inOut'
-  }, '-=0.5')
+    scale: 0.95,
+    filter: 'blur(10px)',
+    duration: TRANSITION_DURATION * 0.5,
+    ease: EASE,
+    onComplete: done
+  })
+}
+
+/**
+ * Before enter: Prepare entering page
+ */
+const handleBeforeEnter = (el) => {
+  if (!el) return
+  gsap.set(el, {
+    opacity: 0,
+    scale: 1.05,
+    filter: 'blur(10px) saturate(0%)',
+    zIndex: 20
+  })
+}
+
+/**
+ * Enter: Animate entering page in
+ */
+const handleEnter = (el, done) => {
+  if (!el) {
+    done()
+    return
+  }
+
+  gsap.to(el, {
+    opacity: 1,
+    scale: 1,
+    filter: 'blur(0px) saturate(100%)',
+    duration: TRANSITION_DURATION * 0.6,
+    delay: TRANSITION_DURATION * 0.3,
+    ease: 'power2.out',
+    onComplete: done
+  })
+}
+
+/**
+ * After enter: Clean up
+ */
+const handleAfterEnter = (el) => {
+  if (!el) return
+  gsap.set(el, { clearProps: 'all' })
 }
 </script>
 
 <style scoped>
+/* Page transition classes for fallback */
 .page-enter-active,
 .page-leave-active {
-  transition: opacity 0.5s ease;
-}
-
-.page-enter-from {
-  opacity: 0;
-}
-
-.page-leave-to {
-  opacity: 0;
+  transition: none;
 }
 </style>
