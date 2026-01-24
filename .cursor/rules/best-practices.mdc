@@ -1,0 +1,46 @@
+---
+alwaysApply: true
+---
+
+# Best Practices
+
+## Commit Messages
+
+Follow conventional commit format:
+
+- `feat:` - New features
+- `fix:` - Bug fixes
+- `refactor:` - Code restructuring without changing functionality
+- `chore:` - Maintenance tasks, dependencies, configuration
+- `fix(scope):` - Scoped fixes (e.g., `fix(seo):`)
+
+Include detailed body when changes affect multiple files:
+- List updated components, pages, sections
+- Explain the "why" behind the change
+- Note any breaking changes or migration steps
+
+Example:
+```
+feat: add 1-bit dithering effect to buttons
+- Add DitherButton.vue component with authentic 1-bit dithering pattern
+- Use radial gradient dots technique from CodePen for retro pixel look
+- Add 8-directional text shadow for readable text on dithered backgrounds
+- Add global dithering CSS utilities to main.css
+- Update HeroSection and ContactSection to use DitherButton
+```
+
+## NuxtImg Usage
+
+Always use `NuxtImg` instead of standard `<img>` tags for automatic optimization.
+
+### Best Practices for NuxtImg
+
+1. **Always provide alt text**: Use descriptive alt text that explains the image content
+2. **Set explicit dimensions**: Provide `width` and `height` for above-the-fold images to prevent layout shift
+3. **Use format="webp"**: Enable WebP format for better compression on supported browsers
+4. **Loading strategy**:
+   - `loading="eager"` + `fetchpriority="high"` for LCP images
+   - `loading="lazy"` for below-the-fold content
+5. **Conditional rendering**: Use `v-if` when image source might be undefined
+6. **Title attribute**: Include `title` attribute for better accessibility, especially when imageTitle is available in metadata
+7. **Responsive classes**: Use Tailwind classes for responsive sizing (e.g., `w-full h-48 md:h-full`)

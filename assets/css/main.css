@@ -22,6 +22,11 @@
 @layer base {
   body {
     @apply bg-background text-text font-sans;
+    cursor: default;
+  }
+
+  a {
+    cursor: pointer;
   }
 
   h1,
