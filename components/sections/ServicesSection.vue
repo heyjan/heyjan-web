@@ -16,7 +16,7 @@
         >
           <div class="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-[60%_40%] gap-8 lg:gap-16 items-center">
             <!-- 60% Image Part -->
-            <div class="service-image-container aspect-video lg:aspect-[16/10] bg-background border border-border rounded-2xl overflow-hidden shadow-2xl order-2 lg:order-1 group relative">
+            <div class="service-image-container aspect-video bg-background border border-border rounded-2xl overflow-hidden shadow-2xl order-2 lg:order-1 group relative">
               <div class="absolute inset-0 bg-primary/5 group-hover:bg-transparent transition-colors duration-500 z-10" />
                <NuxtImg 
                 :src="service.image" 
@@ -71,7 +71,7 @@ const services = [
   {
     title: 'Consult & Strategize',
     description: 'I help you cut through the AI noise. We find the use cases that actually move the needle and build a clear path from idea to production.',
-    image: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&q=80&w=1200'
+    image: '/images/services-consult-strategize.png'
   },
   {
     title: 'Architect & Build',
@@ -81,7 +81,7 @@ const services = [
   {
     title: 'Deploy & Scale',
     description: 'AI is only useful inside a working product. I deliver the full stack, from cloud infrastructure to frontend, built to last.',
-    image: 'https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&q=80&w=1200'
+    image: '/images/services-deploy-scale.png'
   }
 ]
 
