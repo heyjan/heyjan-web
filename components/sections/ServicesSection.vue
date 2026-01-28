@@ -51,9 +51,9 @@
         <span class="text-[10px] font-mono text-text-muted uppercase tracking-tighter">Progress</span>
         <span class="text-[10px] font-mono text-text-muted uppercase tracking-tighter">Slide {{ currentSlide + 1 }} / {{ services.length }}</span>
       </div>
-      <div class="h-1 w-full bg-border/40 rounded-full overflow-hidden backdrop-blur-sm">
+      <div class="progress-track h-2 w-full rounded-full overflow-hidden">
         <div 
-          class="h-full bg-primary origin-left transition-transform duration-150 ease-out" 
+          class="progress-fill h-full origin-left transition-transform duration-150 ease-out" 
           :style="{ transform: `scaleX(${scrollProgress})` }"
         />
       </div>
@@ -180,6 +180,26 @@ onUnmounted(() => {
   .service-image-container {
     max-height: none;
   }
+}
+
+/* Dithered Progress Bar */
+.progress-track {
+  --dither-light: radial-gradient(circle 1px at 0px 0px, var(--color-border) 1px, transparent 0);
+  background: 
+    var(--dither-light) 0px 0px / 4px 4px,
+    var(--dither-light) 2px 2px / 4px 4px,
+    var(--color-surface);
+  border: 1px solid var(--color-border);
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.progress-fill {
+  --dither-primary: radial-gradient(circle 1px at 0px 0px, white 1px, transparent 0);
+  background: 
+    var(--dither-primary) 0px 0px / 4px 4px,
+    var(--dither-primary) 2px 2px / 4px 4px,
+    var(--color-primary);
+  box-shadow: 0 0 8px rgba(48, 85, 166, 0.4);
 }
 </style>
 
