@@ -28,14 +28,8 @@ export default defineNuxtConfig({
       ],
       link: [
         { rel: "icon", type: "image/x-icon", href: "/favicon.ico" },
-        { rel: "preconnect", href: "https://challenges.cloudflare.com" },
       ],
-      script: [
-        {
-          src: "https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit&onload=onTurnstileLoad",
-          defer: true
-        }
-      ],
+      // Turnstile script is now loaded dynamically only in ContactSection
     },
   },
 

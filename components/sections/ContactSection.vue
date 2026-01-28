@@ -353,113 +353,113 @@ onMounted(() => {
     })
   }
 
-  // Initialize Turnstile widget
-  const initTurnstile = () => {
+  // Dynamically load and initialize Turnstile
+  const loadAndInitTurnstile = () => {
+    if (typeof window === 'undefined') {
+      return
+    }
+
     // Prevent double initialization
     if (turnstileInitialized.value || turnstileWidgetId.value) {
       return
     }
 
-    if (typeof window === 'undefined') {
-      return
-    }
-
-    const windowWithTurnstile = window as typeof window & {
-      turnstile?: {
-        render: (container: string, options: {
-          sitekey: string
-          theme: string
-          size: string
-          callback: (token: string) => void
-          'error-callback': () => void
-          'expired-callback': () => void
-        }) => string
-        reset: (widgetId: string) => void
-      }
-    }
-
-    if (!windowWithTurnstile.turnstile) {
-      // Wait for Turnstile script to load
-      setTimeout(initTurnstile, 100)
-      return
-    }
-
-    const turnstile = windowWithTurnstile.turnstile
-    // Get site key from runtime config (public, safe to expose)
-    // @ts-ignore - useRuntimeConfig is auto-imported by Nuxt
+    // Get site key from runtime config
     const config = useRuntimeConfig()
-    const siteKey = config?.public?.turnstileSiteKey || process.env.TURNSTILE_SITE_KEY
+    const siteKey = config?.public?.turnstileSiteKey || ''
 
     if (!siteKey) {
       console.warn('Turnstile site key not configured')
       return
     }
 
-    // Check if container exists
-    const container = document.getElementById('turnstile-widget')
-    if (!container) {
-      // Wait for container to be available
-      setTimeout(initTurnstile, 100)
-      return
-    }
-
-    // Check if widget is already rendered in this container
-    if (container.querySelector('.cf-turnstile')) {
-      turnstileInitialized.value = true
-      return
-    }
-
-    // Mark as initialized before rendering
-    turnstileInitialized.value = true
-
-    // Render widget directly (script is loaded via onload callback)
-    try {
-      turnstileWidgetId.value = turnstile.render('#turnstile-widget', {
-        sitekey: siteKey,
-        theme: 'auto',
-        size: 'normal',
-        callback: (token: string) => {
-          turnstileToken.value = token
-          errors.turnstile = ''
-          turnstileReady.value = true
-        },
-        'error-callback': () => {
-          turnstileToken.value = ''
-          errors.turnstile = 'Verification failed. Please try again.'
-          turnstileReady.value = false
-        },
-        'expired-callback': () => {
-          turnstileToken.value = ''
-          errors.turnstile = 'Verification expired. Please verify again.'
-          turnstileReady.value = false
+    // Function to render the widget once Turnstile is ready
+    const renderWidget = () => {
+      const windowWithTurnstile = window as typeof window & {
+        turnstile?: {
+          render: (container: string, options: {
+            sitekey: string
+            theme: string
+            size: string
+            callback: (token: string) => void
+            'error-callback': () => void
+            'expired-callback': () => void
+          }) => string
+          reset: (widgetId: string) => void
         }
-      })
-    } catch (error) {
-      // If rendering fails, reset the flag so we can try again
-      turnstileInitialized.value = false
-      console.error('Turnstile rendering error:', error)
-    }
-  }
-
-  // Global callback function called when Turnstile script loads
-  if (typeof window !== 'undefined') {
-    (window as any).onTurnstileLoad = () => {
-      // Script is loaded, initialize widget when DOM is ready
-      nextTick(() => {
-        initTurnstile()
-      })
-    }
-  }
-
-  // Fallback: also try to initialize on mount in case onload callback didn't fire
-  // But only if widget hasn't been initialized yet
-  nextTick(() => {
-    // Small delay to ensure script has time to load
-    setTimeout(() => {
-      if (!turnstileWidgetId.value && !turnstileInitialized.value) {
-        initTurnstile()
       }
-    }, 1000)
+
+      if (!windowWithTurnstile.turnstile) {
+        // Wait for script to fully load
+        setTimeout(renderWidget, 100)
+        return
+      }
+
+      const container = document.getElementById('turnstile-widget')
+      if (!container) {
+        setTimeout(renderWidget, 100)
+        return
+      }
+
+      // Check if widget is already rendered
+      if (container.querySelector('.cf-turnstile')) {
+        turnstileInitialized.value = true
+        return
+      }
+
+      turnstileInitialized.value = true
+
+      try {
+        turnstileWidgetId.value = windowWithTurnstile.turnstile.render('#turnstile-widget', {
+          sitekey: siteKey,
+          theme: 'auto',
+          size: 'normal',
+          callback: (token: string) => {
+            turnstileToken.value = token
+            errors.turnstile = ''
+            turnstileReady.value = true
+          },
+          'error-callback': () => {
+            turnstileToken.value = ''
+            errors.turnstile = 'Verification failed. Please try again.'
+            turnstileReady.value = false
+          },
+          'expired-callback': () => {
+            turnstileToken.value = ''
+            errors.turnstile = 'Verification expired. Please verify again.'
+            turnstileReady.value = false
+          }
+        })
+      } catch (error) {
+        turnstileInitialized.value = false
+        console.error('Turnstile rendering error:', error)
+      }
+    }
+
+    // Check if script is already loaded
+    const existingScript = document.querySelector('script[src*="challenges.cloudflare.com/turnstile"]')
+    if (existingScript || (window as any).turnstile) {
+      renderWidget()
+      return
+    }
+
+    // Set up the onload callback before adding the script
+    ;(window as any).onTurnstileLoad = () => {
+      nextTick(() => {
+        renderWidget()
+      })
+    }
+
+    // Dynamically inject the Turnstile script
+    const script = document.createElement('script')
+    script.src = 'https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit&onload=onTurnstileLoad'
+    script.defer = true
+    document.head.appendChild(script)
+  }
+
+  // Load Turnstile after a short delay to let the component render first
+  nextTick(() => {
+    loadAndInitTurnstile()
   })
 
   // Create timeline for coordinated animations
