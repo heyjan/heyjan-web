@@ -1,5 +1,5 @@
 <template>
-  <div class="min-h-screen bg-dark-300 p-4 sm:p-6 relative overflow-hidden">
+  <div class="min-h-screen bg-background p-4 sm:p-6 relative overflow-hidden">
     <!-- Background Effects -->
     <div class="absolute inset-0 -z-10 overflow-hidden pointer-events-none">
       <!-- Gradient Orbs -->
@@ -19,14 +19,14 @@
         <div class="flex items-center justify-between mb-2">
           <div>
             <h1 class="text-4xl font-serif text-primary">Dashboard</h1>
-            <p class="text-gray-400 text-sm">Welcome, {{ user?.name }}</p>
+            <p class="text-text-muted text-sm">Welcome, {{ user?.name }}</p>
           </div>
           <button
             @click="handleLogout"
-            class="p-2 hover:bg-dark-100/50 rounded-lg transition"
+            class="p-2 hover:bg-surface-alt/50 rounded-lg transition"
             title="Logout"
           >
-            <LogOut class="w-6 h-6 text-gray-400 hover:text-primary transition" />
+            <LogOut class="w-6 h-6 text-text-muted hover:text-primary transition" />
           </button>
         </div>
         <div class="h-px bg-gradient-to-r from-primary/20 to-transparent mt-4"></div>
@@ -37,7 +37,7 @@
         <!-- Gym Tracker Card -->
         <div
           @click="navigateToTool('gym-tracker')"
-          class="group relative cursor-pointer overflow-hidden rounded-lg p-6 transition-all duration-300 hover:scale-105 bg-dark-100/40 border border-primary/10 hover:border-primary/30"
+          class="group relative cursor-pointer overflow-hidden rounded-lg p-6 transition-all duration-300 hover:scale-105 bg-surface border border-border hover:border-primary/30"
         >
           <!-- Glow effect -->
           <div class="absolute -inset-px opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-lg bg-gradient-to-br from-primary/20 to-transparent pointer-events-none"></div>
@@ -51,8 +51,8 @@
 
             <!-- Text -->
             <div>
-              <h2 class="text-xl font-serif text-white">Gym Tracker</h2>
-              <p class="text-sm text-gray-400 mt-1">Track your workouts</p>
+              <h2 class="text-xl font-serif text-text">Gym Tracker</h2>
+              <p class="text-sm text-text-muted mt-1">Track your workouts</p>
             </div>
           </div>
         </div>
@@ -60,7 +60,7 @@
         <!-- Ausgaben Manager Card -->
         <div
           @click="navigateToTool('expense-manager')"
-          class="group relative cursor-pointer overflow-hidden rounded-lg p-6 transition-all duration-300 hover:scale-105 bg-dark-100/40 border border-primary/10 hover:border-primary/30"
+          class="group relative cursor-pointer overflow-hidden rounded-lg p-6 transition-all duration-300 hover:scale-105 bg-surface border border-border hover:border-primary/30"
         >
           <!-- Glow effect -->
           <div class="absolute -inset-px opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-lg bg-gradient-to-br from-primary/20 to-transparent pointer-events-none"></div>
@@ -74,8 +74,8 @@
 
             <!-- Text -->
             <div>
-              <h2 class="text-xl font-serif text-white">Ausgaben Manager</h2>
-              <p class="text-sm text-gray-400 mt-1">Manage your expenses</p>
+              <h2 class="text-xl font-serif text-text">Ausgaben Manager</h2>
+              <p class="text-sm text-text-muted mt-1">Manage your expenses</p>
             </div>
           </div>
         </div>
@@ -83,7 +83,7 @@
 
       <!-- Footer note -->
       <div class="mt-12 text-center">
-        <p class="text-xs text-gray-500">More tools coming soon...</p>
+        <p class="text-xs text-text-muted">More tools coming soon...</p>
       </div>
     </div>
   </div>

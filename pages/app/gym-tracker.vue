@@ -1,5 +1,5 @@
 <template>
-  <div class="min-h-screen bg-dark-300 p-4 relative overflow-hidden">
+  <div class="min-h-screen bg-background p-4 relative overflow-hidden">
     <!-- Background Effects -->
     <div class="absolute inset-0 -z-10 overflow-hidden pointer-events-none">
       <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/5 rounded-full blur-3xl animate-pulse"></div>
@@ -17,14 +17,14 @@
       <div class="mb-8 flex items-center justify-between">
         <div>
           <h1 class="text-4xl font-serif text-primary">Gym Tracker</h1>
-          <p class="text-gray-400 text-sm">Track your BJJ sessions</p>
+          <p class="text-text-muted text-sm">Track your BJJ sessions</p>
         </div>
         <NuxtLink
           to="/app"
-          class="p-2 hover:bg-dark-100/50 rounded-lg transition"
+          class="p-2 hover:bg-surface-alt/50 rounded-lg transition"
           title="Back to Dashboard"
         >
-          <ArrowLeft class="w-6 h-6 text-gray-400 hover:text-primary transition" />
+          <ArrowLeft class="w-6 h-6 text-text-muted hover:text-primary transition" />
         </NuxtLink>
       </div>
 
@@ -38,7 +38,7 @@
           class="w-full group relative overflow-hidden rounded-lg p-8 transition-all duration-300 hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed"
         >
           <!-- Animated background -->
-          <div class="absolute inset-0 bg-dark-100/40 border border-primary/10 group-hover:border-primary/30 transition-all rounded-lg"></div>
+          <div class="absolute inset-0 bg-surface border border-border group-hover:border-primary/30 transition-all rounded-lg"></div>
 
           <!-- Glow effect on hover -->
           <div class="absolute -inset-px opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-lg bg-gradient-to-br from-primary/20 to-transparent pointer-events-none"></div>
@@ -50,8 +50,8 @@
               <Loader class="w-12 h-12 text-primary animate-spin" v-else />
             </div>
             <div class="text-center">
-              <p class="text-lg font-semibold text-white">{{ isCheckingIn ? 'Checking in...' : 'BJJ Check-in' }}</p>
-              <p class="text-sm text-gray-400 mt-1">Quick session tracker</p>
+              <p class="text-lg font-semibold text-text">{{ isCheckingIn ? 'Checking in...' : 'BJJ Check-in' }}</p>
+              <p class="text-sm text-text-muted mt-1">Quick session tracker</p>
             </div>
           </div>
         </button>
@@ -69,38 +69,38 @@
 
       <!-- History Section -->
       <div>
-        <h2 class="text-2xl font-serif text-white mb-4">History</h2>
+        <h2 class="text-2xl font-serif text-text mb-4">History</h2>
 
         <!-- Month/Year Selector -->
         <div class="mb-6 flex gap-2">
           <button
             @click="previousMonth"
-            class="p-2 hover:bg-dark-100/50 rounded-lg transition"
+            class="p-2 hover:bg-surface-alt/50 rounded-lg transition"
             title="Previous month"
           >
-            <ChevronLeft class="w-5 h-5 text-gray-400 hover:text-primary" />
+            <ChevronLeft class="w-5 h-5 text-text-muted hover:text-primary" />
           </button>
 
-          <div class="flex-1 bg-dark-100/40 border border-primary/10 rounded-lg px-4 py-2 flex items-center justify-center cursor-pointer hover:border-primary/30 transition" @click="toggleMonthPicker">
-            <span class="text-white font-medium text-sm">
+          <div class="flex-1 bg-surface border border-border rounded-lg px-4 py-2 flex items-center justify-center cursor-pointer hover:border-primary/30 transition" @click="toggleMonthPicker">
+            <span class="text-text font-medium text-sm">
               {{ selectedDate.toLocaleDateString('en-US', { month: 'long', year: 'numeric' }) }}
             </span>
           </div>
 
           <button
             @click="nextMonth"
-            class="p-2 hover:bg-dark-100/50 rounded-lg transition"
+            class="p-2 hover:bg-surface-alt/50 rounded-lg transition"
             title="Next month"
           >
-            <ChevronRight class="w-5 h-5 text-gray-400 hover:text-primary" />
+            <ChevronRight class="w-5 h-5 text-text-muted hover:text-primary" />
           </button>
         </div>
 
         <!-- Calendar Grid -->
-        <div class="bg-dark-100/40 border border-primary/10 rounded-lg p-4">
+        <div class="bg-surface border border-border rounded-lg p-4">
           <!-- Day headers -->
           <div class="grid grid-cols-7 gap-2 mb-2">
-            <div v-for="day in ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']" :key="day" class="text-center text-xs text-gray-400 font-semibold py-2">
+            <div v-for="day in ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']" :key="day" class="text-center text-xs text-text-muted font-semibold py-2">
               {{ day }}
             </div>
           </div>
@@ -115,13 +115,13 @@
               v-for="day in daysInMonth"
               :key="day"
               @click="handleDayClick(day)"
-              class="aspect-square relative group bg-dark-200/50 hover:bg-dark-200 border border-primary/10 hover:border-primary/30 rounded-lg transition-all flex flex-col items-center justify-between p-2"
+              class="aspect-square relative group bg-surface-alt/50 hover:bg-surface-alt border border-border hover:border-primary/30 rounded-lg transition-all flex flex-col items-center justify-between p-2"
             >
               <!-- Glow effect -->
               <div v-if="hasCheckIn(day)" class="absolute -inset-1 opacity-0 group-hover:opacity-100 transition-opacity rounded-lg bg-gradient-to-br from-primary/20 to-transparent -z-10"></div>
 
               <!-- Date -->
-              <span class="text-xs font-semibold" :class="hasCheckIn(day) ? 'text-primary' : 'text-gray-300'">
+              <span class="text-xs font-semibold" :class="hasCheckIn(day) ? 'text-primary' : 'text-text'">
                 {{ day }}
               </span>
 
@@ -129,16 +129,16 @@
               <Dumbbell v-if="hasCheckIn(day)" class="w-4 h-4 text-primary" />
 
               <!-- Add button for empty days -->
-              <Plus v-else class="w-4 h-4 text-gray-500 opacity-0 group-hover:opacity-100 transition-opacity" />
+              <Plus v-else class="w-4 h-4 text-text-muted opacity-0 group-hover:opacity-100 transition-opacity" />
             </button>
           </div>
         </div>
 
         <!-- Month sessions summary -->
-        <div class="mt-6 p-4 bg-dark-100/40 border border-primary/10 rounded-lg">
-          <p class="text-sm text-gray-300">
+        <div class="mt-6 p-4 bg-surface border border-border rounded-lg">
+          <p class="text-sm text-text">
             <span class="font-semibold text-primary">{{ checkInsThisMonth }}</span>
-            <span class="text-gray-400"> sessions in {{ selectedDate.toLocaleDateString('en-US', { month: 'long' }) }}</span>
+            <span class="text-text-muted"> sessions in {{ selectedDate.toLocaleDateString('en-US', { month: 'long' }) }}</span>
           </p>
         </div>
       </div>
@@ -148,38 +148,38 @@
     <Teleport to="body">
       <Transition name="modal">
         <div v-if="selectedDay !== null" class="fixed inset-0 bg-black/50 flex items-end z-50">
-          <div class="w-full bg-dark-100 rounded-t-lg p-6 animate-slide-up">
+          <div class="w-full bg-surface rounded-t-lg p-6 animate-slide-up">
             <!-- Close button -->
             <div class="flex justify-between items-center mb-4">
               <h3 class="text-xl font-serif text-primary">
                 {{ formatDate(new Date(selectedDate.getFullYear(), selectedDate.getMonth(), selectedDay)) }}
               </h3>
-              <button @click="selectedDay = null" class="p-2 hover:bg-dark-200 rounded-lg transition">
-                <X class="w-5 h-5 text-gray-400 hover:text-white" />
+              <button @click="selectedDay = null" class="p-2 hover:bg-surface-alt rounded-lg transition">
+                <X class="w-5 h-5 text-text-muted hover:text-text" />
               </button>
             </div>
 
             <!-- Add session button -->
             <button
               @click="addSessionForDay"
-              class="w-full py-3 bg-primary hover:bg-primary/90 text-dark-300 font-semibold rounded-lg transition flex items-center justify-center gap-2"
+              class="w-full py-3 bg-primary hover:bg-primary/90 text-white font-semibold rounded-lg transition flex items-center justify-center gap-2"
             >
               <Plus class="w-5 h-5" />
               Add BJJ Session
             </button>
 
             <!-- Existing session (if any) -->
-            <div v-if="hasCheckIn(selectedDay)" class="mt-4 p-4 bg-dark-200/50 border border-primary/20 rounded-lg flex items-center justify-between">
+            <div v-if="hasCheckIn(selectedDay)" class="mt-4 p-4 bg-surface-alt/50 border border-border rounded-lg flex items-center justify-between">
               <div class="flex items-center gap-2">
                 <CheckCircle2 class="w-5 h-5 text-primary" />
-                <span class="text-sm text-gray-300">BJJ Session logged</span>
+                <span class="text-sm text-text">BJJ Session logged</span>
               </div>
               <button
                 @click="removeCheckIn(selectedDay)"
-                class="p-2 hover:bg-dark-300 rounded transition"
+                class="p-2 hover:bg-surface-alt rounded transition"
                 title="Remove"
               >
-                <Trash2 class="w-4 h-4 text-red-400 hover:text-red-300" />
+                <Trash2 class="w-4 h-4 text-red-500 hover:text-red-600" />
               </button>
             </div>
           </div>
@@ -445,11 +445,11 @@ watch(
   opacity: 0;
 }
 
-.modal-enter-active :deep(.bg-dark-100) {
+.modal-enter-active :deep(.bg-surface) {
   animation: slide-up 0.3s ease;
 }
 
-.modal-leave-active :deep(.bg-dark-100) {
+.modal-leave-active :deep(.bg-surface) {
   animation: slide-down 0.3s ease;
 }
 
