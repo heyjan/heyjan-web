@@ -31,7 +31,7 @@
       <div class="h-px bg-gradient-to-r from-primary/20 to-transparent mb-8"></div>
 
       <!-- Action Buttons -->
-      <div class="mb-8 grid grid-cols-3 gap-3">
+      <div class="mb-8 grid grid-cols-4 gap-3">
         <!-- Button 1: Ausgaben -->
         <button
           @click="openAddExpenseModal"
@@ -56,7 +56,19 @@
           </div>
         </button>
 
-        <!-- Button 3: Camera -->
+        <!-- Button 3: Recurring -->
+        <button
+          @click="openRecurringModal"
+          class="group relative overflow-hidden rounded-lg p-4 transition-all duration-300 hover:scale-105 bg-dark-100/40 border border-primary/10 hover:border-primary/30"
+        >
+          <div class="absolute -inset-px opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-lg bg-gradient-to-br from-primary/20 to-transparent pointer-events-none"></div>
+          <div class="relative z-10 flex flex-col items-center gap-2">
+            <Repeat class="w-6 h-6 text-primary" />
+            <span class="text-xs font-semibold text-white">Dauerauftrag</span>
+          </div>
+        </button>
+
+        <!-- Button 4: Camera -->
         <button
           @click="openCamera"
           class="group relative overflow-hidden rounded-lg p-4 transition-all duration-300 hover:scale-105 bg-dark-100/40 border border-primary/10 hover:border-primary/30"
@@ -101,6 +113,58 @@
             <p class="text-lg font-semibold" :class="totals.balance >= 0 ? 'text-green-400' : 'text-red-400'">
               {{ formatCurrency(totals.balance) }}
             </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Recurring Payments Summary -->
+      <div v-if="recurringPayments.length > 0" class="mb-6">
+        <div class="flex items-center justify-between mb-3">
+          <h2 class="text-lg font-serif text-white flex items-center gap-2">
+            <Repeat class="w-5 h-5 text-primary" />
+            Daueraufträge
+          </h2>
+          <span class="text-sm text-gray-400">
+            {{ formatCurrency(recurringMonthlyTotal) }}/Monat
+          </span>
+        </div>
+        <div class="space-y-2">
+          <div
+            v-for="payment in recurringPayments"
+            :key="payment.id"
+            class="p-3 bg-dark-100/40 border border-primary/10 rounded-lg flex items-center justify-between"
+          >
+            <div class="flex items-center gap-3">
+              <div
+                v-if="payment.category_color"
+                class="w-3 h-3 rounded-full"
+                :style="{ backgroundColor: payment.category_color }"
+              ></div>
+              <div>
+                <p class="text-sm font-medium text-white">{{ payment.name }}</p>
+                <p class="text-xs text-gray-400">
+                  {{ payment.due_day }}. des Monats
+                  <span v-if="!payment.is_active" class="text-yellow-400 ml-1">(pausiert)</span>
+                </p>
+              </div>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="text-sm font-semibold text-red-400">{{ formatCurrency(payment.amount) }}</span>
+              <button
+                @click="editRecurringPayment(payment)"
+                class="p-1.5 hover:bg-dark-200 rounded transition"
+                title="Bearbeiten"
+              >
+                <Pencil class="w-4 h-4 text-gray-400 hover:text-primary" />
+              </button>
+              <button
+                @click="deleteRecurringPayment(payment.id)"
+                class="p-1.5 hover:bg-dark-200 rounded transition"
+                title="Löschen"
+              >
+                <Trash2 class="w-4 h-4 text-gray-400 hover:text-red-400" />
+              </button>
+            </div>
           </div>
         </div>
       </div>
@@ -361,6 +425,146 @@
         </div>
       </Transition>
     </Teleport>
+
+    <!-- Recurring Payment Modal -->
+    <Teleport to="body">
+      <Transition name="modal">
+        <div v-if="showRecurringModal" class="fixed inset-0 bg-black/50 flex items-end z-50" @click.self="closeRecurringModal">
+          <div class="w-full bg-dark-100 rounded-t-lg p-6 animate-slide-up max-h-[90vh] overflow-y-auto">
+            <div class="flex justify-between items-center mb-6">
+              <h3 class="text-xl font-serif text-primary">
+                {{ editingRecurring ? 'Dauerauftrag bearbeiten' : 'Neuer Dauerauftrag' }}
+              </h3>
+              <button @click="closeRecurringModal" class="p-2 hover:bg-dark-200 rounded-lg transition">
+                <X class="w-5 h-5 text-gray-400 hover:text-white" />
+              </button>
+            </div>
+
+            <form @submit.prevent="handleSaveRecurring" class="space-y-4">
+              <div>
+                <label class="block text-sm font-medium text-gray-300 mb-2">Name</label>
+                <input
+                  v-model="recurringForm.name"
+                  type="text"
+                  required
+                  maxlength="100"
+                  placeholder="z.B. BJJ Gym, Cursor, Kindergarten"
+                  class="w-full bg-dark-200/50 border border-primary/20 text-gray-200 rounded-lg px-4 py-2 focus:border-primary/50 focus:ring-primary/30 focus:outline-none placeholder:text-gray-500"
+                />
+              </div>
+
+              <div>
+                <label class="block text-sm font-medium text-gray-300 mb-2">Betrag</label>
+                <input
+                  v-model.number="recurringForm.amount"
+                  type="number"
+                  step="0.01"
+                  min="0.01"
+                  required
+                  placeholder="0.00"
+                  class="w-full bg-dark-200/50 border border-primary/20 text-gray-200 rounded-lg px-4 py-2 focus:border-primary/50 focus:ring-primary/30 focus:outline-none placeholder:text-gray-500"
+                />
+              </div>
+
+              <div>
+                <label class="block text-sm font-medium text-gray-300 mb-2">Kategorie (optional)</label>
+                <select
+                  v-model="recurringForm.category_id"
+                  class="w-full bg-dark-200/50 border border-primary/20 text-gray-200 rounded-lg px-4 py-2 focus:border-primary/50 focus:ring-primary/30 focus:outline-none"
+                >
+                  <option value="">Keine Kategorie</option>
+                  <option
+                    v-for="category in expenseCategories"
+                    :key="category.id"
+                    :value="category.id"
+                  >
+                    {{ category.name }}
+                  </option>
+                </select>
+              </div>
+
+              <div class="grid grid-cols-2 gap-4">
+                <div>
+                  <label class="block text-sm font-medium text-gray-300 mb-2">Frequenz</label>
+                  <select
+                    v-model="recurringForm.frequency"
+                    class="w-full bg-dark-200/50 border border-primary/20 text-gray-200 rounded-lg px-4 py-2 focus:border-primary/50 focus:ring-primary/30 focus:outline-none"
+                  >
+                    <option value="weekly">Wöchentlich</option>
+                    <option value="monthly">Monatlich</option>
+                    <option value="yearly">Jährlich</option>
+                  </select>
+                </div>
+                <div>
+                  <label class="block text-sm font-medium text-gray-300 mb-2">
+                    {{ recurringForm.frequency === 'weekly' ? 'Wochentag' : 'Tag des Monats' }}
+                  </label>
+                  <input
+                    v-model.number="recurringForm.due_day"
+                    type="number"
+                    :min="1"
+                    :max="recurringForm.frequency === 'weekly' ? 7 : 31"
+                    required
+                    class="w-full bg-dark-200/50 border border-primary/20 text-gray-200 rounded-lg px-4 py-2 focus:border-primary/50 focus:ring-primary/30 focus:outline-none"
+                  />
+                </div>
+              </div>
+
+              <div class="grid grid-cols-2 gap-4">
+                <div>
+                  <label class="block text-sm font-medium text-gray-300 mb-2">Startdatum</label>
+                  <input
+                    v-model="recurringForm.start_date"
+                    type="date"
+                    required
+                    class="w-full bg-dark-200/50 border border-primary/20 text-gray-200 rounded-lg px-4 py-2 focus:border-primary/50 focus:ring-primary/30 focus:outline-none"
+                  />
+                </div>
+                <div>
+                  <label class="block text-sm font-medium text-gray-300 mb-2">Enddatum (optional)</label>
+                  <input
+                    v-model="recurringForm.end_date"
+                    type="date"
+                    class="w-full bg-dark-200/50 border border-primary/20 text-gray-200 rounded-lg px-4 py-2 focus:border-primary/50 focus:ring-primary/30 focus:outline-none"
+                  />
+                </div>
+              </div>
+
+              <div>
+                <label class="flex items-center gap-2 cursor-pointer">
+                  <input
+                    v-model="recurringForm.is_active"
+                    type="checkbox"
+                    class="w-4 h-4 rounded border-primary/20 bg-dark-200/50 text-primary focus:ring-primary/30"
+                  />
+                  <span class="text-sm text-gray-300">Aktiv</span>
+                </label>
+              </div>
+
+              <div>
+                <label class="block text-sm font-medium text-gray-300 mb-2">Notizen (optional)</label>
+                <textarea
+                  v-model="recurringForm.notes"
+                  rows="2"
+                  placeholder="Zusätzliche Informationen..."
+                  class="w-full bg-dark-200/50 border border-primary/20 text-gray-200 rounded-lg px-4 py-2 focus:border-primary/50 focus:ring-primary/30 focus:outline-none placeholder:text-gray-500 resize-none"
+                ></textarea>
+              </div>
+
+              <button
+                type="submit"
+                :disabled="isSubmittingRecurring"
+                class="w-full py-3 bg-primary hover:bg-primary/90 text-dark-300 font-semibold rounded-lg transition flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                <Loader v-if="isSubmittingRecurring" class="w-5 h-5 animate-spin" />
+                <Repeat v-else class="w-5 h-5" />
+                {{ isSubmittingRecurring ? 'Speichern...' : (editingRecurring ? 'Speichern' : 'Hinzufügen') }}
+              </button>
+            </form>
+          </div>
+        </div>
+      </Transition>
+    </Teleport>
   </div>
 </template>
 
@@ -372,7 +576,10 @@ import {
   Tag,
   Camera,
   X,
-  Loader
+  Loader,
+  Repeat,
+  Pencil,
+  Trash2
 } from 'lucide-vue-next'
 import Breadcrumb from '~/components/ui/Breadcrumb.vue'
 
@@ -384,11 +591,16 @@ definePageMeta({
 const currentDate = ref(new Date())
 const expenses = ref<any[]>([])
 const categories = ref<any[]>([])
+const recurringPayments = ref<any[]>([])
+const recurringMonthlyTotal = ref(0)
 const loading = ref(false)
 const isSubmitting = ref(false)
 const isSubmittingCategory = ref(false)
+const isSubmittingRecurring = ref(false)
 const showAddExpenseModal = ref(false)
 const showAddCategoryModal = ref(false)
+const showRecurringModal = ref(false)
+const editingRecurring = ref<any>(null)
 const cameraInput = ref<HTMLInputElement | null>(null)
 
 const expenseForm = ref({
@@ -404,6 +616,18 @@ const categoryForm = ref({
   name: '',
   is_recurring: false,
   color: '#6366f1'
+})
+
+const recurringForm = ref({
+  name: '',
+  amount: 0,
+  category_id: '',
+  frequency: 'monthly',
+  due_day: 1,
+  start_date: new Date().toISOString().split('T')[0],
+  end_date: '',
+  is_active: true,
+  notes: ''
 })
 
 const totals = ref({
@@ -424,6 +648,13 @@ const currentMonthName = computed(() => {
  */
 const filteredCategories = computed(() => {
   return categories.value.filter(cat => cat.type === expenseForm.value.type)
+})
+
+/**
+ * Expense categories only (for recurring payments)
+ */
+const expenseCategories = computed(() => {
+  return categories.value.filter(cat => cat.type === 'expense')
 })
 
 /**
@@ -573,6 +804,129 @@ const handleAddCategory = async () => {
 }
 
 /**
+ * Open recurring modal for new payment
+ */
+const openRecurringModal = () => {
+  editingRecurring.value = null
+  recurringForm.value = {
+    name: '',
+    amount: 0,
+    category_id: '',
+    frequency: 'monthly',
+    due_day: 1,
+    start_date: new Date().toISOString().split('T')[0],
+    end_date: '',
+    is_active: true,
+    notes: ''
+  }
+  showRecurringModal.value = true
+}
+
+/**
+ * Close recurring modal
+ */
+const closeRecurringModal = () => {
+  showRecurringModal.value = false
+  editingRecurring.value = null
+}
+
+/**
+ * Edit recurring payment
+ */
+const editRecurringPayment = (payment: any) => {
+  editingRecurring.value = payment
+  recurringForm.value = {
+    name: payment.name,
+    amount: parseFloat(payment.amount),
+    category_id: payment.category_id || '',
+    frequency: payment.frequency,
+    due_day: payment.due_day,
+    start_date: payment.start_date,
+    end_date: payment.end_date || '',
+    is_active: payment.is_active,
+    notes: payment.notes || ''
+  }
+  showRecurringModal.value = true
+}
+
+/**
+ * Handle save recurring payment (create or update)
+ */
+const handleSaveRecurring = async () => {
+  if (!recurringForm.value.name.trim() || !recurringForm.value.amount) {
+    return
+  }
+
+  isSubmittingRecurring.value = true
+
+  try {
+    const payload = {
+      name: recurringForm.value.name.trim(),
+      amount: recurringForm.value.amount,
+      category_id: recurringForm.value.category_id || null,
+      frequency: recurringForm.value.frequency,
+      due_day: recurringForm.value.due_day,
+      start_date: recurringForm.value.start_date,
+      end_date: recurringForm.value.end_date || null,
+      is_active: recurringForm.value.is_active,
+      notes: recurringForm.value.notes || null
+    }
+
+    if (editingRecurring.value) {
+      await $fetch(`/api/recurring-payments/${editingRecurring.value.id}`, {
+        method: 'PUT',
+        body: payload
+      })
+    } else {
+      await $fetch('/api/recurring-payments', {
+        method: 'POST',
+        body: payload
+      })
+    }
+
+    await loadRecurringPayments()
+    closeRecurringModal()
+  } catch (error: any) {
+    console.error('Error saving recurring payment:', error)
+    alert(error.data?.message || 'Failed to save recurring payment')
+  } finally {
+    isSubmittingRecurring.value = false
+  }
+}
+
+/**
+ * Delete recurring payment
+ */
+const deleteRecurringPayment = async (id: number) => {
+  if (!confirm('Dauerauftrag wirklich löschen?')) {
+    return
+  }
+
+  try {
+    await $fetch(`/api/recurring-payments/${id}`, {
+      method: 'DELETE'
+    })
+    await loadRecurringPayments()
+  } catch (error: any) {
+    console.error('Error deleting recurring payment:', error)
+    alert(error.data?.message || 'Failed to delete recurring payment')
+  }
+}
+
+/**
+ * Load recurring payments
+ */
+const loadRecurringPayments = async () => {
+  try {
+    const response = await $fetch('/api/recurring-payments')
+    recurringPayments.value = response.payments || []
+    recurringMonthlyTotal.value = response.monthlyTotal || 0
+  } catch (error) {
+    console.error('Error loading recurring payments:', error)
+  }
+}
+
+/**
  * Load expenses
  */
 const loadExpenses = async () => {
@@ -611,7 +965,7 @@ const loadCategories = async () => {
  * Initialize on mount
  */
 onMounted(async () => {
-  await Promise.all([loadExpenses(), loadCategories()])
+  await Promise.all([loadExpenses(), loadCategories(), loadRecurringPayments()])
 })
 </script>
 
