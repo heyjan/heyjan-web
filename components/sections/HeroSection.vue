@@ -52,6 +52,26 @@
             View CV
           </DitherButton>
         </div>
+
+        <!-- NVIDIA certification badge (Credly-verified) -->
+        <a
+          ref="badgeRef"
+          href="https://www.credly.com/badges/7c094bab-d491-4b9c-a1b9-b552c242c92a"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-block mt-8 transition-opacity hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded"
+          title="NVIDIA Certified Associate: Generative AI LLMs - view credential on Credly"
+        >
+          <NuxtImg
+            src="/images/nvidia-nca-genl-badge.png"
+            alt="NVIDIA Certified Associate: Generative AI LLMs"
+            width="120"
+            height="140"
+            format="webp"
+            loading="lazy"
+            class="h-24 w-auto"
+          />
+        </a>
       </div>
       
       <!-- Profile Image with enhanced effects -->
@@ -106,6 +126,7 @@
   const underlineRef = ref(null)
   const descriptionRef = ref(null)
   const buttonsRef = ref(null)
+  const badgeRef = ref(null)
   const particles = ref([])
   
   onMounted(() => {
@@ -124,7 +145,7 @@
     const tl = gsap.timeline()
     
     // Set initial states
-    gsap.set([subtitleRef.value, introText.value, nameText.value, descriptionRef.value, buttonsRef.value], {
+    gsap.set([subtitleRef.value, introText.value, nameText.value, descriptionRef.value, buttonsRef.value, badgeRef.value], {
       opacity: 0,
       y: 30
     })
@@ -171,6 +192,12 @@
       ease: 'power3.out'
     }, '-=0.2')
     .to(buttonsRef.value, {
+      opacity: 1,
+      y: 0,
+      duration: 0.8,
+      ease: 'power3.out'
+    }, '-=0.2')
+    .to(badgeRef.value, {
       opacity: 1,
       y: 0,
       duration: 0.8,
