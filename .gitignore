@@ -91,6 +91,7 @@ sw.*
 *.swp
 
 .output
+.data
 
 # Documentation - Keep locally only
 *.md
