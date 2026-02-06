@@ -92,6 +92,8 @@ sw.*
 
 .output
 .data
+test-results
+playwright-report
 
 # Documentation - Keep locally only
 *.md
