@@ -1,0 +1,56 @@
+services:
+  app:
+    build:
+      context: ..
+      dockerfile: .devcontainer/Dockerfile
+      args:
+        USER_UID: ${UID:-1000}
+        USER_GID: ${GID:-1000}
+    init: true
+    working_dir: /workspace
+    command: /bin/sh -c "npm ci && npm run seed:dev && npm run dev"
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      MYSQLHOST: db
+      MYSQLPORT: 3306
+      MYSQLUSER: heyjan
+      MYSQLPASSWORD: heyjan
+      MYSQLDATABASE: railway
+      NODE_ENV: development
+    ports:
+      - "3000:3000"
+    volumes:
+      - ..:/workspace:Z
+      - heyjan-web-node_modules:/workspace/node_modules
+      - heyjan-web-nuxt:/workspace/.nuxt
+      - heyjan-web-content-db:/workspace/.data
+    security_opt:
+      - label=disable
+
+  db:
+    build:
+      context: ..
+      dockerfile: .devcontainer/mysql/Dockerfile
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: railway
+      MYSQL_USER: heyjan
+      MYSQL_PASSWORD: heyjan
+      MYSQL_ROOT_PASSWORD: root
+    volumes:
+      - mysql-data:/var/lib/mysql
+    healthcheck:
+      test:
+        - CMD-SHELL
+        - mysqladmin ping -h 127.0.0.1 -uroot -proot
+      interval: 5s
+      timeout: 5s
+      retries: 20
+
+volumes:
+  mysql-data:
+  heyjan-web-node_modules:
+  heyjan-web-nuxt:
+  heyjan-web-content-db:
