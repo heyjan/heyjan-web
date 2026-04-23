@@ -23,10 +23,10 @@
             <div class="md:col-span-2 bg-surface border border-border rounded-lg p-8 shadow-sm">
               <h2 class="text-2xl font-serif text-text mb-4">Focus</h2>
               <ul class="space-y-3 text-text-muted leading-relaxed list-disc pl-5">
-                <li>Enterprise AI delivery: discovery, architecture, implementation, rollout</li>
-                <li>RAG architectures for internal knowledge and copilots</li>
-                <li>Evaluation, observability, and safety patterns</li>
-                <li>Full-stack implementation with maintainable foundations</li>
+                <li>Enterprise AI: RAG architectures, AI agents, LLM integration for internal knowledge systems</li>
+                <li>Business Intelligence: custom BI platforms, forecasting, outlier detection, automated reporting</li>
+                <li>Data pipelines & API orchestration: multi-source integrations, webhooks, data quality</li>
+                <li>Full-stack delivery in compliance-sensitive environments</li>
               </ul>
             </div>
 

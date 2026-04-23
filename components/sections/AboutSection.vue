@@ -7,8 +7,24 @@
         Technology grabbed attention early, from reading computer magazines in school to building the first HTML pages in Netscape Composer, the very first WYSIWYG editor. Over time this turned into a self-taught path into web development, cloud, and AI.
       </p>
 
+      <h3 class="text-xl font-serif text-text !mb-2">Work</h3>
+
       <p>
-        Since 2017, client work has ranged from small businesses to established companies, always with the same goal: ship useful software that actually gets used. Early on, this also included marketing work, where valuable experience with positioning and communication was gained. In 2024, this experience led to the current role as Full-Stack Developer & AI Specialist at LIQUI MOLY, focusing on internal tools and AI transformation initiatives.
+        At LIQUI MOLY, building a Data & AI capability from scratch: five production projects spanning automated revenue reporting, multi-source price aggregation, a RAG-based knowledge system for technical support, AI-driven content generation, and a custom BI platform with forecasting and outlier detection. Beyond implementation, serving as the central AI advisor across the organization — evaluating tools, defining guidelines, and building the strategic case for a dedicated Data & AI function.
+      </p>
+
+      <p>
+        Since 2024, also the responsible web developer for the website of a national interest association representing 160 member organizations in a heavily regulated market — 200k+ monthly page impressions. Content compliance is mission-critical: strict advertising prohibitions, youth protection requirements, and data privacy regulations around member data mean that changes sometimes have to be made within hours when authorities flag content. A single compliance issue can jeopardize licensing for member organizations.
+      </p>
+
+      <p>
+        Since 2017, freelance web development for clients ranging from small businesses to established companies, always with the same goal: ship useful software that actually gets used. Early projects also included marketing and positioning work — experience that still shapes how technical solutions are communicated and sold.
+      </p>
+
+      <h3 class="text-xl font-serif text-text !mb-2">Side Projects</h3>
+
+      <p>
+        <a href="https://github.com/heyjan/openbase" target="_blank" rel="noopener noreferrer" class="text-primary hover:text-primary/80 font-medium">Openbase</a> — an open-source Business Intelligence framework with AI agents integration, currently running in production. Jetson Nano OpenClaw — an Alexa-controlled robotic claw machine built with edge computing. Plus several private projects currently in the pipeline.
       </p>
 
       <p>
