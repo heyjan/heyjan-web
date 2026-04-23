@@ -10,15 +10,17 @@
       <h3 class="text-xl font-serif text-text !mb-2">Work</h3>
 
       <p>
-        At LIQUI MOLY, building a Data & AI capability from scratch: five production projects spanning automated revenue reporting, multi-source price aggregation, a RAG-based knowledge system for technical support, AI-driven content generation, and a custom BI platform with forecasting and outlier detection. Beyond implementation, serving as the central AI advisor across the organization — evaluating tools, defining guidelines, and building the strategic case for a dedicated Data & AI function.
+        At LIQUI MOLY, building a Data & AI capability from scratch: five production projects spanning automated revenue reporting, multi-source price aggregation, a RAG-based knowledge system for technical support, AI-driven content generation, and a custom BI platform with forecasting and outlier detection. Also advising on AI tooling and contributing to the company's Data & AI strategy.
+      </p>
+
+      <h3 class="text-xl font-serif text-text !mb-2">Freelance</h3>
+
+      <p>
+        Since 2017, web development for clients ranging from small businesses to established companies, always with the same goal: ship useful software that actually gets used. Early projects also included marketing and positioning work — experience that still shapes how technical solutions are communicated and sold.
       </p>
 
       <p>
-        Since 2024, also the responsible web developer for the website of a national interest association representing 160 member organizations in a heavily regulated market — 200k+ monthly page impressions. Content compliance is mission-critical: strict advertising prohibitions, youth protection requirements, and data privacy regulations around member data mean that changes sometimes have to be made within hours when authorities flag content. A single compliance issue can jeopardize licensing for member organizations.
-      </p>
-
-      <p>
-        Since 2017, freelance web development for clients ranging from small businesses to established companies, always with the same goal: ship useful software that actually gets used. Early projects also included marketing and positioning work — experience that still shapes how technical solutions are communicated and sold.
+        Since 2024, this includes being the responsible web developer for a national interest association in a regulated industry — 160 member organizations, 200k+ monthly page impressions, with strict compliance requirements around content and member data. Changes can be time-sensitive and demand high diligence.
       </p>
 
       <h3 class="text-xl font-serif text-text !mb-2">Side Projects</h3>
