@@ -79,6 +79,25 @@
             </div>
           </div>
         </div>
+
+        <!-- Visitor Log Card -->
+        <div
+          @click="navigateToTool('visitor-log')"
+          class="group relative cursor-pointer overflow-hidden rounded-lg p-6 transition-all duration-300 hover:scale-105 bg-surface border border-border hover:border-primary/30"
+        >
+          <div class="absolute -inset-px opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-lg bg-gradient-to-br from-primary/20 to-transparent pointer-events-none"></div>
+
+          <div class="relative z-10 flex flex-col items-center text-center gap-4">
+            <div class="p-4 rounded-full bg-primary/10">
+              <Radar class="w-8 h-8 text-primary" />
+            </div>
+
+            <div>
+              <h2 class="text-xl font-serif text-text">Visitor Log</h2>
+              <p class="text-sm text-text-muted mt-1">View tracked visits</p>
+            </div>
+          </div>
+        </div>
       </div>
 
       <!-- Footer note -->
@@ -90,7 +109,7 @@
 </template>
 
 <script setup lang="ts">
-import { Dumbbell, Wallet, LogOut } from 'lucide-vue-next'
+import { Dumbbell, Wallet, LogOut, Radar } from 'lucide-vue-next'
 import Breadcrumb from '~/components/ui/Breadcrumb.vue'
 
 definePageMeta({
@@ -128,4 +147,3 @@ const handleLogout = async () => {
   }
 }
 </style>
-

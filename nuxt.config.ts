@@ -238,6 +238,8 @@ export default defineNuxtConfig({
   runtimeConfig: {
     // Private keys (server-side only)
     turnstileSecretKey: process.env.TURNSTILE_SECRET_KEY,
+    visitorIntelToken: process.env.VISITOR_INTEL_TOKEN || '',
+    visitorHashSalt: process.env.VISITOR_HASH_SALT || 'change-me',
     // Public keys (exposed to client)
     public: {
       turnstileSiteKey: process.env.TURNSTILE_SITE_KEY || ''
