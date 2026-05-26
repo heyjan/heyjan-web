@@ -73,7 +73,7 @@ useSeoMeta({
   description: 'Case studies by Jan Mayer showcasing real-world AI implementations, enterprise solutions, and measurable business outcomes.',
   ogTitle: 'Case Studies · Jan Mayer',
   ogDescription: 'Case studies by Jan Mayer showcasing real-world AI implementations, enterprise solutions, and measurable business outcomes.',
-  ogImage: 'https://heyjan.de/images/profile.jpg',
+  ogImage: 'https://heyjan.de/images/profile.png',
   ogUrl: canonicalUrl.value,
   ogType: 'website',
 })

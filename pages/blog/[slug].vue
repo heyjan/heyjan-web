@@ -178,7 +178,7 @@ useSeoMeta({
   description: article.value?.description || 'Blog article',
   ogTitle: article.value ? `${article.value.title} | Blog | Jan Mayer` : 'Article Not Found',
   ogDescription: article.value?.description || 'Blog article',
-  ogImage: article.value?.meta?.image ? `https://heyjan.de${article.value.meta.image}` : 'https://heyjan.de/images/profile.jpg',
+  ogImage: article.value?.meta?.image ? `https://heyjan.de${article.value.meta.image}` : 'https://heyjan.de/images/profile.png',
   ogUrl: canonicalUrl.value,
   ogType: 'article',
   ogSiteName: 'Jan Mayer',
@@ -186,7 +186,7 @@ useSeoMeta({
   twitterCard: 'summary_large_image',
   twitterTitle: article.value ? `${article.value.title} | Blog | Jan Mayer` : 'Article Not Found',
   twitterDescription: article.value?.description || 'Blog article',
-  twitterImage: article.value?.meta?.image ? `https://heyjan.de${article.value.meta.image}` : 'https://heyjan.de/images/profile.jpg',
+  twitterImage: article.value?.meta?.image ? `https://heyjan.de${article.value.meta.image}` : 'https://heyjan.de/images/profile.png',
 })
 
 const formatDate = (date) => {

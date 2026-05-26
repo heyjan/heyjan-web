@@ -118,14 +118,14 @@ useSeoMeta({
   description: 'Technical articles on enterprise AI, Azure AI Foundry, RAG architectures, and full-stack development.',
   ogTitle: 'Blog - Jan Mayer',
   ogDescription: 'Technical articles on enterprise AI, Azure AI Foundry, RAG architectures, and full-stack development.',
-  ogImage: 'https://heyjan.de/images/profile.jpg',
+  ogImage: 'https://heyjan.de/images/profile.png',
   ogUrl: canonicalUrl.value,
   ogType: 'website',
   ogSiteName: 'Jan Mayer',
   twitterCard: 'summary_large_image',
   twitterTitle: 'Blog - Jan Mayer',
   twitterDescription: 'Technical articles on enterprise AI, Azure AI Foundry, RAG architectures, and full-stack development.',
-  twitterImage: 'https://heyjan.de/images/profile.jpg',
+  twitterImage: 'https://heyjan.de/images/profile.png',
 })
 
 useHead({

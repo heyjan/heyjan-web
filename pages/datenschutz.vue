@@ -200,14 +200,14 @@ useSeoMeta({
   description: 'Datenschutzerklärung von Jan Mayer gemäß DSGVO. Informationen zur Datenerhebung, Speicherung und Verarbeitung personenbezogener Daten auf heyjan.de.',
   ogTitle: 'Datenschutzerklärung - Jan Mayer',
   ogDescription: 'Datenschutzerklärung von Jan Mayer gemäß DSGVO. Informationen zur Datenerhebung, Speicherung und Verarbeitung personenbezogener Daten auf heyjan.de.',
-  ogImage: 'https://heyjan.de/images/profile.jpg',
+  ogImage: 'https://heyjan.de/images/profile.png',
   ogUrl: canonicalUrl.value,
   ogType: 'website',
   ogSiteName: 'Jan Mayer',
   twitterCard: 'summary_large_image',
   twitterTitle: 'Datenschutzerklärung - Jan Mayer',
   twitterDescription: 'Datenschutzerklärung von Jan Mayer gemäß DSGVO.',
-  twitterImage: 'https://heyjan.de/images/profile.jpg',
+  twitterImage: 'https://heyjan.de/images/profile.png',
 })
 
 useHead({

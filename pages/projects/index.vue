@@ -60,7 +60,7 @@ useSeoMeta({
   description: 'Projects by Jan Mayer — a selection of work related to enterprise AI, Azure, RAG, and full-stack delivery.',
   ogTitle: 'Projects · Jan Mayer',
   ogDescription: 'Projects by Jan Mayer — a selection of work related to enterprise AI, Azure, RAG, and full-stack delivery.',
-  ogImage: 'https://heyjan.de/images/profile.jpg',
+  ogImage: 'https://heyjan.de/images/profile.png',
   ogUrl: canonicalUrl.value,
   ogType: 'website',
 })

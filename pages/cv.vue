@@ -60,13 +60,13 @@ useSeoMeta({
   description: 'Curriculum vitae of Jan Mayer; AI Solution Architect and Full-Stack Developer based in Ulm, Germany.',
   ogTitle: 'Curriculum Vitae - Jan Mayer',
   ogDescription: 'Curriculum vitae of Jan Mayer; AI Solution Architect and Full-Stack Developer based in Ulm, Germany.',
-  ogImage: 'https://heyjan.de/images/profile.jpg',
+  ogImage: 'https://heyjan.de/images/profile.png',
   ogUrl: canonicalUrl.value,
   ogType: 'profile',
   twitterCard: 'summary_large_image',
   twitterTitle: 'Curriculum Vitae - Jan Mayer',
   twitterDescription: 'Curriculum vitae of Jan Mayer; AI Solution Architect and Full-Stack Developer.',
-  twitterImage: 'https://heyjan.de/images/profile.jpg',
+  twitterImage: 'https://heyjan.de/images/profile.png',
 })
 
 useHead({

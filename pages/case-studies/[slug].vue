@@ -173,7 +173,7 @@ useSeoMeta({
   description: caseStudy.value?.description || 'Case study',
   ogTitle: caseStudy.value ? `${caseStudy.value.title} | Case Studies | Jan Mayer` : 'Case Study Not Found',
   ogDescription: caseStudy.value?.description || 'Case study',
-  ogImage: caseStudy.value?.meta?.image ? `https://heyjan.de${caseStudy.value.meta.image}` : 'https://heyjan.de/images/profile.jpg',
+  ogImage: caseStudy.value?.meta?.image ? `https://heyjan.de${caseStudy.value.meta.image}` : 'https://heyjan.de/images/profile.png',
   ogUrl: canonicalUrl.value,
   ogType: 'article',
   ogSiteName: 'Jan Mayer',
@@ -181,7 +181,7 @@ useSeoMeta({
   twitterCard: 'summary_large_image',
   twitterTitle: caseStudy.value ? `${caseStudy.value.title} | Case Studies | Jan Mayer` : 'Case Study Not Found',
   twitterDescription: caseStudy.value?.description || 'Case study',
-  twitterImage: caseStudy.value?.meta?.image ? `https://heyjan.de${caseStudy.value.meta.image}` : 'https://heyjan.de/images/profile.jpg',
+  twitterImage: caseStudy.value?.meta?.image ? `https://heyjan.de${caseStudy.value.meta.image}` : 'https://heyjan.de/images/profile.png',
 })
 
 const formatDate = (date) => {

@@ -125,13 +125,13 @@ useSeoMeta({
   description: 'Jan Mayer — AI Solution Architect and Full-Stack Developer based in Ulm, Germany. Enterprise AI, Azure AI Foundry, and RAG architectures.',
   ogTitle: 'Jan Mayer',
   ogDescription: 'Jan Mayer — AI Solution Architect and Full-Stack Developer based in Ulm, Germany. Enterprise AI, Azure AI Foundry, and RAG architectures.',
-  ogImage: 'https://heyjan.de/images/profile.jpg',
+  ogImage: 'https://heyjan.de/images/profile.png',
   ogUrl: canonicalUrl.value,
   ogType: 'profile',
   twitterCard: 'summary_large_image',
   twitterTitle: 'Jan Mayer',
   twitterDescription: 'Jan Mayer — AI Solution Architect and Full-Stack Developer. Enterprise AI, Azure AI Foundry, and RAG architectures.',
-  twitterImage: 'https://heyjan.de/images/profile.jpg',
+  twitterImage: 'https://heyjan.de/images/profile.png',
 })
 
 useHead({
@@ -142,7 +142,7 @@ useSchemaOrg([
   definePerson({
     name: 'Jan Mayer',
     url: 'https://heyjan.de/jan-mayer',
-    image: 'https://heyjan.de/images/profile.jpg',
+    image: 'https://heyjan.de/images/profile.png',
     jobTitle: 'AI Solution Architect & Consultant',
     worksFor: {
       '@type': 'Organization',

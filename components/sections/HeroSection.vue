@@ -134,7 +134,7 @@
     },
     profileImage: {
       type: String,
-      default: '/images/profile.jpg'
+      default: '/images/profile.png'
     }
   })
   

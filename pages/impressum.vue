@@ -77,14 +77,14 @@ useSeoMeta({
   description: 'Impressum von Jan Mayer, AI Solution Architect aus Ulm. Rechtliche Angaben gemäß § 5 TMG, Kontaktinformationen und Haftungsausschluss.',
   ogTitle: 'Impressum - Jan Mayer',
   ogDescription: 'Impressum von Jan Mayer, AI Solution Architect aus Ulm. Rechtliche Angaben gemäß § 5 TMG, Kontaktinformationen und Haftungsausschluss.',
-  ogImage: 'https://heyjan.de/images/profile.jpg',
+  ogImage: 'https://heyjan.de/images/profile.png',
   ogUrl: canonicalUrl.value,
   ogType: 'website',
   ogSiteName: 'Jan Mayer',
   twitterCard: 'summary_large_image',
   twitterTitle: 'Impressum - Jan Mayer',
   twitterDescription: 'Impressum von Jan Mayer, AI Solution Architect aus Ulm.',
-  twitterImage: 'https://heyjan.de/images/profile.jpg',
+  twitterImage: 'https://heyjan.de/images/profile.png',
 })
 
 useHead({

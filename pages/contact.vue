@@ -31,14 +31,14 @@ useSeoMeta({
   description: 'Contact Jan Mayer for AI consulting, solution architecture, and full-stack development. Based in Ulm, Germany.',
   ogTitle: 'Contact - Jan Mayer',
   ogDescription: 'Contact Jan Mayer for AI consulting, solution architecture, and full-stack development. Based in Ulm, Germany.',
-  ogImage: 'https://heyjan.de/images/profile.jpg',
+  ogImage: 'https://heyjan.de/images/profile.png',
   ogUrl: canonicalUrl.value,
   ogType: 'website',
   ogSiteName: 'Jan Mayer',
   twitterCard: 'summary_large_image',
   twitterTitle: 'Contact - Jan Mayer',
   twitterDescription: 'Contact Jan Mayer for AI consulting and full-stack development projects.',
-  twitterImage: 'https://heyjan.de/images/profile.jpg',
+  twitterImage: 'https://heyjan.de/images/profile.png',
 })
 
 useHead({
