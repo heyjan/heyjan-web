@@ -242,7 +242,7 @@ onMounted(() => {
 
 /* Eyebrow */
 .eyebrow {
-  font-family: var(--font-sans);
+  font-family: var(--font-mono);
   font-size: 13px;
   letter-spacing: 0.02em;
   color: var(--color-text-muted);
@@ -350,7 +350,7 @@ onMounted(() => {
 }
 
 .fact-lbl {
-  font-family: var(--font-sans);
+  font-family: var(--font-mono);
   font-size: 11px;
   color: var(--color-text-muted);
   margin-top: 2px;
@@ -368,7 +368,7 @@ onMounted(() => {
 }
 
 .badges-label {
-  font-family: var(--font-sans);
+  font-family: var(--font-mono);
   font-size: 11px;
   color: var(--color-text-muted);
   text-transform: uppercase;
@@ -488,8 +488,8 @@ onMounted(() => {
   background: var(--color-surface-alt);
   display: grid;
   place-items: center;
-  font-family: var(--font-sans);
-  font-size: 12px;
+  font-family: var(--font-mono);
+  font-size: 11px;
   font-weight: 700;
   color: var(--color-primary);
   flex-shrink: 0;
@@ -508,7 +508,7 @@ onMounted(() => {
 }
 
 .chip-meta small {
-  font-family: var(--font-sans);
+  font-family: var(--font-mono);
   font-size: 10.5px;
   color: var(--color-text-muted);
   margin-top: 2px;
