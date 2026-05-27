@@ -24,35 +24,19 @@
           and real-world impact &mdash; from data pipelines to production-ready agents.
         </p>
 
-        <div class="ctas-ab" ref="ctasRef">
-          <div class="cta-row">
-            <span class="cta-label">// dither</span>
-            <div class="cta-group">
-              <DitherButton to="/jan-mayer" variant="primary" size="md">
-                About Jan Mayer
-              </DitherButton>
-              <DitherButton to="/cv" variant="secondary" size="md">
-                View CV
-              </DitherButton>
-            </div>
-          </div>
-          <div class="cta-row">
-            <span class="cta-label">// flat</span>
-            <div class="cta-group">
-              <FlatButton to="/jan-mayer" variant="primary" size="md">
-                About Jan Mayer
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true">
-                  <path d="M5 12h14M13 6l6 6-6 6"/>
-                </svg>
-              </FlatButton>
-              <FlatButton to="/cv" variant="ghost" size="md">
-                View CV
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                  <path d="M12 3v12M6 9l6 6 6-6M5 21h14"/>
-                </svg>
-              </FlatButton>
-            </div>
-          </div>
+        <div class="ctas" ref="ctasRef">
+          <FlatButton to="/jan-mayer" variant="primary" size="md">
+            About Jan Mayer
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true">
+              <path d="M5 12h14M13 6l6 6-6 6"/>
+            </svg>
+          </FlatButton>
+          <FlatButton to="/cv" variant="ghost" size="md">
+            View CV
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <path d="M12 3v12M6 9l6 6 6-6M5 21h14"/>
+            </svg>
+          </FlatButton>
         </div>
 
         <div class="facts" ref="factsRef">
@@ -124,10 +108,10 @@
         </div>
 
         <div class="chip c2">
-          <div class="chip-ic">&#8984;</div>
+          <div class="chip-ic">&#8599;</div>
           <div class="chip-meta">
-            <b>Full-Stack</b>
-            <small>TS &middot; Nuxt &middot; Python</small>
+            <b>AI Strategy</b>
+            <small>Roadmap &middot; ROI &middot; Governance</small>
           </div>
         </div>
 
@@ -337,39 +321,17 @@ onMounted(() => {
   color: var(--color-text-muted);
 }
 
-/* CTAs — A/B layout: dither row + flat row stacked */
-.ctas-ab {
+/* CTAs */
+.ctas {
   margin-top: 28px;
   display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
-
-.cta-row {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  flex-wrap: wrap;
-}
-
-.cta-label {
-  font-family: var(--font-mono);
-  font-size: 10px;
-  color: var(--color-text-muted);
-  letter-spacing: 0.05em;
-  min-width: 52px;
-  opacity: 0.7;
-}
-
-.cta-group {
-  display: flex;
-  gap: 12px;
+  gap: 18px;
   flex-wrap: wrap;
 }
 
 /* Quick facts strip */
 .facts {
-  margin-top: 36px;
+  margin-top: 28px;
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 18px;
@@ -404,10 +366,10 @@ onMounted(() => {
 
 /* Badges */
 .badges {
-  margin-top: 30px;
+  margin-top: 28px;
   display: flex;
   align-items: center;
-  gap: 14px;
+  gap: 18px;
   flex-wrap: wrap;
 }
 
@@ -421,7 +383,7 @@ onMounted(() => {
 
 .badge-stack {
   display: flex;
-  gap: 10px;
+  gap: 18px;
   align-items: center;
 }
 
