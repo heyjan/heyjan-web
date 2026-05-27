@@ -17,6 +17,7 @@
 
   --font-serif: 'TT Travels Text', serif;
   --font-sans: 'Inter', sans-serif;
+  --font-mono: ui-monospace, 'SF Mono', 'Menlo', 'Consolas', monospace;
 }
 
 @layer base {

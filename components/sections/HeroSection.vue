@@ -1,259 +1,569 @@
 <template>
-    <section class="section-padding min-h-screen flex items-center justify-between relative overflow-hidden">
-      <!-- Background Effects -->
-      <div class="absolute inset-0 -z-10">
-        <!-- Gradient Orbs -->
-        <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/15 rounded-full blur-3xl animate-pulse"></div>
-        <div class="absolute bottom-1/4 right-1/4 w-80 h-80 bg-highlight/40 rounded-full blur-3xl animate-pulse" style="animation-delay: 1s;"></div>
-        
-        <!-- Floating Particles -->
-        <div 
-          v-for="particle in particles" 
-          :key="`hero-particle-${particle.id}`"
-          class="absolute w-1 h-1 bg-primary/40 rounded-full animate-float"
-          :style="{
-            left: particle.left + '%',
-            top: particle.top + '%',
-            animationDelay: particle.delay + 's',
-            animationDuration: particle.duration + 's'
-          }"
-        ></div>
-      </div>
+  <section class="hero-section relative overflow-hidden">
+    <!-- Ambient background layers -->
+    <div class="bg-layer" aria-hidden="true"></div>
+    <div class="bg-dots" aria-hidden="true"></div>
 
-      <!-- Main Content -->
-      <div class="max-w-2xl relative z-10" ref="titleRef">
-        <!-- Subtitle with typewriter effect -->
-        <div class="mb-4" ref="subtitleRef">
-          <span v-once class="text-lg md:text-xl text-text-muted font-mono">Full-Stack Developer / AI Solution Architect</span>
-        </div>
-        
-        <div class="mb-6">
-          <span v-once class="text-text/80 block mb-2 text-2xl md:text-6xl font-serif" ref="introText">This is</span>
-          <h1 class="text-4xl md:text-6xl lg:text-7xl font-serif text-primary relative inline-block" ref="nameText">
-            {{ name }}
-            <!-- Underline effect -->
-            <div class="absolute -bottom-2 left-0 w-full h-1 bg-gradient-to-r from-primary to-highlight opacity-80" ref="underlineRef" style="z-index: 1000;"></div>
+    <div class="hero-grid">
+      <!-- LEFT COLUMN -->
+      <div class="left-col" ref="leftColRef">
+        <p class="eyebrow" ref="eyebrowRef">
+          <span class="status-dot" aria-hidden="true"></span>
+          Full-Stack Developer / AI Solution Architect
+        </p>
+
+        <div class="headline-wrap" ref="headlineRef">
+          <span class="headline-intro">This is</span>
+          <h1 class="headline-name">
+            {{ name }}<span class="headline-underline" ref="underlineRef"></span>
           </h1>
         </div>
-        
-        <!-- Description with fade-in effect -->
-        <div class="mb-8" ref="descriptionRef">
-          <p v-once class="text-lg text-text-muted leading-relaxed max-w-lg">
-            Designing and building enterprise AI that drives efficiency and real-world impact.
-          </p>
-        </div>
-        
-        <!-- CTA Buttons -->
-        <div class="flex gap-4" ref="buttonsRef">
-          <DitherButton to="/jan-mayer" variant="primary" size="md">
+
+        <p class="lede" ref="ledeRef">
+          Designing and building enterprise AI that drives efficiency
+          and real-world impact &mdash; from data pipelines to production-ready agents.
+        </p>
+
+        <div class="ctas" ref="ctasRef">
+          <FlatButton to="/jan-mayer" variant="primary" size="md">
             About Jan Mayer
-          </DitherButton>
-          <DitherButton to="/cv" variant="secondary" size="md">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true">
+              <path d="M5 12h14M13 6l6 6-6 6"/>
+            </svg>
+          </FlatButton>
+          <FlatButton to="/cv" variant="ghost" size="md">
             View CV
-          </DitherButton>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <path d="M12 3v12M6 9l6 6 6-6M5 21h14"/>
+            </svg>
+          </FlatButton>
         </div>
 
-        <div ref="badgesRef" class="mt-8 flex items-center gap-4">
-          <!-- NVIDIA certification badge (Credly-verified) -->
-          <a
-            href="https://www.credly.com/badges/7c094bab-d491-4b9c-a1b9-b552c242c92a"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="inline-block transition-opacity hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded"
-            title="NVIDIA Certified Associate: Generative AI LLMs - view credential on Credly"
-          >
-            <NuxtImg
-              src="/images/nvidia-nca-genl-badge.png"
-              alt="NVIDIA Certified Associate: Generative AI LLMs"
-              width="120"
-              height="140"
-              format="webp"
-              loading="lazy"
-              class="h-24 w-auto"
-            />
-          </a>
+        <div class="facts" ref="factsRef">
+          <div class="fact">
+            <div class="fact-num">10+</div>
+            <div class="fact-lbl">years shipping</div>
+          </div>
+          <div class="fact">
+            <div class="fact-num">7+</div>
+            <div class="fact-lbl">projects &middot; last 12mo</div>
+          </div>
+          <div class="fact">
+            <div class="fact-num">EU / DE</div>
+            <div class="fact-lbl">remote &middot; ulm</div>
+          </div>
+        </div>
 
-          <!-- PSPO I certification badge (Credly-verified) -->
-          <a
-            href="https://www.credly.com/badges/a5c0ee1f-8979-47d3-9be7-cb67b3d0055c"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="inline-block transition-opacity hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded"
-            title="Professional Scrum Product Owner I (PSPO I) - view credential on Credly"
-          >
-            <NuxtImg
-              src="/images/pspo-i-badge.png"
-              alt="Professional Scrum Product Owner I (PSPO I)"
-              width="120"
-              height="120"
-              format="webp"
-              loading="lazy"
-              class="h-24 w-auto"
-            />
-          </a>
+        <div class="badges" ref="badgesRef">
+          <span class="badges-label">Certified</span>
+          <div class="badge-stack">
+            <a
+              href="https://www.credly.com/badges/7c094bab-d491-4b9c-a1b9-b552c242c92a"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="badge-link"
+              title="NVIDIA Certified Associate: Generative AI LLMs - view credential on Credly"
+            >
+              <NuxtImg
+                src="/images/nvidia-nca-genl-badge.png"
+                alt="NVIDIA Certified Associate: Generative AI LLMs"
+                width="120"
+                height="140"
+                format="webp"
+                loading="lazy"
+                class="badge-img"
+              />
+            </a>
+            <a
+              href="https://www.credly.com/badges/a5c0ee1f-8979-47d3-9be7-cb67b3d0055c"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="badge-link"
+              title="Professional Scrum Product Owner I (PSPO I) - view credential on Credly"
+            >
+              <NuxtImg
+                src="/images/pspo-i-badge.png"
+                alt="Professional Scrum Product Owner I (PSPO I)"
+                width="120"
+                height="120"
+                format="webp"
+                loading="lazy"
+                class="badge-img"
+              />
+            </a>
+          </div>
         </div>
       </div>
-      
-      <!-- Profile Image with enhanced effects -->
-      <div class="hidden md:block relative z-10" ref="imageRef">
-        <div class="relative">
-          <!-- Glow effect -->
-          <div class="absolute inset-0 w-48 h-48 lg:w-64 lg:h-64 rounded-full bg-highlight/50 blur-xl scale-110"></div>
-          
-          <!-- Main image container -->
-          <div class="w-48 h-48 lg:w-64 lg:h-64 rounded-full overflow-hidden border-4 border-primary/40 relative group">
-            <NuxtImg 
-              :src="profileImage" 
+
+      <!-- RIGHT COLUMN: portrait + floating chips -->
+      <div class="portrait-stage" ref="portraitRef">
+        <div class="portrait-halo" aria-hidden="true"></div>
+
+        <div class="chip c1">
+          <div class="chip-ic">AI</div>
+          <div class="chip-meta">
+            <b>Enterprise GenAI</b>
+            <small>RAG &middot; Agents &middot; Eval</small>
+          </div>
+        </div>
+
+        <div class="chip c2">
+          <div class="chip-ic">&#8599;</div>
+          <div class="chip-meta">
+            <b>AI Strategy</b>
+            <small>Roadmap &middot; ROI &middot; Governance</small>
+          </div>
+        </div>
+
+        <div class="chip c3">
+          <div class="chip-ic">DE</div>
+          <div class="chip-meta">
+            <b>Data Engineering</b>
+            <small>ETL &middot; Spark &middot; Airflow</small>
+          </div>
+        </div>
+
+        <div class="chip c4">
+          <div class="chip-ic">&#9733;</div>
+          <div class="chip-meta">
+            <b>Product mindset</b>
+            <small>PSPO I &middot; Scrum.org</small>
+          </div>
+        </div>
+
+        <div class="portrait-ring">
+          <div class="portrait-inner">
+            <NuxtImg
+              :src="profileImage"
               :alt="name"
               format="webp"
               loading="eager"
               fetchpriority="high"
-              width="256"
-              height="256"
-              class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+              width="360"
+              height="360"
+              class="portrait-img"
             />
-            
-            <!-- Overlay gradient -->
-            <div class="absolute inset-0 bg-gradient-to-t from-highlight/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
           </div>
-          
-          <!-- Floating elements around image -->
         </div>
       </div>
-    </section>
-  </template>
-  
-  <script setup>
-  import { ref, onMounted } from 'vue'
-  import { gsap } from 'gsap'
-  
-  const props = defineProps({
-    name: {
-      type: String,
-      default: 'Jan Mayer'
-    },
-    profileImage: {
-      type: String,
-      default: '/images/profile.png'
-    }
-  })
-  
-  const titleRef = ref(null)
-  const imageRef = ref(null)
-  const subtitleRef = ref(null)
-  const introText = ref(null)
-  const nameText = ref(null)
-  const underlineRef = ref(null)
-  const descriptionRef = ref(null)
-  const buttonsRef = ref(null)
-  const badgesRef = ref(null)
-  const particles = ref([])
-  
-  onMounted(() => {
-    // Generate 20 random particles for background
-    for (let i = 0; i < 20; i++) {
-      particles.value.push({
-        id: i,
-        left: Math.random() * 100,
-        top: Math.random() * 100,
-        delay: Math.random() * 3,
-        duration: 3 + Math.random() * 4
-      })
-    }
+    </div>
+  </section>
+</template>
 
-    // Create timeline for coordinated animations
-    const tl = gsap.timeline()
-    
-    // Set initial states
-    gsap.set([subtitleRef.value, introText.value, nameText.value, descriptionRef.value, buttonsRef.value, badgesRef.value], {
-      opacity: 0,
-      y: 30
-    })
-    
-    gsap.set(underlineRef.value, {
-      scaleX: 0,
-      transformOrigin: 'left center'
-    })
-    
-    gsap.set(imageRef.value, {
-      opacity: 0,
-      scale: 0.8,
-      rotation: 5
-    })
-    
-    // Animate elements in sequence
-    tl.to(subtitleRef.value, {
-      opacity: 1,
-      y: 0,
-      duration: 0.8,
-      ease: 'power3.out'
-    })
-    .to(introText.value, {
-      opacity: 1,
-      y: 0,
-      duration: 0.8,
-      ease: 'power3.out'
-    }, '-=0.4')
-    .to(nameText.value, {
-      opacity: 1,
-      y: 0,
-      duration: 0.8,
-      ease: 'power3.out'
-    }, '-=0.4')
-    .to(underlineRef.value, {
-      scaleX: 1,
-      duration: 0.8,
-      ease: 'power3.out'
-    }, '-=0.4')
-    .to(descriptionRef.value, {
-      opacity: 1,
-      y: 0,
-      duration: 0.8,
-      ease: 'power3.out'
-    }, '-=0.2')
-    .to(buttonsRef.value, {
-      opacity: 1,
-      y: 0,
-      duration: 0.8,
-      ease: 'power3.out'
-    }, '-=0.2')
-    .to(badgesRef.value, {
-      opacity: 1,
-      y: 0,
-      duration: 0.8,
-      ease: 'power3.out'
-    }, '-=0.2')
-    .to(imageRef.value, {
-      opacity: 1,
-      scale: 1,
-      rotation: 0,
-      duration: 1.2,
-      ease: 'elastic.out(1, 0.3)'
-    }, '-=0.6')
-    
-  })
-  </script>
-  
-  <style scoped>
-  @keyframes float {
-    0%, 100% {
-      transform: translateY(0px);
-    }
-    50% {
-      transform: translateY(-20px);
-    }
+<script setup>
+import { ref, onMounted } from 'vue'
+import { gsap } from 'gsap'
+
+defineProps({
+  name: {
+    type: String,
+    default: 'Jan Mayer'
+  },
+  profileImage: {
+    type: String,
+    default: '/images/profile.png'
   }
-  
-  .animate-float {
-    animation: float 3s ease-in-out infinite;
+})
+
+const eyebrowRef = ref(null)
+const headlineRef = ref(null)
+const underlineRef = ref(null)
+const ledeRef = ref(null)
+const ctasRef = ref(null)
+const factsRef = ref(null)
+const badgesRef = ref(null)
+const portraitRef = ref(null)
+
+onMounted(() => {
+  const tl = gsap.timeline()
+
+  gsap.set([
+    eyebrowRef.value,
+    headlineRef.value,
+    ledeRef.value,
+    ctasRef.value,
+    factsRef.value,
+    badgesRef.value
+  ], { opacity: 0, y: 20 })
+
+  gsap.set(underlineRef.value, { scaleX: 0, transformOrigin: 'left center' })
+  gsap.set(portraitRef.value, { opacity: 0, scale: 0.9 })
+
+  tl.to(eyebrowRef.value, { opacity: 1, y: 0, duration: 0.6, ease: 'power3.out' })
+    .to(headlineRef.value, { opacity: 1, y: 0, duration: 0.7, ease: 'power3.out' }, '-=0.35')
+    .to(underlineRef.value, { scaleX: 1, duration: 0.7, ease: 'power3.out' }, '-=0.3')
+    .to(portraitRef.value, { opacity: 1, scale: 1, duration: 0.9, ease: 'power3.out' }, '-=0.6')
+    .to(ledeRef.value, { opacity: 1, y: 0, duration: 0.6, ease: 'power3.out' }, '-=0.5')
+    .to(ctasRef.value, { opacity: 1, y: 0, duration: 0.6, ease: 'power3.out' }, '-=0.4')
+    .to(factsRef.value, { opacity: 1, y: 0, duration: 0.6, ease: 'power3.out' }, '-=0.4')
+    .to(badgesRef.value, { opacity: 1, y: 0, duration: 0.6, ease: 'power3.out' }, '-=0.4')
+})
+</script>
+
+<style scoped>
+.hero-section {
+  position: relative;
+  min-height: calc(100vh - 80px);
+  display: flex;
+  align-items: center;
+}
+
+/* Ambient background */
+.bg-layer {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(900px 600px at 55% 40%, rgba(48, 85, 166, 0.10), transparent 60%),
+    radial-gradient(700px 500px at 70% 75%, rgba(254, 222, 199, 0.55), transparent 65%);
+}
+
+.bg-dots {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.55;
+  background-image: radial-gradient(rgba(26, 26, 26, 0.18) 1px, transparent 1px);
+  background-size: 26px 26px;
+  background-position: 0 0;
+  mask-image: radial-gradient(ellipse at center, black 30%, transparent 80%);
+  -webkit-mask-image: radial-gradient(ellipse at center, black 30%, transparent 80%);
+}
+
+/* Hero grid: tight 2-col, no center void */
+.hero-grid {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 28px 24px 64px;
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(360px, 0.95fr);
+  gap: 56px;
+  align-items: center;
+}
+
+/* Eyebrow */
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  letter-spacing: 0.02em;
+  color: var(--color-text-muted);
+  margin: 0 0 22px;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.status-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #22c55e;
+  box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.18);
+  animation: status-pulse 2.4s ease-in-out infinite;
+}
+
+@keyframes status-pulse {
+  0%, 100% { box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.18); }
+  50%      { box-shadow: 0 0 0 7px rgba(34, 197, 94, 0.06); }
+}
+
+/* Headline */
+.headline-wrap {
+  display: block;
+  margin: 0;
+}
+
+.headline-intro {
+  display: block;
+  font-family: var(--font-serif);
+  font-size: clamp(40px, 5.4vw, 76px);
+  line-height: 0.98;
+  letter-spacing: -0.03em;
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.headline-name {
+  position: relative;
+  display: inline-block;
+  margin: 4px 0 0;
+  font-family: var(--font-serif);
+  font-size: clamp(48px, 6.4vw, 92px);
+  line-height: 0.98;
+  letter-spacing: -0.03em;
+  font-weight: 600;
+  color: var(--color-primary);
+  width: max-content;
+  max-width: 100%;
+}
+
+.headline-underline {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -6px;
+  height: 3px;
+  background: linear-gradient(90deg, var(--color-primary), var(--color-highlight));
+  border-radius: 3px;
+}
+
+/* Lede */
+.lede {
+  margin: 22px 0 0;
+  max-width: 46ch;
+  font-size: 18px;
+  line-height: 1.55;
+  color: var(--color-text-muted);
+}
+
+/* CTAs */
+.ctas {
+  margin-top: 28px;
+  display: flex;
+  gap: 18px;
+  flex-wrap: wrap;
+}
+
+/* Quick facts strip */
+.facts {
+  margin-top: 28px;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+  max-width: 540px;
+}
+
+.fact {
+  border: 1px solid var(--color-border);
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  border-radius: 12px;
+  padding: 14px 16px;
+}
+
+.fact-num {
+  font-family: var(--font-sans);
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--color-text);
+  letter-spacing: -0.02em;
+}
+
+.fact-lbl {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--color-text-muted);
+  margin-top: 2px;
+  text-transform: lowercase;
+  letter-spacing: 0.02em;
+}
+
+/* Badges */
+.badges {
+  margin-top: 28px;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  flex-wrap: wrap;
+}
+
+.badges-label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.badge-stack {
+  display: flex;
+  gap: 18px;
+  align-items: center;
+}
+
+.badge-link {
+  display: inline-block;
+  transition: opacity 0.2s, transform 0.2s;
+  border-radius: 10px;
+}
+
+.badge-link:hover {
+  opacity: 0.9;
+  transform: translateY(-2px);
+}
+
+.badge-link:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+.badge-img {
+  height: 5rem;
+  width: auto;
+  display: block;
+}
+
+/* Portrait stage */
+.portrait-stage {
+  position: relative;
+  display: grid;
+  place-items: center;
+  min-height: 520px;
+}
+
+.portrait-halo {
+  position: absolute;
+  width: 480px;
+  height: 480px;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 50% 50%, rgba(48, 85, 166, 0.14) 0%, transparent 55%),
+    radial-gradient(circle at 65% 70%, rgba(254, 222, 199, 0.55) 0%, transparent 60%);
+  filter: blur(8px);
+  z-index: 0;
+}
+
+.portrait-ring {
+  position: relative;
+  width: 360px;
+  height: 360px;
+  border-radius: 50%;
+  padding: 8px;
+  background:
+    conic-gradient(from 200deg,
+      var(--color-primary) 0deg,
+      var(--color-highlight) 120deg,
+      var(--color-primary) 240deg,
+      var(--color-highlight) 360deg);
+  z-index: 1;
+  box-shadow:
+    0 30px 60px -30px rgba(48, 85, 166, 0.35),
+    0 12px 32px -16px rgba(0, 0, 0, 0.15);
+}
+
+.portrait-inner {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  overflow: hidden;
+  background: var(--color-surface-alt);
+  position: relative;
+}
+
+.portrait-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Floating info chips */
+.chip {
+  position: absolute;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+  padding: 10px 14px;
+  box-shadow:
+    0 12px 28px -16px rgba(0, 0, 0, 0.18),
+    0 2px 6px -2px rgba(0, 0, 0, 0.06);
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13px;
+  color: var(--color-text);
+  transition: transform 0.25s ease;
+  animation: chip-float 6s ease-in-out infinite;
+}
+
+.chip:hover {
+  transform: translateY(-3px);
+}
+
+.chip-ic {
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
+  background: var(--color-surface-alt);
+  display: grid;
+  place-items: center;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--color-primary);
+  flex-shrink: 0;
+}
+
+.chip-meta {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.15;
+}
+
+.chip-meta b {
+  font-weight: 600;
+  font-size: 13px;
+  font-family: var(--font-sans);
+}
+
+.chip-meta small {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  color: var(--color-text-muted);
+  margin-top: 2px;
+}
+
+.chip.c1 { top: 4%;    left: -4%;   animation-delay: 0s; }
+.chip.c2 { top: 28%;   right: -8%;  animation-delay: 1.4s; }
+.chip.c3 { bottom: 18%; left: -10%; animation-delay: 2.8s; }
+.chip.c4 { bottom: 4%;  right: -2%; animation-delay: 4.2s; }
+
+@keyframes chip-float {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-6px); }
+}
+
+/* Responsive */
+@media (max-width: 980px) {
+  .hero-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+    padding-top: 12px;
   }
-  
-  /* Custom gradient text effect */
-  .text-primary {
-    background: linear-gradient(135deg, #3055A6 0%, #4A7BD4 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+  .portrait-stage {
+    min-height: 420px;
+    order: -1;
   }
-  
-  </style>
+  .portrait-ring { width: 280px; height: 280px; }
+  .portrait-halo { width: 380px; height: 380px; }
+  .chip.c1 { left: 2%; }
+  .chip.c2 { right: 2%; }
+  .chip.c3 { left: 2%; }
+  .chip.c4 { right: 2%; }
+}
+
+@media (max-width: 640px) {
+  .hero-grid { padding: 20px 20px 40px; }
+  .headline-name { font-size: 48px; }
+  .headline-intro { font-size: 40px; }
+  .facts { grid-template-columns: 1fr 1fr; }
+  .chip { font-size: 12px; padding: 8px 10px; }
+  .chip-meta b { font-size: 12px; }
+  .chip-meta small { font-size: 10px; }
+  .lede { font-size: 16px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .status-dot,
+  .chip {
+    animation: none;
+  }
+}
+</style>
