@@ -24,13 +24,35 @@
           and real-world impact &mdash; from data pipelines to production-ready agents.
         </p>
 
-        <div class="ctas" ref="ctasRef">
-          <DitherButton to="/jan-mayer" variant="primary" size="md">
-            About Jan Mayer
-          </DitherButton>
-          <DitherButton to="/cv" variant="secondary" size="md">
-            View CV
-          </DitherButton>
+        <div class="ctas-ab" ref="ctasRef">
+          <div class="cta-row">
+            <span class="cta-label">// dither</span>
+            <div class="cta-group">
+              <DitherButton to="/jan-mayer" variant="primary" size="md">
+                About Jan Mayer
+              </DitherButton>
+              <DitherButton to="/cv" variant="secondary" size="md">
+                View CV
+              </DitherButton>
+            </div>
+          </div>
+          <div class="cta-row">
+            <span class="cta-label">// flat</span>
+            <div class="cta-group">
+              <FlatButton to="/jan-mayer" variant="primary" size="md">
+                About Jan Mayer
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true">
+                  <path d="M5 12h14M13 6l6 6-6 6"/>
+                </svg>
+              </FlatButton>
+              <FlatButton to="/cv" variant="ghost" size="md">
+                View CV
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                  <path d="M12 3v12M6 9l6 6 6-6M5 21h14"/>
+                </svg>
+              </FlatButton>
+            </div>
+          </div>
         </div>
 
         <div class="facts" ref="factsRef">
@@ -39,8 +61,8 @@
             <div class="fact-lbl">years shipping</div>
           </div>
           <div class="fact">
-            <div class="fact-num">35</div>
-            <div class="fact-lbl">enterprise projects</div>
+            <div class="fact-num">7+</div>
+            <div class="fact-lbl">projects &middot; last 12mo</div>
           </div>
           <div class="fact">
             <div class="fact-num">EU / DE</div>
@@ -315,9 +337,31 @@ onMounted(() => {
   color: var(--color-text-muted);
 }
 
-/* CTAs */
-.ctas {
+/* CTAs — A/B layout: dither row + flat row stacked */
+.ctas-ab {
   margin-top: 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.cta-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.cta-label {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--color-text-muted);
+  letter-spacing: 0.05em;
+  min-width: 52px;
+  opacity: 0.7;
+}
+
+.cta-group {
   display: flex;
   gap: 12px;
   flex-wrap: wrap;
