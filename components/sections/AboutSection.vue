@@ -10,7 +10,7 @@
       <h3 class="text-xl font-serif text-text !mb-2">Work</h3>
 
       <p>
-        At LIQUI MOLY, building a Data & AI capability from scratch: five production projects spanning automated revenue reporting, multi-source price aggregation, a RAG-based knowledge system for technical support, AI-driven content generation, and a custom BI platform with forecasting and outlier detection. Also advising on AI tooling and contributing to the company's Data & AI strategy.
+        At LIQUI MOLY, building a Data & AI capability from scratch: five production projects spanning automated revenue reporting, multi-source price aggregation, a RAG-based knowledge system for technical support, AI-driven content generation, and a custom BI platform with forecasting and outlier detection. Also evaluating use cases with the business, advising on AI tooling, and authoring the company's Data & AI strategy paper to C-level &mdash; the work spans roadmap and ROI framing as much as delivery.
       </p>
 
       <h3 class="text-xl font-serif text-text !mb-2">Freelance</h3>
@@ -30,7 +30,7 @@
       </p>
 
       <p>
-        A key strength is staying adaptable: not tied to a single tool or environment, but combining whatever stack fits the problem. Acting as a generalist across architecture, implementation, and automation helps to move fast in a field where frameworks and APIs change every few months.
+        A key strength is staying adaptable: not tied to a single tool or environment, but combining whatever stack fits the problem. Acting as a generalist across strategy, architecture, implementation, and product delivery helps to move fast in a field where frameworks and APIs change every few months.
       </p>
     </div>
   </section>

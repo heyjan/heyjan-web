@@ -21,7 +21,7 @@
 
         <p class="lede" ref="ledeRef">
           Designing and building enterprise AI that drives efficiency
-          and real-world impact &mdash; from data pipelines to production-ready agents.
+          and real-world impact.
         </p>
 
         <div class="ctas" ref="ctasRef">
@@ -312,10 +312,11 @@ onMounted(() => {
   border-radius: 3px;
 }
 
-/* Lede */
+/* Lede — min-height preserves the 2-line footprint after the trim */
 .lede {
   margin: 22px 0 0;
   max-width: 46ch;
+  min-height: calc(2 * 1.55em);
   font-size: 18px;
   line-height: 1.55;
   color: var(--color-text-muted);

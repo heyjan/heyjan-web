@@ -12,8 +12,9 @@
         <div class="space-y-10">
           <section class="bg-surface border border-border rounded-lg p-8 shadow-sm">
             <p class="text-lg text-text-muted leading-relaxed">
-              AI Solution Architect and Full-Stack Developer based in Ulm, Germany. I build production-ready enterprise AI
-              systems with a focus on Azure AI Foundry and retrieval-augmented generation (RAG).
+              AI Solution Architect and Full-Stack Developer based in Ulm, Germany. I build enterprise AI
+              end-to-end &mdash; from strategy and roadmap to production &mdash; translating business needs into
+              measurable outcomes under enterprise IT governance.
             </p>
           </section>
 
@@ -23,10 +24,11 @@
             <div class="md:col-span-2 bg-surface border border-border rounded-lg p-8 shadow-sm">
               <h2 class="text-2xl font-serif text-text mb-4">Focus</h2>
               <ul class="space-y-3 text-text-muted leading-relaxed list-disc pl-5">
+                <li>AI strategy &amp; roadmap: use-case discovery, ROI framing, governance under enterprise IT</li>
                 <li>Enterprise AI: RAG architectures, AI agents, LLM integration for internal knowledge systems</li>
                 <li>Business Intelligence: custom BI platforms, forecasting, outlier detection, automated reporting</li>
-                <li>Data pipelines & API orchestration: multi-source integrations, webhooks, data quality</li>
-                <li>Full-stack delivery in compliance-sensitive environments</li>
+                <li>Data pipelines &amp; API orchestration: multi-source integrations, webhooks, data quality</li>
+                <li>Product &amp; delivery: PSPO I&ndash;grounded, stakeholder coordination from departments to C-level</li>
               </ul>
             </div>
 

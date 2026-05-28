@@ -25,7 +25,9 @@ import { gsap } from 'gsap'
 import {
   Brain,
   Puzzle,
-  HandMetal
+  HandMetal,
+  Map,
+  Target
 } from 'lucide-vue-next'
 import SectionTitle from '~/components/ui/SectionTitle.vue'
 
@@ -33,6 +35,8 @@ const sectionRef = ref(null)
 
 const skills = ref([
   { name: 'Analytical Thinking', icon: Brain },
+  { name: 'Strategic Roadmapping', icon: Map },
+  { name: 'Product Mindset', icon: Target },
   { name: 'Solution-oriented Working', icon: Puzzle },
   { name: 'Hands-on Mentality', icon: HandMetal },
 ])
