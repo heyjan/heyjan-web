@@ -49,7 +49,7 @@
             <div class="fact-lbl">projects &middot; last 12mo</div>
           </div>
           <div class="fact">
-            <div class="fact-num">EU / DE</div>
+            <div class="fact-num">EN / DE</div>
             <div class="fact-lbl">remote &middot; ulm</div>
           </div>
         </div>
@@ -91,6 +91,26 @@
                 class="badge-img"
               />
             </a>
+          </div>
+        </div>
+
+        <div v-if="writingItems.length" class="writing" ref="writingRef">
+          <div class="writing-head">
+            <span class="writing-label">My latest writing</span>
+            <NuxtLink to="/blog" class="writing-all">
+              View all
+            </NuxtLink>
+          </div>
+
+          <div class="writing-list">
+            <NuxtLink
+              v-for="post in writingItems"
+              :key="post._path"
+              :to="post._path"
+              class="writing-link"
+            >
+              {{ post.title }}
+            </NuxtLink>
           </div>
         </div>
       </div>
@@ -151,7 +171,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue'
+import { computed, ref, onMounted } from 'vue'
 import { gsap } from 'gsap'
 
 defineProps({
@@ -172,19 +192,26 @@ const ledeRef = ref(null)
 const ctasRef = ref(null)
 const factsRef = ref(null)
 const badgesRef = ref(null)
+const writingRef = ref(null)
 const portraitRef = ref(null)
+
+const { data: latestPosts } = await useAsyncData('hero-latest-posts', () => $fetch('/api/blog'))
+
+const writingItems = computed(() => (latestPosts.value ?? []).slice(0, 4))
 
 onMounted(() => {
   const tl = gsap.timeline()
-
-  gsap.set([
+  const introItems = [
     eyebrowRef.value,
     headlineRef.value,
     ledeRef.value,
     ctasRef.value,
     factsRef.value,
-    badgesRef.value
-  ], { opacity: 0, y: 20 })
+    badgesRef.value,
+    writingRef.value,
+  ].filter(Boolean)
+
+  gsap.set(introItems, { opacity: 0, y: 20 })
 
   gsap.set(underlineRef.value, { scaleX: 0, transformOrigin: 'left center' })
   gsap.set(portraitRef.value, { opacity: 0, scale: 0.9 })
@@ -197,6 +224,10 @@ onMounted(() => {
     .to(ctasRef.value, { opacity: 1, y: 0, duration: 0.6, ease: 'power3.out' }, '-=0.4')
     .to(factsRef.value, { opacity: 1, y: 0, duration: 0.6, ease: 'power3.out' }, '-=0.4')
     .to(badgesRef.value, { opacity: 1, y: 0, duration: 0.6, ease: 'power3.out' }, '-=0.4')
+
+  if (writingRef.value) {
+    tl.to(writingRef.value, { opacity: 1, y: 0, duration: 0.6, ease: 'power3.out' }, '-=0.4')
+  }
 })
 </script>
 
@@ -410,6 +441,59 @@ onMounted(() => {
   display: block;
 }
 
+.writing {
+  margin-top: 30px;
+  max-width: 640px;
+}
+
+.writing-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.writing-label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+}
+
+.writing-all {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--color-primary);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  text-decoration: none;
+}
+
+.writing-all:hover {
+  opacity: 0.72;
+}
+
+.writing-list {
+  margin-top: 14px;
+  display: grid;
+  gap: 10px;
+}
+
+.writing-link {
+  font-family: var(--font-mono);
+  font-size: 14px;
+  line-height: 1.45;
+  color: rgba(26, 26, 26, 0.68);
+  text-decoration: none;
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.writing-link:hover {
+  color: var(--color-text);
+  transform: translateX(4px);
+}
+
 /* Portrait stage */
 .portrait-stage {
   position: relative;
@@ -555,6 +639,7 @@ onMounted(() => {
   .headline-name { font-size: 48px; }
   .headline-intro { font-size: 40px; }
   .facts { grid-template-columns: 1fr 1fr; }
+  .writing-link { font-size: 13px; }
   .chip { font-size: 12px; padding: 8px 10px; }
   .chip-meta b { font-size: 12px; }
   .chip-meta small { font-size: 10px; }
