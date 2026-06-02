@@ -7,7 +7,6 @@
       <LazyServicesSection hydrate-on-visible />
       <LazyFeaturedCaseStudy hydrate-on-visible />
       <!-- <FeaturedProjects /> -->
-      <LazyLatestPosts hydrate-on-visible />
       <LazyContactSection hydrate-on-visible />
     </main>
     
