@@ -64,13 +64,21 @@
   </template>
   
   <script setup>
-  import { ref, onMounted, onUnmounted } from 'vue'
-  import { Linkedin, Github, Twitter, Mail } from 'lucide-vue-next'
+  import { ref, watch, onMounted, onUnmounted } from 'vue'
+  import { gsap } from 'gsap'
+  import { Linkedin, Github, Mail } from 'lucide-vue-next'
   import XingIcon from '~/components/icons/XingIcon.vue'
   
   const scrolled = ref(false)
   const menuOpen = ref(false)
   const headerRef = ref(null)
+
+  const SCROLLED_OFFSET = 50
+  const HIDE_OFFSET = 80
+  const TOP_RESET_OFFSET = 12
+
+  let lastScrollY = 0
+  let headerHidden = false
   
   const socials = [
     { name: 'LinkedIn', url: 'https://www.linkedin.com/in/jan-mayer-a8b7b4176/', icon: Linkedin },
@@ -120,13 +128,64 @@
     }
   }
   
+  const showHeader = () => {
+    if (!headerRef.value || !headerHidden) return
+
+    gsap.to(headerRef.value, {
+      yPercent: 0,
+      duration: 0.25,
+      ease: 'power2.out',
+      overwrite: true,
+    })
+
+    headerHidden = false
+  }
+
+  const hideHeader = () => {
+    if (!headerRef.value || headerHidden || menuOpen.value) return
+
+    gsap.to(headerRef.value, {
+      yPercent: -100,
+      duration: 0.25,
+      ease: 'power2.out',
+      overwrite: true,
+    })
+
+    headerHidden = true
+  }
+
   const handleScroll = () => {
-    scrolled.value = window.scrollY > 50
+    const currentScrollY = window.scrollY
+    scrolled.value = currentScrollY > SCROLLED_OFFSET
+
+    if (currentScrollY <= TOP_RESET_OFFSET) {
+      showHeader()
+      lastScrollY = currentScrollY
+      return
+    }
+
+    if (currentScrollY > lastScrollY && currentScrollY > HIDE_OFFSET) {
+      hideHeader()
+    } else if (currentScrollY < lastScrollY) {
+      showHeader()
+    }
+
+    lastScrollY = currentScrollY
   }
   
+  watch(menuOpen, (isOpen) => {
+    if (isOpen) {
+      showHeader()
+    }
+  })
+
   onMounted(() => {
-    window.addEventListener('scroll', handleScroll)
+    lastScrollY = window.scrollY
+    gsap.set(headerRef.value, { yPercent: 0 })
+
+    window.addEventListener('scroll', handleScroll, { passive: true })
     document.addEventListener('click', handleClickOutside)
+    handleScroll()
   })
   
   onUnmounted(() => {
