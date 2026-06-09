@@ -91,15 +91,29 @@
                 class="badge-img"
               />
             </a>
+            <a
+              href="https://www.microsoft.com/en-us/cloudskillschallenge/ai/officialrules/2025"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="badge-link"
+              title="Microsoft AI Skills Fest 2026"
+            >
+              <NuxtImg
+                src="/images/ai-skills-fest-badge.png"
+                alt="Microsoft AI Skills Fest 2026"
+                width="120"
+                height="120"
+                format="webp"
+                loading="lazy"
+                class="badge-img"
+              />
+            </a>
           </div>
         </div>
 
         <div v-if="writingItems.length" class="writing" ref="writingRef">
           <div class="writing-head">
             <span class="writing-label">My latest writing</span>
-            <NuxtLink to="/blog" class="writing-all">
-              View all
-            </NuxtLink>
           </div>
 
           <div class="writing-list">
@@ -112,6 +126,10 @@
               {{ post.title }}
             </NuxtLink>
           </div>
+
+          <NuxtLink to="/blog" class="writing-all">
+            View all
+          </NuxtLink>
         </div>
       </div>
 
@@ -283,7 +301,7 @@ onMounted(() => {
   font-size: 13px;
   letter-spacing: 0.02em;
   color: var(--color-text-muted);
-  margin: 0 0 22px;
+  margin: 0 0 24px;
   display: inline-flex;
   align-items: center;
   gap: 10px;
@@ -345,7 +363,7 @@ onMounted(() => {
 
 /* Lede — min-height preserves the 2-line footprint after the trim */
 .lede {
-  margin: 22px 0 0;
+  margin: 24px 0 0;
   max-width: 46ch;
   min-height: calc(2 * 1.55em);
   font-size: 18px;
@@ -355,7 +373,7 @@ onMounted(() => {
 
 /* CTAs */
 .ctas {
-  margin-top: 28px;
+  margin-top: 24px;
   display: flex;
   gap: 18px;
   flex-wrap: wrap;
@@ -363,7 +381,7 @@ onMounted(() => {
 
 /* Quick facts strip */
 .facts {
-  margin-top: 28px;
+  margin-top: 24px;
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 18px;
@@ -398,7 +416,7 @@ onMounted(() => {
 
 /* Badges */
 .badges {
-  margin-top: 28px;
+  margin-top: 24px;
   display: flex;
   align-items: center;
   gap: 18px;
@@ -442,15 +460,13 @@ onMounted(() => {
 }
 
 .writing {
-  margin-top: 30px;
+  margin-top: 32px;
   max-width: 640px;
 }
 
 .writing-head {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 16px;
 }
 
 .writing-label {
@@ -462,6 +478,8 @@ onMounted(() => {
 }
 
 .writing-all {
+  display: inline-block;
+  margin-top: 12px;
   font-family: var(--font-mono);
   font-size: 11px;
   color: var(--color-primary);
