@@ -31,7 +31,7 @@ const sectionRef = ref(null)
 
 const workExperience = ref([
   {
-    title: 'Full Stack Developer / AI Solution Architect',
+    title: 'Full Stack Developer / AI Developer',
     company: 'LIQUI MOLY GmbH',
     period: '09/2024 - present',
     description: [

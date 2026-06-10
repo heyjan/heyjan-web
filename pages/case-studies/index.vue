@@ -17,7 +17,8 @@
           <NuxtLink
             v-for="study in casestudies"
             :key="study.slug"
-            :to="`/case-studies/${study.slug}`"
+            :to="study.url || `/case-studies/${study.slug}`"
+            :external="!!study.url"
             class="bg-surface border border-border rounded-lg overflow-hidden hover:border-primary/50 transition-all block group shadow-sm"
           >
             <div class="flex flex-col md:flex-row">

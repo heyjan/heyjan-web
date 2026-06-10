@@ -97,6 +97,12 @@ import Breadcrumb from '~/components/ui/Breadcrumb.vue'
 const route = useRoute()
 const slug = route.params.slug
 
+// Retired case studies — kept in the repo but no longer publicly accessible.
+const retiredSlugs = ['joomla-datenextraktion']
+if (retiredSlugs.includes(slug)) {
+  throw createError({ statusCode: 404, statusMessage: 'Page Not Found', fatal: true })
+}
+
 const { data: caseStudy, pending } = await useAsyncData(`case-study-${slug}`, async () => {
   try {
     return await $fetch(`/api/case-studies/${slug}`)

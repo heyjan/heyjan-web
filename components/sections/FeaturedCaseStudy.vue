@@ -14,7 +14,8 @@
 
       <NuxtLink
         v-if="featured"
-        :to="`/case-studies/${featured.slug}`"
+        :to="featured.url || `/case-studies/${featured.slug}`"
+        :external="!!featured.url"
         class="bg-surface border border-border rounded-lg overflow-hidden hover:border-primary/50 transition-all block group shadow-sm"
       >
         <div class="flex flex-col md:flex-row">

@@ -192,7 +192,7 @@ export default defineNuxtConfig({
 
   sitemap: {
     autoLastmod: true,
-    exclude: ['/app/**', '/auth/**', '/test'],
+    exclude: ['/app/**', '/auth/**', '/test', '/case-studies/joomla-datenextraktion'],
     sources: [
       '/api/__sitemap__/urls',
     ],
