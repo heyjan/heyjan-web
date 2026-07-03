@@ -62,7 +62,21 @@ export default defineNuxtConfig({
     "@nuxt/fonts",
     "@nuxt/image",
     "@nuxt/scripts",
+    // Registered explicitly (it also ships inside @nuxtjs/seo) so it sets up
+    // early enough to hook `pages:resolved` for the ESLint routes export and
+    // to register its `eslint:config:addons` before @nuxt/eslint collects them.
+    "nuxt-link-checker",
+    "@nuxt/eslint",
   ],
+
+  // ESLint: generate the flat config consumed by eslint.config.mjs.
+  // This also lets @nuxtjs/seo's link-checker inject its broken-link
+  // rules via the `eslint:config:addons` hook.
+  eslint: {
+    config: {
+      stylistic: false,
+    },
+  },
 
   fonts: {
     families: [
@@ -110,6 +124,18 @@ export default defineNuxtConfig({
 
   seo: {
     redirectToCanonicalSiteUrl: true
+  },
+
+  // Link checking: detect broken internal links.
+  // - Dev: live inspection + Nuxt DevTools tab ("Link Checker").
+  // - Build: scans prerendered routes (`runOnBuild`) and reports broken links.
+  // - Lint: the ESLint plugin (wired via @nuxt/eslint) flags links in
+  //   .vue/.ts/.md that don't match a known route or the sitemap.
+  linkChecker: {
+    enabled: true,
+    runOnBuild: true,
+    // Set to true to make `nuxt build`/`generate` fail on broken links.
+    failOnError: false,
   },
 
   // Nuxt Content configuration
