@@ -8,6 +8,10 @@ yarn-debug.log*
 yarn-error.log*
 yarn.lock
 
+# Non-pnpm package managers / stale resolvers (project uses pnpm)
+package-lock.json
+.pnp.*
+
 # Runtime data
 pids
 *.pid
