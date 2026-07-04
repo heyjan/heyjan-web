@@ -1,3 +1,8 @@
+export type CaseStudyMetric = {
+  value: string
+  label: string
+}
+
 export type CaseStudy = {
   slug: string
   title: string
@@ -6,6 +11,10 @@ export type CaseStudy = {
   image?: string
   /** When set, the card links to this URL directly (e.g. a standalone report) instead of /case-studies/[slug]. */
   url?: string
+  /** Short category shown in the hero number badge, e.g. "Data & ML". */
+  category?: string
+  /** Optional result metrics rendered on the hero card. Omit to hide the row. */
+  metrics?: CaseStudyMetric[]
 }
 
 export const casestudies: CaseStudy[] = [
@@ -16,5 +25,11 @@ export const casestudies: CaseStudy[] = [
     tags: ['Data Engineering', 'Machine Learning', 'LLMs', 'Produkt'],
     image: '/images/case-studies/ai-job-market-report.png',
     url: '/case-studies/ai-job-market-report',
+    category: 'Data & ML',
+    metrics: [
+      { value: '4.268', label: 'Stellenanzeigen analysiert' },
+      { value: '2.052', label: 'Unternehmen erfasst' },
+      { value: '425', label: 'Städte abgedeckt' },
+    ],
   },
 ]

@@ -86,6 +86,11 @@ export default defineNuxtConfig({
         weights: ['300', '400', '500', '600'],
       },
       {
+        name: 'JetBrains Mono',
+        provider: 'google',
+        weights: ['400', '500'],
+      },
+      {
         name: 'TT Travels Text',
         provider: 'local',
         src: [
@@ -266,9 +271,11 @@ export default defineNuxtConfig({
     turnstileSecretKey: process.env.TURNSTILE_SECRET_KEY,
     visitorIntelToken: process.env.VISITOR_INTEL_TOKEN || '',
     visitorHashSalt: process.env.VISITOR_HASH_SALT || 'change-me',
+    visitorTrackingEnabled: process.env.VISITOR_TRACKING_ENABLED === 'true',
     // Public keys (exposed to client)
     public: {
-      turnstileSiteKey: process.env.TURNSTILE_SITE_KEY || ''
+      turnstileSiteKey: process.env.TURNSTILE_SITE_KEY || '',
+      visitorTrackingEnabled: process.env.VISITOR_TRACKING_ENABLED === 'true'
     }
   },
 
