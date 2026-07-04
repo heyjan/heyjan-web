@@ -9,6 +9,7 @@
   --color-text: #1A1A1A;
   --color-text-muted: #5A5A5A;
   --color-border: #D1D1D1;
+  --color-border-soft: #E4E4E4;
 
   /* Legacy aliases for gradual migration */
   --color-dark-100: #EBEBEB;
