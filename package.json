@@ -24,7 +24,7 @@
     "@nuxt/fonts": "^0.12.1",
     "@nuxt/image": "^2.0.0",
     "@nuxt/scripts": "^0.13.2",
-    "@nuxtjs/seo": "^3.3.0",
+    "@nuxtjs/seo": "^5.3.2",
     "@tailwindcss/vite": "^4.1.14",
     "bcrypt": "^5.1.1",
     "better-sqlite3": "^12.5.0",
@@ -32,13 +32,14 @@
     "gsap": "^3.13.0",
     "lucide-vue-next": "^0.546.0",
     "mysql2": "^3.16.1",
-    "nuxt": "^4.2.2",
+    "nuxt": "^4.4.8",
+    "nuxt-link-checker": "^5.1.2",
     "resend": "^6.6.0",
     "tailwindcss": "^4.1.14",
     "v-gsap-nuxt": "1.4.4"
   },
   "devDependencies": {
-    "@nuxt/eslint-config": "^1.16.0",
+    "@nuxt/eslint": "^1.16.0",
     "@playwright/test": "^1.57.0",
     "eslint": "^10.6.0",
     "husky": "^9.1.7"
